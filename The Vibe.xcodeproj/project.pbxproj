@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD6342731E98845E00C83D84 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6342721E98845E00C83D84 /* Activities.swift */; };
+		CD77D9AE1E99BE4300201D86 /* createActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77D9AD1E99BE4300201D86 /* createActivity.swift */; };
 		CDEE6F851E8EE57400341FC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */; };
 		CDEE6F871E8EE57400341FC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE6F861E8EE57400341FC9 /* ViewController.swift */; };
 		CDEE6F8A1E8EE57400341FC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDEE6F881E8EE57400341FC9 /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD6342721E98845E00C83D84 /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activities.swift; path = ../Activities.swift; sourceTree = "<group>"; };
+		CD77D9AD1E99BE4300201D86 /* createActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = createActivity.swift; path = ../createActivity.swift; sourceTree = "<group>"; };
 		CDEE6F811E8EE57400341FC9 /* The Vibe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Vibe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDEE6F861E8EE57400341FC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */,
+				CD77D9AD1E99BE4300201D86 /* createActivity.swift */,
+				CD6342721E98845E00C83D84 /* Activities.swift */,
 				CDEE6F861E8EE57400341FC9 /* ViewController.swift */,
 				CDEE6F881E8EE57400341FC9 /* Main.storyboard */,
 				CDEE6F8E1E8EE57400341FC9 /* Assets.xcassets */,
@@ -265,8 +271,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD6342731E98845E00C83D84 /* Activities.swift in Sources */,
 				CDEE6F8D1E8EE57400341FC9 /* The_Vibe.xcdatamodeld in Sources */,
 				CDEE6F871E8EE57400341FC9 /* ViewController.swift in Sources */,
+				CD77D9AE1E99BE4300201D86 /* createActivity.swift in Sources */,
 				CDEE6F851E8EE57400341FC9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +526,7 @@
 				CDEE6FAE1E8EE57400341FC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CDEE6FAF1E8EE57400341FC9 /* Build configuration list for PBXNativeTarget "The VibeTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +535,7 @@
 				CDEE6FB11E8EE57400341FC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CDEE6FB21E8EE57400341FC9 /* Build configuration list for PBXNativeTarget "The VibeUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +544,7 @@
 				CDEE6FB41E8EE57400341FC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
