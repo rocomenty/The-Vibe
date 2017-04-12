@@ -12,6 +12,7 @@
 		089C8AE21E9D9FE8009E4D00 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C8AE11E9D9FE8009E4D00 /* LoginController.swift */; };
 		089C8AE41E9DA93E009E4D00 /* CommunityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C8AE31E9DA93E009E4D00 /* CommunityController.swift */; };
 		089C8AE61E9DB829009E4D00 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C8AE51E9DB829009E4D00 /* AddEventController.swift */; };
+		089C8AE81E9DD9B8009E4D00 /* MoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C8AE71E9DD9B8009E4D00 /* MoreController.swift */; };
 		08E621FC1E9D73A200DE2D9E /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E621F81E9D73A200DE2D9E /* me.png */; };
 		08E621FD1E9D73A200DE2D9E /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E621F91E9D73A200DE2D9E /* add.png */; };
 		08E621FE1E9D73A200DE2D9E /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E621FA1E9D73A200DE2D9E /* map.png */; };
@@ -22,7 +23,6 @@
 		0C3B6A67F0ED4352771EA9DB /* Pods_The_VibeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75603291B1DF652443624C12 /* Pods_The_VibeUITests.framework */; };
 		5600E54D495B4EF954F02697 /* Pods_The_Vibe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A554F4507F016D542605DF /* Pods_The_Vibe.framework */; };
 		CD6342731E98845E00C83D84 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6342721E98845E00C83D84 /* Activities.swift */; };
-		CD77D9AE1E99BE4300201D86 /* createActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77D9AD1E99BE4300201D86 /* createActivity.swift */; };
 		CDEE6F851E8EE57400341FC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */; };
 		CDEE6F871E8EE57400341FC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE6F861E8EE57400341FC9 /* ViewController.swift */; };
 		CDEE6F8A1E8EE57400341FC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDEE6F881E8EE57400341FC9 /* Main.storyboard */; };
@@ -55,6 +55,7 @@
 		089C8AE11E9D9FE8009E4D00 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		089C8AE31E9DA93E009E4D00 /* CommunityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityController.swift; sourceTree = "<group>"; };
 		089C8AE51E9DB829009E4D00 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
+		089C8AE71E9DD9B8009E4D00 /* MoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreController.swift; sourceTree = "<group>"; };
 		08E621F81E9D73A200DE2D9E /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
 		08E621F91E9D73A200DE2D9E /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		08E621FA1E9D73A200DE2D9E /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
@@ -70,7 +71,6 @@
 		75603291B1DF652443624C12 /* Pods_The_VibeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_VibeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BC29024106B07429CE0EF5 /* Pods-The VibeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The VibeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-The VibeUITests/Pods-The VibeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CD6342721E98845E00C83D84 /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activities.swift; path = ../Activities.swift; sourceTree = "<group>"; };
-		CD77D9AD1E99BE4300201D86 /* createActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = createActivity.swift; path = ../createActivity.swift; sourceTree = "<group>"; };
 		CDEE6F811E8EE57400341FC9 /* The Vibe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Vibe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDEE6F861E8EE57400341FC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -172,12 +172,12 @@
 				08E622001E9D78EB00DE2D9E /* more.png */,
 				08E622041E9D90CB00DE2D9E /* logo.png */,
 				CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */,
-				CD77D9AD1E99BE4300201D86 /* createActivity.swift */,
 				CD6342721E98845E00C83D84 /* Activities.swift */,
 				CDEE6F861E8EE57400341FC9 /* ViewController.swift */,
 				CDEE6F881E8EE57400341FC9 /* Main.storyboard */,
 				089C8AE51E9DB829009E4D00 /* AddEventController.swift */,
 				089C8AE31E9DA93E009E4D00 /* CommunityController.swift */,
+				089C8AE71E9DD9B8009E4D00 /* MoreController.swift */,
 				089C8ADB1E9D9B9D009E4D00 /* functions.swift */,
 				089C8AE11E9D9FE8009E4D00 /* LoginController.swift */,
 				CDEE6F8E1E8EE57400341FC9 /* Assets.xcassets */,
@@ -502,8 +502,8 @@
 				CDEE6F8D1E8EE57400341FC9 /* The_Vibe.xcdatamodeld in Sources */,
 				089C8ADC1E9D9B9D009E4D00 /* functions.swift in Sources */,
 				089C8AE61E9DB829009E4D00 /* AddEventController.swift in Sources */,
+				089C8AE81E9DD9B8009E4D00 /* MoreController.swift in Sources */,
 				CDEE6F871E8EE57400341FC9 /* ViewController.swift in Sources */,
-				CD77D9AE1E99BE4300201D86 /* createActivity.swift in Sources */,
 				089C8AE41E9DA93E009E4D00 /* CommunityController.swift in Sources */,
 				CDEE6F851E8EE57400341FC9 /* AppDelegate.swift in Sources */,
 				089C8AE21E9D9FE8009E4D00 /* LoginController.swift in Sources */,
