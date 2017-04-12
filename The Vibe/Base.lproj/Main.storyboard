@@ -32,7 +32,7 @@
         <!--Community-->
         <scene sceneID="6bR-ch-k0e">
             <objects>
-                <viewController title="Community" id="0Wg-bM-AR2" customClass="communityController" customModule="The_Vibe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Community" id="0Wg-bM-AR2" customClass="CommunityController" customModule="The_Vibe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EoP-GP-eaU"/>
                         <viewControllerLayoutGuide type="bottom" id="cfd-6n-jEx"/>
@@ -74,6 +74,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Community" image="community.png" id="Wj0-dn-KDk"/>
+                    <connections>
+                        <outlet property="theTableView" destination="YAt-96-bRS" id="63C-JF-fiB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPx-41-4VV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

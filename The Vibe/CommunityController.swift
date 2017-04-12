@@ -12,13 +12,20 @@ import FirebaseDatabase
 
 
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var theTableView: UITableView!
 
+    var activities: [Activities] = []
     var ref: FIRDatabaseReference?
+    var refHandle: UInt!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        ref = FIRDatabase.database().reference()
+        fetchActivities()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        ref = FIRDatabase.database().reference()
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,16 +34,23 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return activities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
+        cell.textLabel?.text = activities[indexPath.row].title
+        cell.detailTextLabel?.text = activities[indexPath.row].organizer
+        
         return cell
     }
     
     func fetchActivities() {
-        
+        refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
+            print("fetching ")
+            
+            
+        })
     }
 
 }
