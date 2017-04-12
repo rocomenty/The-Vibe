@@ -24,8 +24,8 @@ class Activities{
    
     
     init() {
-        self.title = "Hello"
-        self.type = "World"
+        self.title = ""
+        self.type = ""
         self.organizer = "cheng.luo@wustl.edu"
         self.location = CLLocationCoordinate2D()
         self.startTime = Date()

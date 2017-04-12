@@ -96,18 +96,24 @@ class AddEventController: UIViewController {
         cancelButton.removeFromSuperview()
     }
     
-    func submitDatePicker(_ sender: UIDatePicker) {
-        theActivity?.startTime = sender.date
+    func submitDatePicker() {
+        theActivity?.startTime = datePicker.date
         cancelDatePicker()
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         if let activity = theActivity {
             print("adding to data")
-            if (isValidActivity(theActivity: activity)) {
-                theActivity?.description = descriptionInput.text
-                print("Adding to database")
-                self.ref?.child("Activities").setValue(formatActivityData(theActivity: activity, organizer: FIRAuth.auth()?.currentUser))
+            if (titleInput.text != nil && typeInput.text != nil) {
+                theActivity?.title = titleInput.text!
+                theActivity?.type = typeInput.text!
+                if let description = descriptionInput.text {
+                    theActivity?.description = description
+                }
+                if (isValidActivity(theActivity: activity)) {
+                    print("Adding to database")
+                    self.ref?.child("Activities").childByAutoId().setValue(formatActivityData(theActivity: activity, organizer: FIRAuth.auth()?.currentUser))
+                }
             }
         }
     }
