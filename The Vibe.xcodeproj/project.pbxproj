@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04AD88F176074E10A776557D /* Pods_The_VibeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EF93DE518DA9E0564B434E4 /* Pods_The_VibeTests.framework */; };
+		089C8ADC1E9D9B9D009E4D00 /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C8ADB1E9D9B9D009E4D00 /* functions.swift */; };
+		089C8AE21E9D9FE8009E4D00 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C8AE11E9D9FE8009E4D00 /* LoginController.swift */; };
+		089C8AE41E9DA93E009E4D00 /* CommunityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C8AE31E9DA93E009E4D00 /* CommunityController.swift */; };
+		089C8AE61E9DB829009E4D00 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C8AE51E9DB829009E4D00 /* AddEventController.swift */; };
+		08E621FC1E9D73A200DE2D9E /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E621F81E9D73A200DE2D9E /* me.png */; };
+		08E621FD1E9D73A200DE2D9E /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E621F91E9D73A200DE2D9E /* add.png */; };
+		08E621FE1E9D73A200DE2D9E /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E621FA1E9D73A200DE2D9E /* map.png */; };
+		08E621FF1E9D73A200DE2D9E /* community.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E621FB1E9D73A200DE2D9E /* community.png */; };
+		08E622011E9D78EB00DE2D9E /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E622001E9D78EB00DE2D9E /* more.png */; };
+		08E622031E9D8C3600DE2D9E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08E622021E9D8C3600DE2D9E /* GoogleService-Info.plist */; };
+		08E622051E9D90CB00DE2D9E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E622041E9D90CB00DE2D9E /* logo.png */; };
+		0C3B6A67F0ED4352771EA9DB /* Pods_The_VibeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75603291B1DF652443624C12 /* Pods_The_VibeUITests.framework */; };
+		5600E54D495B4EF954F02697 /* Pods_The_Vibe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A554F4507F016D542605DF /* Pods_The_Vibe.framework */; };
 		CD6342731E98845E00C83D84 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6342721E98845E00C83D84 /* Activities.swift */; };
 		CD77D9AE1E99BE4300201D86 /* createActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77D9AD1E99BE4300201D86 /* createActivity.swift */; };
 		CDEE6F851E8EE57400341FC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */; };
@@ -37,6 +51,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		089C8ADB1E9D9B9D009E4D00 /* functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
+		089C8AE11E9D9FE8009E4D00 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		089C8AE31E9DA93E009E4D00 /* CommunityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityController.swift; sourceTree = "<group>"; };
+		089C8AE51E9DB829009E4D00 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
+		08E621F81E9D73A200DE2D9E /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
+		08E621F91E9D73A200DE2D9E /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		08E621FA1E9D73A200DE2D9E /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		08E621FB1E9D73A200DE2D9E /* community.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = community.png; sourceTree = "<group>"; };
+		08E622001E9D78EB00DE2D9E /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
+		08E622021E9D8C3600DE2D9E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		08E622041E9D90CB00DE2D9E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		235D2E3C089E1A54FE9C57B8 /* Pods-The Vibe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Vibe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-The Vibe/Pods-The Vibe.debug.xcconfig"; sourceTree = "<group>"; };
+		2EF93DE518DA9E0564B434E4 /* Pods_The_VibeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_VibeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		505397E4615C3CB7A4F16089 /* Pods-The Vibe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Vibe.release.xcconfig"; path = "Pods/Target Support Files/Pods-The Vibe/Pods-The Vibe.release.xcconfig"; sourceTree = "<group>"; };
+		6579747994F77116870984BD /* Pods-The VibeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The VibeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-The VibeUITests/Pods-The VibeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		65A554F4507F016D542605DF /* Pods_The_Vibe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_Vibe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		75603291B1DF652443624C12 /* Pods_The_VibeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_VibeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4BC29024106B07429CE0EF5 /* Pods-The VibeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The VibeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-The VibeUITests/Pods-The VibeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CD6342721E98845E00C83D84 /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activities.swift; path = ../Activities.swift; sourceTree = "<group>"; };
 		CD77D9AD1E99BE4300201D86 /* createActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = createActivity.swift; path = ../createActivity.swift; sourceTree = "<group>"; };
 		CDEE6F811E8EE57400341FC9 /* The Vibe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Vibe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +85,8 @@
 		CDEE6FA31E8EE57400341FC9 /* The VibeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The VibeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDEE6FA71E8EE57400341FC9 /* The_VibeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_VibeUITests.swift; sourceTree = "<group>"; };
 		CDEE6FA91E8EE57400341FC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7DA0C3159F507D9053A6E06 /* Pods-The VibeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The VibeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-The VibeTests/Pods-The VibeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F8765BD378A55FFB64DFA39B /* Pods-The VibeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The VibeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-The VibeTests/Pods-The VibeTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5600E54D495B4EF954F02697 /* Pods_The_Vibe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04AD88F176074E10A776557D /* Pods_The_VibeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,12 +110,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C3B6A67F0ED4352771EA9DB /* Pods_The_VibeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		857173860F55A6B66A675958 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65A554F4507F016D542605DF /* Pods_The_Vibe.framework */,
+				2EF93DE518DA9E0564B434E4 /* Pods_The_VibeTests.framework */,
+				75603291B1DF652443624C12 /* Pods_The_VibeUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9226D291A98C1D3F5B25593A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				235D2E3C089E1A54FE9C57B8 /* Pods-The Vibe.debug.xcconfig */,
+				505397E4615C3CB7A4F16089 /* Pods-The Vibe.release.xcconfig */,
+				E7DA0C3159F507D9053A6E06 /* Pods-The VibeTests.debug.xcconfig */,
+				F8765BD378A55FFB64DFA39B /* Pods-The VibeTests.release.xcconfig */,
+				6579747994F77116870984BD /* Pods-The VibeUITests.debug.xcconfig */,
+				A4BC29024106B07429CE0EF5 /* Pods-The VibeUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		CDEE6F781E8EE57400341FC9 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +147,8 @@
 				CDEE6F9B1E8EE57400341FC9 /* The VibeTests */,
 				CDEE6FA61E8EE57400341FC9 /* The VibeUITests */,
 				CDEE6F821E8EE57400341FC9 /* Products */,
+				9226D291A98C1D3F5B25593A /* Pods */,
+				857173860F55A6B66A675958 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,15 +165,26 @@
 		CDEE6F831E8EE57400341FC9 /* The Vibe */ = {
 			isa = PBXGroup;
 			children = (
+				08E621F81E9D73A200DE2D9E /* me.png */,
+				08E621F91E9D73A200DE2D9E /* add.png */,
+				08E621FA1E9D73A200DE2D9E /* map.png */,
+				08E621FB1E9D73A200DE2D9E /* community.png */,
+				08E622001E9D78EB00DE2D9E /* more.png */,
+				08E622041E9D90CB00DE2D9E /* logo.png */,
 				CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */,
 				CD77D9AD1E99BE4300201D86 /* createActivity.swift */,
 				CD6342721E98845E00C83D84 /* Activities.swift */,
 				CDEE6F861E8EE57400341FC9 /* ViewController.swift */,
 				CDEE6F881E8EE57400341FC9 /* Main.storyboard */,
+				089C8AE51E9DB829009E4D00 /* AddEventController.swift */,
+				089C8AE31E9DA93E009E4D00 /* CommunityController.swift */,
+				089C8ADB1E9D9B9D009E4D00 /* functions.swift */,
+				089C8AE11E9D9FE8009E4D00 /* LoginController.swift */,
 				CDEE6F8E1E8EE57400341FC9 /* Assets.xcassets */,
 				CDEE6F901E8EE57400341FC9 /* LaunchScreen.storyboard */,
 				CDEE6F931E8EE57400341FC9 /* Info.plist */,
 				CDEE6F8B1E8EE57400341FC9 /* The_Vibe.xcdatamodeld */,
+				08E622021E9D8C3600DE2D9E /* GoogleService-Info.plist */,
 			);
 			path = "The Vibe";
 			sourceTree = "<group>";
@@ -141,9 +214,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDEE6FAC1E8EE57400341FC9 /* Build configuration list for PBXNativeTarget "The Vibe" */;
 			buildPhases = (
+				91C39934CA2DF45F88C1E4DD /* [CP] Check Pods Manifest.lock */,
 				CDEE6F7D1E8EE57400341FC9 /* Sources */,
 				CDEE6F7E1E8EE57400341FC9 /* Frameworks */,
 				CDEE6F7F1E8EE57400341FC9 /* Resources */,
+				EEAA31FDEAE4BB7EE96D6E31 /* [CP] Embed Pods Frameworks */,
+				72AA0C2F3E5A3CD890350964 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -158,9 +234,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDEE6FAF1E8EE57400341FC9 /* Build configuration list for PBXNativeTarget "The VibeTests" */;
 			buildPhases = (
+				CC13CE75FB44D497F164FA28 /* [CP] Check Pods Manifest.lock */,
 				CDEE6F941E8EE57400341FC9 /* Sources */,
 				CDEE6F951E8EE57400341FC9 /* Frameworks */,
 				CDEE6F961E8EE57400341FC9 /* Resources */,
+				C118BA83144A15C874CB9A78 /* [CP] Embed Pods Frameworks */,
+				93579C5FD3645A929B714EC0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,9 +255,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDEE6FB21E8EE57400341FC9 /* Build configuration list for PBXNativeTarget "The VibeUITests" */;
 			buildPhases = (
+				68C1D0F33332A25F3B016EA9 /* [CP] Check Pods Manifest.lock */,
 				CDEE6F9F1E8EE57400341FC9 /* Sources */,
 				CDEE6FA01E8EE57400341FC9 /* Frameworks */,
 				CDEE6FA11E8EE57400341FC9 /* Resources */,
+				2EA9B8AD37C653A01B0B9946 /* [CP] Embed Pods Frameworks */,
+				73F42278249A87C29D6283FA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,7 +284,7 @@
 				TargetAttributes = {
 					CDEE6F801E8EE57400341FC9 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ZU6J2WX325;
+						DevelopmentTeam = 385B45DMTH;
 						ProvisioningStyle = Automatic;
 					};
 					CDEE6F971E8EE57400341FC9 = {
@@ -244,9 +326,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08E621FE1E9D73A200DE2D9E /* map.png in Resources */,
 				CDEE6F921E8EE57400341FC9 /* LaunchScreen.storyboard in Resources */,
+				08E622031E9D8C3600DE2D9E /* GoogleService-Info.plist in Resources */,
 				CDEE6F8F1E8EE57400341FC9 /* Assets.xcassets in Resources */,
 				CDEE6F8A1E8EE57400341FC9 /* Main.storyboard in Resources */,
+				08E621FD1E9D73A200DE2D9E /* add.png in Resources */,
+				08E622051E9D90CB00DE2D9E /* logo.png in Resources */,
+				08E621FC1E9D73A200DE2D9E /* me.png in Resources */,
+				08E622011E9D78EB00DE2D9E /* more.png in Resources */,
+				08E621FF1E9D73A200DE2D9E /* community.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +355,144 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2EA9B8AD37C653A01B0B9946 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-The VibeUITests/Pods-The VibeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68C1D0F33332A25F3B016EA9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		72AA0C2F3E5A3CD890350964 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-The Vibe/Pods-The Vibe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73F42278249A87C29D6283FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-The VibeUITests/Pods-The VibeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91C39934CA2DF45F88C1E4DD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		93579C5FD3645A929B714EC0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-The VibeTests/Pods-The VibeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C118BA83144A15C874CB9A78 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-The VibeTests/Pods-The VibeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC13CE75FB44D497F164FA28 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EEAA31FDEAE4BB7EE96D6E31 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-The Vibe/Pods-The Vibe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CDEE6F7D1E8EE57400341FC9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -273,9 +500,13 @@
 			files = (
 				CD6342731E98845E00C83D84 /* Activities.swift in Sources */,
 				CDEE6F8D1E8EE57400341FC9 /* The_Vibe.xcdatamodeld in Sources */,
+				089C8ADC1E9D9B9D009E4D00 /* functions.swift in Sources */,
+				089C8AE61E9DB829009E4D00 /* AddEventController.swift in Sources */,
 				CDEE6F871E8EE57400341FC9 /* ViewController.swift in Sources */,
 				CD77D9AE1E99BE4300201D86 /* createActivity.swift in Sources */,
+				089C8AE41E9DA93E009E4D00 /* CommunityController.swift in Sources */,
 				CDEE6F851E8EE57400341FC9 /* AppDelegate.swift in Sources */,
+				089C8AE21E9D9FE8009E4D00 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,9 +656,10 @@
 		};
 		CDEE6FAD1E8EE57400341FC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 235D2E3C089E1A54FE9C57B8 /* Pods-The Vibe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZU6J2WX325;
+				DEVELOPMENT_TEAM = 385B45DMTH;
 				INFOPLIST_FILE = "The Vibe/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.terry.The-Vibe";
@@ -438,9 +670,10 @@
 		};
 		CDEE6FAE1E8EE57400341FC9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 505397E4615C3CB7A4F16089 /* Pods-The Vibe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZU6J2WX325;
+				DEVELOPMENT_TEAM = 385B45DMTH;
 				INFOPLIST_FILE = "The Vibe/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.terry.The-Vibe";
@@ -451,6 +684,7 @@
 		};
 		CDEE6FB01E8EE57400341FC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7DA0C3159F507D9053A6E06 /* Pods-The VibeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -466,6 +700,7 @@
 		};
 		CDEE6FB11E8EE57400341FC9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8765BD378A55FFB64DFA39B /* Pods-The VibeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -481,6 +716,7 @@
 		};
 		CDEE6FB31E8EE57400341FC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6579747994F77116870984BD /* Pods-The VibeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = ZU6J2WX325;
@@ -495,6 +731,7 @@
 		};
 		CDEE6FB41E8EE57400341FC9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4BC29024106B07429CE0EF5 /* Pods-The VibeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = ZU6J2WX325;
