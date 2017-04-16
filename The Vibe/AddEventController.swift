@@ -23,12 +23,13 @@ class AddEventController: UIViewController {
     @IBOutlet weak var typeInput: UITextField!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var startTimeButton: UIButton!
-    @IBOutlet weak var endTimeButton: UIButton!
     @IBOutlet weak var descriptionInput: UITextView!
     @IBOutlet weak var submitButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        theActivity = Activities()
+        theActivity = Activities() //default init
         setUpDatePicker()
         ref = FIRDatabase.database().reference()
     }
@@ -39,10 +40,6 @@ class AddEventController: UIViewController {
     }
     
     @IBAction func pickStartTimePressed(_ sender: UIButton) {
-        presentDatePicker()
-    }
-
-    @IBAction func pickEndTimePressed(_ sender: UIButton) {
         presentDatePicker()
     }
     
@@ -81,11 +78,10 @@ class AddEventController: UIViewController {
         let dateFormatter: DateFormatter = DateFormatter()
         
         // Set date format
-        dateFormatter.dateFormat = "mm/dd/yyyy hh:mm a"
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
         
         // Apply date format
         let selectedDate: String = dateFormatter.string(from: sender.date)
-        
         
         print("Selected value \(selectedDate)")
     }
@@ -112,9 +108,27 @@ class AddEventController: UIViewController {
                 }
                 if (isValidActivity(theActivity: activity)) {
                     print("Adding to database")
-                    self.ref?.child("Activities").childByAutoId().setValue(formatActivityData(theActivity: activity, organizer: FIRAuth.auth()?.currentUser))
+                    self.ref?.child("Activities").childByAutoId().setValue(formatActivityData(theActivity: activity, organizer: FIRAuth.auth()?.currentUser)) { (error, ref) in
+                        
+                        
+                        
+                    }
                 }
             }
+        }
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        
+        
+    }
+    
+    func handleError(error: Error?) {
+        if (error == nil) {
+            //promt success, clear fields and segue
+        }
+        else {
+            //promt failure
         }
     }
 

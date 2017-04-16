@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The Vibe/AddEventController.swift"
-            timestampString = "513660508.381592"
+            timestampString = "514069645.991853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "submitButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -6,6 +6,7 @@ target 'The Vibe' do
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
+    pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
     use_frameworks!
 
   # Pods for The Vibe

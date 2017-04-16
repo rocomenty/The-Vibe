@@ -35,6 +35,6 @@ func cllocationToString(location: CLLocationCoordinate2D) -> String {
 func dateToString(date: Date) -> String {
     let dateFormatter: DateFormatter = DateFormatter()
     
-    dateFormatter.dateFormat = "mm/dd/yyyy hh:mm"
+    dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
     return dateFormatter.string(from: date)
 }

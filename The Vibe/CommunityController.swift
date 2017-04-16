@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
-
+    @IBOutlet weak var addEventButton: UIButton!
     var activities: [Activities] = []
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
