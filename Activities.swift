@@ -15,7 +15,7 @@ class Activities{
     
     
     var title: String
-    var type: String
+    var type: ActivityType
     var organizer: String
     
     var location: CLLocationCoordinate2D
@@ -25,12 +25,31 @@ class Activities{
     
     init() {
         self.title = ""
-        self.type = ""
-        self.organizer = "cheng.luo@wustl.edu"
+        self.type = .Academic
+        self.organizer = ""
         self.location = CLLocationCoordinate2D()
         self.startTime = Date()
         self.description = "No description"
     }
+    
+    enum ActivityType {
+        case Academic
+        case StudentOrganization
+        case Personal
+    }
+    
+    func activityToString() -> String {
+        if (self.type == .Academic) {
+            return "Academic"
+        }
+        else if (self.type == .StudentOrganization) {
+            return "Student Organization"
+        }
+        else {
+            return "Personal"
+        }
+    }
+    
 }
 
 

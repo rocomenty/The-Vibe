@@ -19,25 +19,67 @@ class AddEventController: UIViewController {
     var datePicker: UIDatePicker!
     var cancelButton: UIButton!
     var pickerSubmitButton: UIButton!
-    var location: CLLocationCoordinate2D?
+    var location: MKPlacemark?
+    var clLocation: CLLocation?
     
     @IBOutlet weak var titleInput: UITextField!
-    @IBOutlet weak var typeInput: UITextField!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var startTimeButton: UIButton!
+    @IBOutlet weak var typeButton: UIButton!
     @IBOutlet weak var descriptionInput: UITextView!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var startTimeLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         theActivity = Activities() //default init
         setUpDatePicker()
         ref = FIRDatabase.database().reference()
+        
+        setUpLabels()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+    }
+    
+    func setUpLabels() {
+        //type
+        typeLabel.text = theActivity?.activityToString()
+        
+        //locations
+        if location != nil {
+            locationLabel.text = parseAddress(selectedItem: location!)
+        }
+        else if clLocation != nil {
+            locationLabel.text = cllocationToString(location: clLocation!.coordinate)
+        }
+        else {
+            locationLabel.text = "Please Pick a location"
+        }
+        //time
+        startTimeLabel.text = dateToString(date: (theActivity?.startTime)!)
+        
+        
+        
+    }
+    
+    @IBAction func typeButtonPressed(_ sender: UIButton) {
+        //adapted from http://stackoverflow.com/questions/38042028/how-to-add-actions-to-uialertcontroller-and-get-result-of-actions-swift
+        let alert = UIAlertController(title: "Please pick an event type", message: "", preferredStyle: .actionSheet)
+        for i in ["Academic", "Student Organization", "Personal"] {
+            alert.addAction(UIAlertAction(title: i, style: .default, handler: getEventType))
+        }
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func getEventType(action: UIAlertAction) {
+        theActivity?.type = stringToActivityType(str: action.title!)
+        typeLabel.text = action.title
     }
     
     @IBAction func pickStartTimePressed(_ sender: UIButton) {
@@ -48,6 +90,70 @@ class AddEventController: UIViewController {
         self.view.addSubview(datePicker)
         self.view.addSubview(pickerSubmitButton)
         self.view.addSubview(cancelButton)
+    }
+    
+    func dateDidChanged(_ sender: UIDatePicker) {
+        let dateFormatter: DateFormatter = DateFormatter()
+        
+        // Set date format
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
+        
+        // Apply date format
+        let selectedDate: String = dateFormatter.string(from: sender.date)
+        
+        print("Selected value \(selectedDate)")
+    }
+    
+    func cancelDatePicker() {
+        datePicker.removeFromSuperview()
+        pickerSubmitButton.removeFromSuperview()
+        cancelButton.removeFromSuperview()
+    }
+    
+    func submitDatePicker() {
+        theActivity?.startTime = datePicker.date
+        startTimeLabel.text = dateToString(date: datePicker.date)
+        cancelDatePicker()
+    }
+    
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
+        if let activity = theActivity {
+            print("adding to data")
+            if (titleInput.text != nil) {
+                theActivity?.title = titleInput.text!
+                theActivity?.organizer = (FIRAuth.auth()!.currentUser!.email)!
+                if let description = descriptionInput.text {
+                    theActivity?.description = description
+                }
+                
+                if let location = clLocation {
+                    theActivity?.location = location.coordinate
+                }
+                else if let location = location {
+                    theActivity?.location = location.coordinate
+                }
+                if (isValidActivity(theActivity: activity)) {
+                    print("Adding to database")
+                    self.ref?.child("Activities").childByAutoId().setValue(formatActivityData(theActivity: activity)) { (error, ref) in
+                        
+                        //alert success or failure
+                        
+                    }
+                }
+            }
+            else {
+                //alert title
+            }
+        }
+    }
+    
+    func handleError(error: Error?) {
+        if (error == nil) {
+            //promt success, clear fields and segue
+        }
+        else {
+            //promt failure
+        }
     }
     
     func setUpDatePicker() {
@@ -73,60 +179,6 @@ class AddEventController: UIViewController {
         pickerSubmitButton.setTitleColor(UIColor.white, for: .normal)
         pickerSubmitButton.setTitle("Submit", for: .normal)
         pickerSubmitButton.addTarget(self, action: #selector(self.submitDatePicker), for: .touchUpInside)
-    }
-    
-    func dateDidChanged(_ sender: UIDatePicker) {
-        let dateFormatter: DateFormatter = DateFormatter()
-        
-        // Set date format
-        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
-        
-        // Apply date format
-        let selectedDate: String = dateFormatter.string(from: sender.date)
-        
-        print("Selected value \(selectedDate)")
-    }
-    
-    func cancelDatePicker() {
-        datePicker.removeFromSuperview()
-        pickerSubmitButton.removeFromSuperview()
-        cancelButton.removeFromSuperview()
-    }
-    
-    func submitDatePicker() {
-        theActivity?.startTime = datePicker.date
-        cancelDatePicker()
-    }
-    
-    @IBAction func submitButtonPressed(_ sender: UIButton) {
-//        if let activity = theActivity {
-//            print("adding to data")
-//            if (titleInput.text != nil && typeInput.text != nil) {
-//                theActivity?.title = titleInput.text!
-//                theActivity?.type = typeInput.text!
-//                if let description = descriptionInput.text {
-//                    theActivity?.description = description
-//                }
-//                if (isValidActivity(theActivity: activity)) {
-//                    print("Adding to database")
-//                    self.ref?.child("Activities").childByAutoId().setValue(formatActivityData(theActivity: activity, organizer: FIRAuth.auth()?.currentUser)) { (error, ref) in
-//                        
-//                        
-//                        
-//                    }
-//                }
-//            }
-//        }
-        print(location)
-    }
-    
-    func handleError(error: Error?) {
-        if (error == nil) {
-            //promt success, clear fields and segue
-        }
-        else {
-            //promt failure
-        }
     }
 
 }

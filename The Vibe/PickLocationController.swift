@@ -20,6 +20,7 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     var selectedPin:MKPlacemark? = nil
+    var currentLocation: CLLocation?
     
     var resultSearchController: UISearchController? = nil
     
@@ -28,9 +29,11 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-        
-        setUpSearchController()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setUpSearchController()
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,9 +60,11 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        if let location = locations.first {
-//            //FIXME
-//        }
+        //FIXME
+        if let last = locations.last {
+            currentLocation = last
+        }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -76,12 +81,16 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
         if selectedPin != nil {
             self.performSegue(withIdentifier: "locationSet", sender: nil)
         }
+        else if currentLocation != nil {
+            self.performSegue(withIdentifier: "locationSet", sender: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "locationSet" {
             if let toVC = segue.destination as? AddEventController {
-                toVC.location = selectedPin?.coordinate
+                toVC.location = selectedPin
+                toVC.clLocation = currentLocation
             }
         }
     }
@@ -92,7 +101,7 @@ extension PickLocationController: HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark){
         // cache the pin
         selectedPin = placemark
-        // clear existing pins
+        // clear existing pinse
         mapView.removeAnnotations(mapView.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
@@ -110,10 +119,6 @@ extension PickLocationController: HandleMapSearch {
 
 extension PickLocationController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            //return nil so map view draws "blue dot" for standard user location
-            return nil
-        }
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
@@ -126,4 +131,8 @@ extension PickLocationController: MKMapViewDelegate {
         pinView?.rightCalloutAccessoryView = button
         return pinView
     }
+    
+    
+    
+    
 }
