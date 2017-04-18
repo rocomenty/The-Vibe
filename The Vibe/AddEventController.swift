@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import MapKit
 
 class AddEventController: UIViewController {
 
@@ -18,6 +19,7 @@ class AddEventController: UIViewController {
     var datePicker: UIDatePicker!
     var cancelButton: UIButton!
     var pickerSubmitButton: UIButton!
+    var location: CLLocationCoordinate2D?
     
     @IBOutlet weak var titleInput: UITextField!
     @IBOutlet weak var typeInput: UITextField!
@@ -97,29 +99,25 @@ class AddEventController: UIViewController {
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        if let activity = theActivity {
-            print("adding to data")
-            if (titleInput.text != nil && typeInput.text != nil) {
-                theActivity?.title = titleInput.text!
-                theActivity?.type = typeInput.text!
-                if let description = descriptionInput.text {
-                    theActivity?.description = description
-                }
-                if (isValidActivity(theActivity: activity)) {
-                    print("Adding to database")
-                    self.ref?.child("Activities").childByAutoId().setValue(formatActivityData(theActivity: activity, organizer: FIRAuth.auth()?.currentUser)) { (error, ref) in
-                        
-                        
-                        
-                    }
-                }
-            }
-        }
-    }
-    
-    @IBAction func cancelButtonPressed(_ sender: UIButton) {
-        
-        
+//        if let activity = theActivity {
+//            print("adding to data")
+//            if (titleInput.text != nil && typeInput.text != nil) {
+//                theActivity?.title = titleInput.text!
+//                theActivity?.type = typeInput.text!
+//                if let description = descriptionInput.text {
+//                    theActivity?.description = description
+//                }
+//                if (isValidActivity(theActivity: activity)) {
+//                    print("Adding to database")
+//                    self.ref?.child("Activities").childByAutoId().setValue(formatActivityData(theActivity: activity, organizer: FIRAuth.auth()?.currentUser)) { (error, ref) in
+//                        
+//                        
+//                        
+//                    }
+//                }
+//            }
+//        }
+        print(location)
     }
     
     func handleError(error: Error?) {

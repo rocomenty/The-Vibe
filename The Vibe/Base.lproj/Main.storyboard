@@ -442,6 +442,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QWq-dW-37c">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ZgW-dO-Dy9" id="hIP-zd-w4Q"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -455,11 +458,12 @@
                     <navigationItem key="navigationItem" id="sTP-pl-jxM"/>
                     <connections>
                         <outlet property="mapView" destination="QWq-dW-37c" id="VvN-GY-ktl"/>
+                        <segue destination="FFD-Bo-5es" kind="show" identifier="locationSet" id="27F-QE-5hF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1CU-mA-5d2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4804" y="-318.89055472263868"/>
+            <point key="canvasLocation" x="4730" y="-317"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="JO4-NJ-x5J">
@@ -596,4 +600,7 @@
         <image name="more.png" width="30" height="30"/>
         <image name="paper_plane.png" width="46" height="46"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="27F-QE-5hF"/>
+    </inferredMetricsTieBreakers>
 </document>
