@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().backgroundColor = getOrange()
         return true
     }
 

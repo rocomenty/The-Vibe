@@ -38,3 +38,7 @@ func dateToString(date: Date) -> String {
     dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
     return dateFormatter.string(from: date)
 }
+
+func getOrange() -> UIColor {
+    return UIColor(red:0.97, green:0.71, blue:0.36, alpha:1.0)
+}

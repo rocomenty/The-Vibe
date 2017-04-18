@@ -18,6 +18,8 @@
 		089C8AE41E9DA93E009E4D00 /* CommunityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C8AE31E9DA93E009E4D00 /* CommunityController.swift */; };
 		089C8AE61E9DB829009E4D00 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C8AE51E9DB829009E4D00 /* AddEventController.swift */; };
 		089C8AE81E9DD9B8009E4D00 /* MoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C8AE71E9DD9B8009E4D00 /* MoreController.swift */; };
+		08DB7C3D1EA58BF40069AE55 /* PickLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB7C3C1EA58BF40069AE55 /* PickLocationController.swift */; };
+		08DB7C3F1EA595780069AE55 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB7C3E1EA595780069AE55 /* LocationSearchTable.swift */; };
 		08E621FC1E9D73A200DE2D9E /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E621F81E9D73A200DE2D9E /* me.png */; };
 		08E621FE1E9D73A200DE2D9E /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E621FA1E9D73A200DE2D9E /* map.png */; };
 		08E621FF1E9D73A200DE2D9E /* community.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E621FB1E9D73A200DE2D9E /* community.png */; };
@@ -65,6 +67,8 @@
 		089C8AE31E9DA93E009E4D00 /* CommunityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityController.swift; sourceTree = "<group>"; };
 		089C8AE51E9DB829009E4D00 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
 		089C8AE71E9DD9B8009E4D00 /* MoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreController.swift; sourceTree = "<group>"; };
+		08DB7C3C1EA58BF40069AE55 /* PickLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickLocationController.swift; sourceTree = "<group>"; };
+		08DB7C3E1EA595780069AE55 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		08E621F81E9D73A200DE2D9E /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
 		08E621FA1E9D73A200DE2D9E /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		08E621FB1E9D73A200DE2D9E /* community.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = community.png; sourceTree = "<group>"; };
@@ -186,9 +190,11 @@
 				CD6342721E98845E00C83D84 /* Activities.swift */,
 				CDEE6F861E8EE57400341FC9 /* ViewController.swift */,
 				CDEE6F881E8EE57400341FC9 /* Main.storyboard */,
+				08DB7C3E1EA595780069AE55 /* LocationSearchTable.swift */,
 				0883D3D51EA3F6B600D56FBA /* NearbyController.swift */,
 				089C8AE51E9DB829009E4D00 /* AddEventController.swift */,
 				089C8AE31E9DA93E009E4D00 /* CommunityController.swift */,
+				08DB7C3C1EA58BF40069AE55 /* PickLocationController.swift */,
 				089C8AE71E9DD9B8009E4D00 /* MoreController.swift */,
 				089C8ADB1E9D9B9D009E4D00 /* functions.swift */,
 				089C8AE11E9D9FE8009E4D00 /* LoginController.swift */,
@@ -517,9 +523,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08DB7C3F1EA595780069AE55 /* LocationSearchTable.swift in Sources */,
 				0883D3D61EA3F6B600D56FBA /* NearbyController.swift in Sources */,
 				CD6342731E98845E00C83D84 /* Activities.swift in Sources */,
 				089628B61EA42340002A9440 /* CustomSegue.swift in Sources */,
+				08DB7C3D1EA58BF40069AE55 /* PickLocationController.swift in Sources */,
 				CDEE6F8D1E8EE57400341FC9 /* The_Vibe.xcdatamodeld in Sources */,
 				089C8ADC1E9D9B9D009E4D00 /* functions.swift in Sources */,
 				089C8AE61E9DB829009E4D00 /* AddEventController.swift in Sources */,

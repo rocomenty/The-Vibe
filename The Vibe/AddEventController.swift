@@ -26,7 +26,6 @@ class AddEventController: UIViewController {
     @IBOutlet weak var descriptionInput: UITextView!
     @IBOutlet weak var submitButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         theActivity = Activities() //default init
