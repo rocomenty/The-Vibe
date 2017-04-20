@@ -68,7 +68,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         
         cell.textLabel?.text = activities[indexPath.row]
-        cell.detailTextLabel?.text = organizer[indexPath.row]
+      
         
         return cell
     }

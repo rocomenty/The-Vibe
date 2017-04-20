@@ -61,7 +61,8 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func fetchActivities() {
-      
+      self.activities = []
+        self.organizer = []
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
             print("fetching ")
             var dic = snapshot.value! as! NSDictionary
