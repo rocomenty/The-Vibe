@@ -135,9 +135,9 @@ class AddEventController: UIViewController {
                 if (isValidActivity(theActivity: activity)) {
                     print("Adding to database")
                     self.ref?.child("Activities").childByAutoId().setValue(formatActivityData(theActivity: activity)) { (error, ref) in
-                        
+                        print("success adding event !!!!!!!!!!!") //FIXME
                         //alert success or failure
-                        
+                     self.performSegue(withIdentifier: "addEventToMain", sender: self)
                     }
                 }
             }

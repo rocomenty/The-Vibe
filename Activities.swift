@@ -32,6 +32,8 @@ class Activities{
         self.description = "No description"
     }
     
+
+    
     enum ActivityType {
         case Academic
         case StudentOrganization

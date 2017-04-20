@@ -11,8 +11,8 @@ import Firebase
 import FirebaseDatabase
 import MapKit
 
-class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var theTableView: UITableView!
+class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var theTableView: UITableView!
     @IBOutlet weak var addEventButton: UIButton!
     var activities: [String] = []
     var organizer: [String] = []
@@ -21,22 +21,35 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+       setupTableView()
         theTableView.dataSource = self
         theTableView.delegate = self
-                 ref = FIRDatabase.database().reference()
+        ref = FIRDatabase.database().reference()
         fetchActivities()
         self.theTableView.reloadData()
-       
+        
         
     }
     
+    private func setupTableView() {
+        
+        theTableView = UITableView(frame: view.frame.offsetBy(dx: 0, dy: 20))
+         theTableView.dataSource = self
+         theTableView.delegate = self
+         theTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        view.addSubview(theTableView)
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-   
-     
-//        setUpNavigationBar()
+        
+        
+        //        setUpNavigationBar()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,7 +66,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-       
+        
         cell.textLabel?.text = activities[indexPath.row]
         cell.detailTextLabel?.text = organizer[indexPath.row]
         
@@ -61,27 +74,27 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func fetchActivities() {
-      
+        
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
             print("fetching ")
             var dic = snapshot.value! as! NSDictionary
-
+            
             var dicValue  = dic.allValues as! NSArray
-           
+            
             for singleActivity in dicValue{
                 var test3 = singleActivity as! NSDictionary
                 var activityTest = Activities()
-            
-          self.activities.append(test3["title"] as! String)
-              self.organizer.append(test3["organizer"] as! String)
                 
-      
+                self.activities.append(test3["title"] as! String)
+                self.organizer.append(test3["organizer"] as! String)
                 
-    
+                
+                
+                
             }
             
             self.theTableView.reloadData()
         })
     }
-
+    
 }

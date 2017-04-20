@@ -29,6 +29,7 @@
 		08E622051E9D90CB00DE2D9E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 08E622041E9D90CB00DE2D9E /* logo.png */; };
 		0C3B6A67F0ED4352771EA9DB /* Pods_The_VibeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75603291B1DF652443624C12 /* Pods_The_VibeUITests.framework */; };
 		5600E54D495B4EF954F02697 /* Pods_The_Vibe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A554F4507F016D542605DF /* Pods_The_Vibe.framework */; };
+		CD2EED201EA919B800DF96E3 /* meViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2EED1F1EA919B800DF96E3 /* meViewController.swift */; };
 		CD6342731E98845E00C83D84 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6342721E98845E00C83D84 /* Activities.swift */; };
 		CDEE6F851E8EE57400341FC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */; };
 		CDEE6F871E8EE57400341FC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE6F861E8EE57400341FC9 /* ViewController.swift */; };
@@ -84,6 +85,7 @@
 		65A554F4507F016D542605DF /* Pods_The_Vibe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_Vibe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75603291B1DF652443624C12 /* Pods_The_VibeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_VibeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BC29024106B07429CE0EF5 /* Pods-The VibeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The VibeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-The VibeUITests/Pods-The VibeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CD2EED1F1EA919B800DF96E3 /* meViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = meViewController.swift; sourceTree = "<group>"; };
 		CD6342721E98845E00C83D84 /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activities.swift; path = ../Activities.swift; sourceTree = "<group>"; };
 		CDEE6F811E8EE57400341FC9 /* The Vibe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Vibe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -193,10 +195,11 @@
 				CD6342721E98845E00C83D84 /* Activities.swift */,
 				CDEE6F861E8EE57400341FC9 /* ViewController.swift */,
 				CDEE6F881E8EE57400341FC9 /* Main.storyboard */,
+				089C8AE31E9DA93E009E4D00 /* CommunityController.swift */,
+				CD2EED1F1EA919B800DF96E3 /* meViewController.swift */,
 				08DB7C3E1EA595780069AE55 /* LocationSearchTable.swift */,
 				0883D3D51EA3F6B600D56FBA /* NearbyController.swift */,
 				089C8AE51E9DB829009E4D00 /* AddEventController.swift */,
-				089C8AE31E9DA93E009E4D00 /* CommunityController.swift */,
 				08DB7C3C1EA58BF40069AE55 /* PickLocationController.swift */,
 				089C8AE71E9DD9B8009E4D00 /* MoreController.swift */,
 				089C8ADB1E9D9B9D009E4D00 /* functions.swift */,
@@ -527,6 +530,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD2EED201EA919B800DF96E3 /* meViewController.swift in Sources */,
 				08DB7C3F1EA595780069AE55 /* LocationSearchTable.swift in Sources */,
 				0883D3D61EA3F6B600D56FBA /* NearbyController.swift in Sources */,
 				CD6342731E98845E00C83D84 /* Activities.swift in Sources */,
