@@ -15,7 +15,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var theTableView: UITableView!
     @IBOutlet weak var addEventButton: UIButton!
     var activities: [String] = []
-    var organizer: [String] = []
+   
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
     
@@ -74,8 +74,8 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func fetchActivities() {
-        
-        refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
+        self.activities = []
+              refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
             print("fetching ")
             var dic = snapshot.value! as! NSDictionary
             
@@ -86,7 +86,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 var activityTest = Activities()
                 
                 self.activities.append(test3["title"] as! String)
-                self.organizer.append(test3["organizer"] as! String)
+              
                 
                 
                 
