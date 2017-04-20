@@ -16,6 +16,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var addEventButton: UIButton!
     var activities: [String] = []
     var organizer: [String] = []
+    var detailedData :NSDictionary = [:]
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
     
@@ -59,6 +60,104 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return cell
     }
+    
+    
+    func fetchDetailed(eventTitle:String,eventOrganizer:String){
+        
+        
+        
+        
+        self.detailedData = [:]
+        
+        ref = FIRDatabase.database().reference()
+        
+        refHandle = ref?.child("Activities").child(eventTitle).observe(.value, with: { (snapshot) in
+            print("fetching detailed")
+            
+            
+            var dic = snapshot.value! as! NSDictionary
+            
+            self.detailedData = dic
+     
+            
+            
+            
+        })
+
+        
+        
+        
+        
+    }
+    
+ 
+    
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+ 
+            // this is not working properly 
+        //I don't get why prepare for segue is called before the fetchdetailed function 
+        
+                       fetchDetailed(eventTitle: activities[indexPath.row], eventOrganizer: organizer[indexPath.row])
+      
+        
+    
+                    
+                   self.performSegue(withIdentifier: "communityToDetail", sender: nil)
+                    
+                    
+                    
+                
+                
+                
+       
+            
+            
+            
+            
+            
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+ 
+        if segue.identifier == "communityToDetail"{
+            
+            
+            
+            
+            if let detailedVC = segue.destination as? detailedViewController{
+        //        detailedVC.eventTitle.text = detailedData["title"] as! String
+                
+                print( "detailed data is \(self.detailedData )")
+                /*
+                detailedVC.eTitle = detailedData["title"] as! String
+                detailedVC.eDescription = detailedData["description"] as! String
+                detailedVC.eOrganizer =  detailedData["organizer"] as! String
+                detailedVC.eTime = detailedData["time"] as! String
+
+                
+                
+                
+                */
+                
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+        }
+    }
+    
+
     
     func fetchActivities() {
       self.activities = []
