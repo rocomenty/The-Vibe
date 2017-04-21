@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-import MapKit
+
 
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
@@ -65,26 +65,28 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     func fetchDetailed(eventTitle:String,eventOrganizer:String){
         
         
-        
+        print("fetch detailed data called")
         
         self.detailedData = [:]
         
         ref = FIRDatabase.database().reference()
         
-        refHandle = ref?.child("Activities").child(eventTitle).observe(.value, with: { (snapshot) in
-            print("fetching detailed")
+
+
+
+        
+        
+        self.ref?.child("Activities").child(eventTitle).observeSingleEvent(of: .value, with: {(snapshot) in
+            
+            // get user value
             
             
+            print("ref handle detailed data assingmnet called")
             var dic = snapshot.value! as! NSDictionary
             
             self.detailedData = dic
-     
-            
-            
-            
+            print(self.detailedData)
         })
-
-        
         
         
         
@@ -92,47 +94,45 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     
  
     
-    
+    var indexSelected = 0
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
  
-            // this is not working properly 
-        //I don't get why prepare for segue is called before the fetchdetailed function 
         
-                       fetchDetailed(eventTitle: activities[indexPath.row], eventOrganizer: organizer[indexPath.row])
-      
+
+     
+         
+           // self.fetchDetailed(eventTitle: self.activities[indexPath.row], eventOrganizer: self.organizer[indexPath.row])
+            
         
-    
-                    
-                   self.performSegue(withIdentifier: "communityToDetail", sender: nil)
-                    
-                    
-                    
-                
-                
-                
+     indexSelected = indexPath.row
+            // this is not working properly
+        //I don't get why prepare for segue is called before the fetchdetailed function
+        
+
+ 
        
-            
-            
-            
-            
-            
+
+                   self.performSegue(withIdentifier: "communityToDetail", sender: nil)
+        
+        
         
         
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
  
         if segue.identifier == "communityToDetail"{
             
-            
-            
+            print("prepare for segue com to detail called")
+            print("index is \(indexSelected)")
             
             if let detailedVC = segue.destination as? detailedViewController{
         //        detailedVC.eventTitle.text = detailedData["title"] as! String
                 
-                print( "detailed data is \(self.detailedData )")
                 /*
                 detailedVC.eTitle = detailedData["title"] as! String
                 detailedVC.eDescription = detailedData["description"] as! String
@@ -143,7 +143,8 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 
                 */
-                
+                detailedVC.eTitle = self.activities[indexSelected]
+                detailedVC.eOrganizer = self.organizer[indexSelected]
                 
                 
                 
