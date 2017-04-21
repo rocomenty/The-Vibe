@@ -14,8 +14,7 @@ import FirebaseDatabase
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
     @IBOutlet weak var addEventButton: UIButton!
-    var activities: [String] = []
-    var organizer: [String] = []
+
     var detailedData :NSDictionary = [:]
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
@@ -97,8 +96,8 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             if let detailedVC = segue.destination as? detailedViewController{
 
                 
-                detailedVC.eTitle = self.activities[indexSelected]
-                detailedVC.eOrganizer = self.organizer[indexSelected]
+                detailedVC.eTitle = self.activityArr[indexSelected].title
+                detailedVC.eOrganizer = self.activityArr[indexSelected].organizer
                 
                 
                 
@@ -111,6 +110,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
     func fetchActivities() {
+        activityArr = []
         
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
                      let dic = snapshot.value! as! NSDictionary
