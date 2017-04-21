@@ -150,7 +150,7 @@ class AddEventController: UIViewController, DataBackDelegate {
 //                        //self.performSegue(withIdentifier: "addEventToMain", sender: self)
 //                    }
 //                    
-                    self.ref?.child("Activities").child((theActivity?.title)!).setValue(formatActivityData(theActivity: activity)) { (error, ref) in
+                    self.ref?.child("Activities").childByAutoId().setValue(formatActivityData(theActivity: activity)) { (error, ref) in
                         print("success adding event !!!!!!!!!!!") //FIXME
                         //alert success or failure
                      self.performSegue(withIdentifier: "addEventToMain", sender: self)

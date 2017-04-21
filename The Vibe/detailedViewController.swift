@@ -16,7 +16,8 @@ class detailedViewController: UIViewController {
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventTime: UILabel!
     @IBOutlet weak var eventDescription: UITextView!
-    
+    var activityList :[Activities] = []
+      var refHandle: UInt!
     var detailedData :NSDictionary = [:]
     var ref: FIRDatabaseReference?
     var eTitle: String = ""
@@ -40,10 +41,11 @@ class detailedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(_ animated: Bool) {
+        ref = FIRDatabase.database().reference()
         print("event title is \(eTitle)")
     
-        
-        fetchDetailed(eventTitle: eTitle, eventOrganizer: eOrganizer)
+        fetchActivities()
+     //   fetchDetailed(eventTitle: eTitle, eventOrganizer: eOrganizer)
         
         
         
@@ -83,6 +85,48 @@ class detailedViewController: UIViewController {
         
         
         
+    }
+    
+    
+    func fetchActivities() {
+     
+            refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
+            
+            var dic = snapshot.value! as! NSDictionary
+            var array = dic.allValues as! NSArray
+            
+            
+            
+            
+          
+            for singleAct in array {
+            var dicAct = singleAct as! Dictionary<String, String>
+                
+            var activityFetched = Activities()
+                activityFetched.description = dicAct["description"]!
+                activityFetched.title = dicAct["title"]!
+                activityFetched.organizer = dicAct["organizer"]!
+                activityFetched.startTime = stringToDate(dateString: dicAct["time"]!)
+                
+                
+                self.activityList.append(activityFetched)
+                
+                
+            
+                
+                }
+                
+                for actiity in self.activityList{
+                    print(actiity.title)
+                }
+
+
+                
+                
+            
+            
+
+            })
     }
 
 

@@ -19,6 +19,9 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     var detailedData :NSDictionary = [:]
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
+    var activityArr : [Activities] = []
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -26,6 +29,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         theTableView.delegate = self
                  ref = FIRDatabase.database().reference()
         fetchActivities()
+        print("now the size is \(activityArr.count)")
         self.theTableView.reloadData()
        
         
@@ -35,7 +39,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
    
      
-//        setUpNavigationBar()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,14 +53,15 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count
+        return activityArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
        
-        cell.textLabel?.text = activities[indexPath.row]
-        cell.detailTextLabel?.text = organizer[indexPath.row]
+        cell.textLabel?.text = activityArr[indexPath.row].title
+        
+        cell.detailTextLabel?.text = activityArr[indexPath.row].organizer
         
         return cell
     }
@@ -70,20 +75,10 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
  
-        
-
-     
-         
-        
-        
-     indexSelected = indexPath.row
   
-        
+     indexSelected = indexPath.row
 
- 
-       
-
-                   self.performSegue(withIdentifier: "communityToDetail", sender: nil)
+    self.performSegue(withIdentifier: "communityToDetail", sender: nil)
         
         
         
@@ -108,11 +103,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 
             }
-            
-            
-            
-            
-            
+
             
         }
     }
@@ -120,28 +111,42 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
     func fetchActivities() {
-      self.activities = []
-        self.organizer = []
+        
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
-            print("fetching ")
+            print("fetchact activated")
             var dic = snapshot.value! as! NSDictionary
-
-            var dicValue  = dic.allValues as! NSArray
-           
-            for singleActivity in dicValue{
-                var test3 = singleActivity as! NSDictionary
-             
+            var array = dic.allValues as! NSArray
             
-          self.activities.append(test3["title"] as! String)
-              self.organizer.append(test3["organizer"] as! String)
+            
+            
+            
+            
+            for singleAct in array {
+                var dicAct = singleAct as! Dictionary<String, String>
                 
-      
+                var activityFetched = Activities()
+                activityFetched.description = dicAct["description"]!
+                activityFetched.title = dicAct["title"]!
+                activityFetched.organizer = dicAct["organizer"]!
+                activityFetched.startTime = stringToDate(dateString: dicAct["time"]!)
                 
-    
+                
+                self.activityArr.append(activityFetched)
+                
+                
+                
+                
             }
             
-            self.theTableView.reloadData()
+      
+            
+               self.theTableView.reloadData()
+            
+            
+            
+            
         })
     }
+    
 
 }
