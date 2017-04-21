@@ -62,35 +62,6 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    func fetchDetailed(eventTitle:String,eventOrganizer:String){
-        
-        
-        print("fetch detailed data called")
-        
-        self.detailedData = [:]
-        
-        ref = FIRDatabase.database().reference()
-        
-
-
-
-        
-        
-        self.ref?.child("Activities").child(eventTitle).observeSingleEvent(of: .value, with: {(snapshot) in
-            
-            // get user value
-            
-            
-            print("ref handle detailed data assingmnet called")
-            var dic = snapshot.value! as! NSDictionary
-            
-            self.detailedData = dic
-            print(self.detailedData)
-        })
-        
-        
-        
-    }
     
  
     
@@ -103,12 +74,10 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
 
      
          
-           // self.fetchDetailed(eventTitle: self.activities[indexPath.row], eventOrganizer: self.organizer[indexPath.row])
-            
+        
         
      indexSelected = indexPath.row
-            // this is not working properly
-        //I don't get why prepare for segue is called before the fetchdetailed function
+  
         
 
  
@@ -131,18 +100,8 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             print("index is \(indexSelected)")
             
             if let detailedVC = segue.destination as? detailedViewController{
-        //        detailedVC.eventTitle.text = detailedData["title"] as! String
-                
-                /*
-                detailedVC.eTitle = detailedData["title"] as! String
-                detailedVC.eDescription = detailedData["description"] as! String
-                detailedVC.eOrganizer =  detailedData["organizer"] as! String
-                detailedVC.eTime = detailedData["time"] as! String
 
                 
-                
-                
-                */
                 detailedVC.eTitle = self.activities[indexSelected]
                 detailedVC.eOrganizer = self.organizer[indexSelected]
                 
@@ -171,7 +130,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
            
             for singleActivity in dicValue{
                 var test3 = singleActivity as! NSDictionary
-                var activityTest = Activities()
+             
             
           self.activities.append(test3["title"] as! String)
               self.organizer.append(test3["organizer"] as! String)

@@ -83,7 +83,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             for singleActivity in dicValue{
                 var test3 = singleActivity as! NSDictionary
-                var activityTest = Activities()
+                
                 
                 self.activities.append(test3["title"] as! String)
               

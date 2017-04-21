@@ -69,6 +69,7 @@ class detailedViewController: UIViewController {
             
             
             print("ref handle detailed data assingmnet called")
+            
             var dic = snapshot.value! as! NSDictionary
             
             self.detailedData = dic
