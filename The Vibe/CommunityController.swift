@@ -29,7 +29,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         theTableView.delegate = self
                  ref = FIRDatabase.database().reference()
         fetchActivities()
-        print("now the size is \(activityArr.count)")
+       
         self.theTableView.reloadData()
        
         
@@ -113,9 +113,8 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     func fetchActivities() {
         
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
-            print("fetchact activated")
-            var dic = snapshot.value! as! NSDictionary
-            var array = dic.allValues as! NSArray
+                     let dic = snapshot.value! as! NSDictionary
+            let array = dic.allValues as NSArray
             
             
             
@@ -124,7 +123,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             for singleAct in array {
                 var dicAct = singleAct as! Dictionary<String, String>
                 
-                var activityFetched = Activities()
+                let activityFetched = Activities()
                 activityFetched.description = dicAct["description"]!
                 activityFetched.title = dicAct["title"]!
                 activityFetched.organizer = dicAct["organizer"]!
