@@ -648,8 +648,12 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QWq-dW-37c">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <gestureRecognizers/>
+=======
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+>>>>>>> origin/master
 =======
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
 >>>>>>> origin/master

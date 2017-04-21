@@ -87,6 +87,9 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 =======
                 var test3 = singleActivity as! NSDictionary
                 
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
                 
                 self.activities.append(test3["title"] as! String)

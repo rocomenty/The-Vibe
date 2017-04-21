@@ -67,6 +67,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     func fetchDetailed(eventTitle:String,eventOrganizer:String){
         
         
@@ -94,6 +95,8 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         
         
     }
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
     
@@ -124,6 +127,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             print("index is \(indexSelected)")
             
 <<<<<<< HEAD
+<<<<<<< HEAD
             if segue.destination is detailedViewController{
         //        detailedVC.eventTitle.text = detailedData["title"] as! String
                 
@@ -133,6 +137,9 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
                 detailedVC.eDescription = detailedData["description"] as! String
                 detailedVC.eOrganizer =  detailedData["organizer"] as! String
                 detailedVC.eTime = detailedData["time"] as! String
+=======
+            if let detailedVC = segue.destination as? detailedViewController{
+>>>>>>> origin/master
 =======
             if let detailedVC = segue.destination as? detailedViewController{
 >>>>>>> origin/master
@@ -156,6 +163,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
 <<<<<<< HEAD
+<<<<<<< HEAD
             print("fetching ")
             let dic = snapshot.value! as! NSDictionary
 
@@ -173,6 +181,15 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             
             
             
+=======
+                     let dic = snapshot.value! as! NSDictionary
+            let array = dic.allValues as NSArray
+            
+            
+            
+            
+            
+>>>>>>> origin/master
             for singleAct in array {
                 var dicAct = singleAct as! Dictionary<String, String>
                 
