@@ -505,7 +505,7 @@
                                                     <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="ZgW-dO-Dy9" kind="show" id="33d-DC-GFE"/>
+                                                    <segue destination="ZgW-dO-Dy9" kind="show" identifier="toPickLocation" id="33d-DC-GFE"/>
                                                 </connections>
                                             </button>
                                         </subviews>

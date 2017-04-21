@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import MapKit
 
-class AddEventController: UIViewController {
+class AddEventController: UIViewController, DataBackDelegate {
 
     var ref: FIRDatabaseReference?
     var theActivity: Activities?
@@ -19,7 +19,7 @@ class AddEventController: UIViewController {
     var datePicker: UIDatePicker!
     var cancelButton: UIButton!
     var pickerSubmitButton: UIButton!
-    var location: MKPlacemark?
+    var selectedPin: MKPlacemark?
     var clLocation: CLLocation?
     
     @IBOutlet weak var titleInput: UITextField!
@@ -52,8 +52,8 @@ class AddEventController: UIViewController {
         typeLabel.text = theActivity?.activityToString()
         
         //locations
-        if location != nil {
-            locationLabel.text = parseAddress(selectedItem: location!)
+        if selectedPin != nil {
+            locationLabel.text = parseAddress(selectedItem: selectedPin!)
         }
         else if clLocation != nil {
             locationLabel.text = cllocationToString(location: clLocation!.coordinate)
@@ -66,6 +66,15 @@ class AddEventController: UIViewController {
         
         
         
+    }
+    
+    func saveData(selectedPin: MKPlacemark?, currentLocation: CLLocation?) {
+        print("Saved location data")
+        print(selectedPin)
+        print(currentLocation)
+        self.selectedPin = selectedPin
+        self.clLocation = currentLocation
+        setUpLabels()
     }
     
     @IBAction func typeButtonPressed(_ sender: UIButton) {
@@ -129,7 +138,7 @@ class AddEventController: UIViewController {
                 if let location = clLocation {
                     theActivity?.location = location.coordinate
                 }
-                else if let location = location {
+                else if let location = selectedPin {
                     theActivity?.location = location.coordinate
                 }
                 if (isValidActivity(theActivity: activity)) {
@@ -186,6 +195,14 @@ class AddEventController: UIViewController {
         pickerSubmitButton.setTitleColor(UIColor.white, for: .normal)
         pickerSubmitButton.setTitle("Submit", for: .normal)
         pickerSubmitButton.addTarget(self, action: #selector(self.submitDatePicker), for: .touchUpInside)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toPickLocation" {
+            if let toVC = segue.destination as? PickLocationController {
+                toVC.delegate = self
+            }
+        }
     }
 
 }
