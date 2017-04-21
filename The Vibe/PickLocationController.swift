@@ -15,12 +15,18 @@ protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
 }
 
+//adapted from http://stackoverflow.com/questions/37472076/how-to-pass-data-when-the-back-button-clicked
+public protocol DataBackDelegate: class {
+    func saveData(selectedPin: MKPlacemark?, currentLocation: CLLocation?)
+}
+
 class PickLocationController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     var selectedPin:MKPlacemark? = nil
     var currentLocation: CLLocation?
+    weak var delegate: DataBackDelegate?
     
     var resultSearchController: UISearchController? = nil
     
@@ -78,33 +84,10 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
     }
     
     func setLocation() {
-//        if selectedPin != nil {
-//            self.performSegue(withIdentifier: "locationSet", sender: nil)
-//        }
-//        else if currentLocation != nil {
-//            self.performSegue(withIdentifier: "locationSet", sender: nil)
-//        }
+        self.delegate?.saveData(selectedPin: selectedPin, currentLocation: currentLocation)
         _ = navigationController?.popViewController(animated: true)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "locationSet" {
-//            if let toVC = segue.destination as? AddEventController {
-//                toVC.location = selectedPin
-//                toVC.clLocation = currentLocation
-//            }
-//        }
-//    }
-    
-    
-}
-
-extension PickLocationController: UINavigationControllerDelegate {
-    //adapted from http://stackoverflow.com/questions/34955987/pass-data-through-navigation-back-button
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        (viewController as? AddEventController)!.location = self.selectedPin // Here you pass the to your original view controller
-        (viewController as? AddEventController)!.clLocation = self.currentLocation
-    }
 }
 
 extension PickLocationController: HandleMapSearch {
