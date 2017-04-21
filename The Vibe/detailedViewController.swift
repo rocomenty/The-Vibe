@@ -51,49 +51,49 @@ class detailedViewController: UIViewController {
         
     }
     
-    func fetchDetailed(eventTitle:String,eventOrganizer:String){
-        
-        
-        print("fetch detailed data called")
-        
-        self.detailedData = [:]
-        
-        ref = FIRDatabase.database().reference()
-        
-        
-        
-        
-        
-        
-        self.ref?.child("Activities").child(eventTitle).observeSingleEvent(of: .value, with: {(snapshot) in
-            
-            // get user value
-            
-            
-            print("ref handle detailed data assingmnet called")
-            
-            var dic = snapshot.value! as! NSDictionary
-            
-            self.detailedData = dic
-            print(self.detailedData)
-            self.eventDescription.text = self.detailedData["description"] as! String
-            self.eventTime.text = self.detailedData["time"] as! String
-            
-            
-            
-        })
-        
-        
-        
-    }
+//    func fetchDetailed(eventTitle:String,eventOrganizer:String){
+//        
+//        
+//        print("fetch detailed data called")
+//        
+//        self.detailedData = [:]
+//        
+//        ref = FIRDatabase.database().reference()
+//        
+//        
+//        
+//        
+//        
+//        
+//        self.ref?.child("Activities").child(eventTitle).observeSingleEvent(of: .value, with: {(snapshot) in
+//            
+//            // get user value
+//            
+//            
+//            print("ref handle detailed data assingmnet called")
+//            
+//            let dic = snapshot.value! as! NSDictionary
+//            
+//            self.detailedData = dic
+//            print(self.detailedData)
+//            self.eventDescription.text = self.detailedData["description"] as! String
+//            self.eventTime.text = self.detailedData["time"] as? String
+//            
+//            
+//            
+//        })
+//        
+//        
+//        
+//    }
     
     
     func fetchActivities() {
      
             refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
             
-            var dic = snapshot.value! as! NSDictionary
-            var array = dic.allValues as! NSArray
+            let dic = snapshot.value! as! NSDictionary
+            let array = dic.allValues as NSArray
             
             
             
@@ -102,7 +102,7 @@ class detailedViewController: UIViewController {
             for singleAct in array {
             var dicAct = singleAct as! Dictionary<String, String>
                 
-            var activityFetched = Activities()
+            let activityFetched = Activities()
                 activityFetched.description = dicAct["description"]!
                 activityFetched.title = dicAct["title"]!
                 activityFetched.organizer = dicAct["organizer"]!
@@ -116,12 +116,21 @@ class detailedViewController: UIViewController {
                 
                 }
                 
-                for actiity in self.activityList{
-                    print(actiity.title)
+           
+                var theEvent : Activities = Activities()
+                
+                
+                
+                for event in self.activityList {
+                    if ( event.organizer == self.eOrganizer && event.title == self.eTitle){
+                        theEvent = event
+                    }
                 }
 
-
                 
+                
+            self.eventDescription.text = theEvent.description
+                self.eventTime.text = dateToString(date: theEvent.startTime)
                 
             
             
