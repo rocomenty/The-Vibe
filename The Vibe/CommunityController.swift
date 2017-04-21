@@ -75,7 +75,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             print("fetching detailed")
             
             
-            var dic = snapshot.value! as! NSDictionary
+            let dic = snapshot.value! as! NSDictionary
             
             self.detailedData = dic
      
@@ -129,7 +129,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             
             
             
-            if let detailedVC = segue.destination as? detailedViewController{
+            if segue.destination is detailedViewController{
         //        detailedVC.eventTitle.text = detailedData["title"] as! String
                 
                 print( "detailed data is \(self.detailedData )")
@@ -164,13 +164,13 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         self.organizer = []
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
             print("fetching ")
-            var dic = snapshot.value! as! NSDictionary
+            let dic = snapshot.value! as! NSDictionary
 
-            var dicValue  = dic.allValues as! NSArray
+            let dicValue  = dic.allValues as NSArray
            
             for singleActivity in dicValue{
-                var test3 = singleActivity as! NSDictionary
-                var activityTest = Activities()
+                let test3 = singleActivity as! NSDictionary
+                _ = Activities()
             
           self.activities.append(test3["title"] as! String)
               self.organizer.append(test3["organizer"] as! String)

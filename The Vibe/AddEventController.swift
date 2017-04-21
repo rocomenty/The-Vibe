@@ -12,6 +12,12 @@ import FirebaseAuth
 import MapKit
 
 class AddEventController: UIViewController, DataBackDelegate {
+    
+    func saveData(chosedLocation: CLLocationCoordinate2D?) {
+        print("Saved location data")
+        self.clLocation = chosedLocation
+        setUpLabels()
+    }
 
     var ref: FIRDatabaseReference?
     var theActivity: Activities?
@@ -19,8 +25,7 @@ class AddEventController: UIViewController, DataBackDelegate {
     var datePicker: UIDatePicker!
     var cancelButton: UIButton!
     var pickerSubmitButton: UIButton!
-    var selectedPin: MKPlacemark?
-    var clLocation: CLLocation?
+    var clLocation: CLLocationCoordinate2D?
     
     @IBOutlet weak var titleInput: UITextField!
     @IBOutlet weak var locationButton: UIButton!
@@ -52,11 +57,8 @@ class AddEventController: UIViewController, DataBackDelegate {
         typeLabel.text = theActivity?.activityToString()
         
         //locations
-        if selectedPin != nil {
-            locationLabel.text = parseAddress(selectedItem: selectedPin!)
-        }
-        else if clLocation != nil {
-            locationLabel.text = cllocationToString(location: clLocation!.coordinate)
+        if clLocation != nil {
+            locationLabel.text = "You have picked a location"
         }
         else {
             locationLabel.text = "Please Pick a location"
@@ -66,15 +68,6 @@ class AddEventController: UIViewController, DataBackDelegate {
         
         
         
-    }
-    
-    func saveData(selectedPin: MKPlacemark?, currentLocation: CLLocation?) {
-        print("Saved location data")
-        print(selectedPin)
-        print(currentLocation)
-        self.selectedPin = selectedPin
-        self.clLocation = currentLocation
-        setUpLabels()
     }
     
     @IBAction func typeButtonPressed(_ sender: UIButton) {
@@ -136,20 +129,11 @@ class AddEventController: UIViewController, DataBackDelegate {
                 }
                 
                 if let location = clLocation {
-                    theActivity?.location = location.coordinate
+                    theActivity?.location = location
                 }
-                else if let location = selectedPin {
-                    theActivity?.location = location.coordinate
-                }
+                
                 if (isValidActivity(theActivity: activity)) {
                     print("Adding to database")
-                    
-//                    self.ref?.child("Activities").child((theActivity?.organizer)!).setValue(formatActivityData(theActivity: activity)) { (error, ref) in
-//                        print("success adding event !!!!!!!!!!!") //FIXME
-//                        //alert success or failure
-//                        //self.performSegue(withIdentifier: "addEventToMain", sender: self)
-//                    }
-//                    
                     self.ref?.child("Activities").child((theActivity?.title)!).setValue(formatActivityData(theActivity: activity)) { (error, ref) in
                         print("success adding event !!!!!!!!!!!") //FIXME
                         //alert success or failure

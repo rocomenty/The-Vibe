@@ -23,9 +23,9 @@ func isValidActivity(theActivity: Activities) -> Bool {
 
 }
 
-func formatActivityData(theActivity: Activities) -> [String:String] {
+func formatActivityData(theActivity: Activities) -> [String:Any] {
     
-    return ["title":theActivity.title, "type":theActivity.activityToString(), "organizer": theActivity.organizer, "longitude": String(theActivity.location.longitude), "latitude": String(theActivity.location.latitude), "time": dateToString(date: theActivity.startTime), "description" : theActivity.description]
+    return ["title":theActivity.title, "type":theActivity.activityToString(), "organizer": theActivity.organizer, "longitude": String(theActivity.location.longitude), "latitude": String(theActivity.location.latitude), "time": dateToString(date: theActivity.startTime), "description" : theActivity.description, "date": [".sv": "timestamp"]]
 }
 
 func stringToActivityType(str: String) -> Activities.ActivityType {

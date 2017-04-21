@@ -13,7 +13,6 @@ import FirebaseDatabase
 
 class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var theTableView: UITableView!
-    @IBOutlet weak var addEventButton: UIButton!
     var activities: [String] = []
    
     var ref: FIRDatabaseReference?
@@ -21,7 +20,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-       setupTableView()
+        setupTableView()
         theTableView.dataSource = self
         theTableView.delegate = self
         ref = FIRDatabase.database().reference()
@@ -34,9 +33,9 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     private func setupTableView() {
         
         theTableView = UITableView(frame: view.frame.offsetBy(dx: 0, dy: 20))
-         theTableView.dataSource = self
-         theTableView.delegate = self
-         theTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        theTableView.dataSource = self
+        theTableView.delegate = self
+        theTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         view.addSubview(theTableView)
         
@@ -77,13 +76,13 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.activities = []
               refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
             print("fetching ")
-            var dic = snapshot.value! as! NSDictionary
+            let dic = snapshot.value! as! NSDictionary
             
-            var dicValue  = dic.allValues as! NSArray
+            var dicValue  = dic.allValues as NSArray
             
             for singleActivity in dicValue{
-                var test3 = singleActivity as! NSDictionary
-                var activityTest = Activities()
+                let test3 = singleActivity as! NSDictionary
+                _ = Activities()
                 
                 self.activities.append(test3["title"] as! String)
               

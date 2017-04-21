@@ -17,7 +17,7 @@ protocol HandleMapSearch {
 
 //adapted from http://stackoverflow.com/questions/37472076/how-to-pass-data-when-the-back-button-clicked
 public protocol DataBackDelegate: class {
-    func saveData(selectedPin: MKPlacemark?, currentLocation: CLLocation?)
+    func saveData(chosedLocation: CLLocationCoordinate2D?)
 }
 
 class PickLocationController: UIViewController, CLLocationManagerDelegate {
@@ -25,8 +25,11 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     var selectedPin:MKPlacemark? = nil
-    var currentLocation: CLLocation?
+    var chosedLocation: CLLocationCoordinate2D?
     weak var delegate: DataBackDelegate?
+    
+    var hasSetCurrentLocation: Bool = false
+    var isSearched: Bool = false
     
     var resultSearchController: UISearchController? = nil
     
@@ -35,7 +38,8 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-        // Do any additional setup after loading the view.
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +49,14 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setUpAnnotation(currentLocation: CLLocationCoordinate2D) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        mapView.addAnnotation(annotation)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(currentLocation, 1000, 1000)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
     
     func setUpSearchController() {
@@ -68,9 +80,25 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //FIXME
         if let last = locations.last {
-            currentLocation = last
+            if (!hasSetCurrentLocation) {
+                setUpAnnotation(currentLocation: last.coordinate)
+                hasSetCurrentLocation = true
+            }
         }
         
+    }
+    
+    //adapted from https://www.youtube.com/watch?v=pt_hbo85OkI
+    @IBAction func longPressOnMap(_ sender: UILongPressGestureRecognizer) {
+        let touchLocatoin = sender.location(in: self.mapView)
+        let geoLocation = self.mapView.convert(touchLocatoin, toCoordinateFrom: self.mapView)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = geoLocation
+        annotation.title = "Pick this location"
+        chosedLocation = geoLocation
+        
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        self.mapView.addAnnotation(annotation)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -84,9 +112,10 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
     }
     
     func setLocation() {
-        self.delegate?.saveData(selectedPin: selectedPin, currentLocation: currentLocation)
+        self.delegate?.saveData(chosedLocation: chosedLocation)
         _ = navigationController?.popViewController(animated: true)
     }
+    
     
 }
 
@@ -94,7 +123,8 @@ extension PickLocationController: HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark){
         // cache the pin
         selectedPin = placemark
-        // clear existing pinse
+        chosedLocation = placemark.coordinate
+        // clear existing pins
         mapView.removeAnnotations(mapView.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
@@ -104,14 +134,19 @@ extension PickLocationController: HandleMapSearch {
             annotation.subtitle = "\(city) \(state)"
         }
         mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegionMake(placemark.coordinate, span)
-        mapView.setRegion(region, animated: true)
+//        let span = MKCoordinateSpanMake(0.05, 0.05)
+//        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 1000, 1000)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
 }
 
 extension PickLocationController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            //return nil so map view draws "blue dot" for standard user location
+            return nil
+        }
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
