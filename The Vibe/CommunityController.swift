@@ -13,8 +13,8 @@ import FirebaseDatabase
 
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
-    var activities: [String] = []
-    var organizer: [String] = []
+    @IBOutlet weak var addEventButton: UIButton!
+    
     var detailedData :NSDictionary = [:]
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
@@ -143,27 +143,6 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             
             
             
-        }
-    }
-    
-
-    
-    func fetchActivities() {
-      self.activities = []
-        self.organizer = []
-        refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
-            print("fetching ")
-            let dic = snapshot.value! as! NSDictionary
-
-            let dicValue  = dic.allValues as NSArray
-           
-            for singleActivity in dicValue{
-                let activity = singleActivity as! NSDictionary
-                _ = Activities()
-            
-                self.activities.append(activity["title"] as! String)
-                self.organizer.append(activity["organizer"] as! String)
-            }
             
         })
     }
