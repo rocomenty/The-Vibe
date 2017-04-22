@@ -74,7 +74,7 @@ class detailedViewController: UIViewController {
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
             
             let dic = snapshot.value! as! NSDictionary
-            let array = dic.allValues as NSArray
+            _ = dic.allValues as NSArray
             
             
             for (eid, eDetail) in dic {

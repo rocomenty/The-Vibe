@@ -121,7 +121,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             
             
             for singleAct in array {
-                var dicAct = singleAct as! NSDictionary
+                let dicAct = singleAct as! NSDictionary
                 
                 let activityFetched = Activities()
                 activityFetched.description = dicAct["description"]! as! String
