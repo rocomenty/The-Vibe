@@ -24,7 +24,10 @@ class detailedViewController: UIViewController {
     var eOrganizer:String = ""
     var eTime: String = ""
     var eDescription: String = ""
-    
+    var activityDic : Dictionary<String, Activities> = [:]
+     var theEvent : Activities = Activities()
+    var theRandomId : String = ""
+    var theAttendee : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,42 +54,20 @@ class detailedViewController: UIViewController {
         
     }
     
-    //    func fetchDetailed(eventTitle:String,eventOrganizer:String){
-    //
-    //
-    //        print("fetch detailed data called")
-    //
-    //        self.detailedData = [:]
-    //
-    //        ref = FIRDatabase.database().reference()
-    //
-    //
-    //
-    //
-    //
-    //
-    //        self.ref?.child("Activities").child(eventTitle).observeSingleEvent(of: .value, with: {(snapshot) in
-    //
-    //            // get user value
-    //
-    //
-    //            print("ref handle detailed data assingmnet called")
-    //
-    //            let dic = snapshot.value! as! NSDictionary
-    //
-    //            self.detailedData = dic
-    //            print(self.detailedData)
-    //            self.eventDescription.text = self.detailedData["description"] as! String
-    //            self.eventTime.text = self.detailedData["time"] as? String
-    //
-    //
-    //
-    //        })
-    //
-    //
-    //
-    //    }
     
+    @IBAction func registerPressed(_ sender: Any) {
+    
+        print("eid is \(theRandomId) and the event title is \(theEvent.title)")
+        
+        theEvent.attendee.append(   (FIRAuth.auth()?.currentUser?.email)!)
+        self.ref?.child("Activities").child(theRandomId).setValue(formatActivityData(theActivity: theEvent)) { (error, ref) in
+            print("success adding event !!!!!!!!!!!") //FIXME
+            //alert success or failure
+        }
+        
+
+        
+    }
     
     func fetchActivities() {
         
@@ -96,12 +77,10 @@ class detailedViewController: UIViewController {
             let array = dic.allValues as NSArray
             
             
-            
-            
-            
-            for singleAct in array {
-                var dicAct = singleAct as! NSDictionary
+            for (eid, eDetail) in dic {
                 
+                let eventID = eid as! String
+                let dicAct = eDetail as! NSDictionary
                 let activityFetched = Activities()
                 activityFetched.description = dicAct["description"]! as! String
                 activityFetched.title = dicAct["title"]! as! String
@@ -109,28 +88,35 @@ class detailedViewController: UIViewController {
                 activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
                 
                 
-                self.activityList.append(activityFetched)
+                self.activityDic[eventID] = activityFetched
                 
                 
-                
-                
-            }
-            
-            
-            var theEvent : Activities = Activities()
-            
-            
-            
-            for event in self.activityList {
-                if ( event.organizer == self.eOrganizer && event.title == self.eTitle){
-                    theEvent = event
+                if (     activityFetched.organizer==self.eOrganizer && activityFetched.title==self.eTitle ){
+                    
+                    
+                    //bingo 
+                    self.theRandomId = eventID
+                    
                 }
+             
+            }
+            
+    
+            
+           
+            
+            for event in self.activityDic.values {
+                if ( event.organizer == self.eOrganizer && event.title == self.eTitle){
+                    self.theEvent = event
+                    
+                }
+                
             }
             
             
             
-            self.eventDescription.text = theEvent.description
-            self.eventTime.text = dateToString(date: theEvent.startTime)
+            self.eventDescription.text = self.theEvent.description
+            self.eventTime.text = dateToString(date: self.theEvent.startTime)
             
             
             
@@ -139,14 +125,6 @@ class detailedViewController: UIViewController {
     }
     
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
 }

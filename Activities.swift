@@ -21,7 +21,7 @@ class Activities{
     var location: CLLocationCoordinate2D
     var startTime : Date
     var description: String
-   
+    var attendee: [String]
     
     init() {
         self.title = ""
@@ -30,6 +30,7 @@ class Activities{
         self.location = CLLocationCoordinate2D()
         self.startTime = Date()
         self.description = "No description"
+        self.attendee = []
     }
     
 
