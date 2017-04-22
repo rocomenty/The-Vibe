@@ -111,7 +111,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if segue.identifier == "meToDetail"{
             
             print("prepare for segue com to detail called")
-            // print("index is \(indexSelected)")
+      
             
             if let detailedVC = segue.destination as? detailedViewController{
                 
@@ -125,6 +125,36 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             
         }
+        
+        
+        else if segue.identifier == "meToEdit"{
+            
+            print("prepare for segue me to edit called")
+
+            if let editVC = segue.destination as? editViewController{
+                
+                
+                // Here prepopulate the field in editview
+                
+              editVC.eTitle =  self.ownActivityList[indexSelected].title
+                editVC.eOrganizer = self.ownActivityList[indexSelected].organizer
+                
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+        }
+        
+            
+            
+            
+            
     }
     
     

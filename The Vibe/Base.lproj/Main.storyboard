@@ -941,20 +941,22 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VM5-SN-oWu">
-                                                <rect key="frame" x="15" y="246.5" width="320" height="128.5"/>
+                                                <rect key="frame" x="15" y="247" width="320" height="128"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQ3-oZ-f4z">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="128.5"/>
-                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </view>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="asdgfads" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m2B-5j-YWd">
+                                                        <rect key="frame" x="29" y="-1" width="262" height="130"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="xQ3-oZ-f4z" firstAttribute="centerY" secondItem="VM5-SN-oWu" secondAttribute="centerY" id="9CR-jX-j3f"/>
-                                                    <constraint firstAttribute="bottom" secondItem="xQ3-oZ-f4z" secondAttribute="bottom" id="DvK-iw-Htu"/>
-                                                    <constraint firstItem="xQ3-oZ-f4z" firstAttribute="top" secondItem="VM5-SN-oWu" secondAttribute="top" id="UM5-1V-tDP"/>
-                                                    <constraint firstItem="xQ3-oZ-f4z" firstAttribute="leading" secondItem="VM5-SN-oWu" secondAttribute="leading" id="W9N-1F-QyJ"/>
-                                                    <constraint firstItem="xQ3-oZ-f4z" firstAttribute="centerX" secondItem="VM5-SN-oWu" secondAttribute="centerX" id="k4T-07-unq"/>
-                                                    <constraint firstAttribute="trailing" secondItem="xQ3-oZ-f4z" secondAttribute="trailing" id="xFo-sJ-Feb"/>
+                                                    <constraint firstItem="m2B-5j-YWd" firstAttribute="centerX" secondItem="VM5-SN-oWu" secondAttribute="centerX" id="10s-wd-TEq"/>
+                                                    <constraint firstAttribute="bottom" secondItem="m2B-5j-YWd" secondAttribute="bottom" constant="2" id="Q6j-2h-2Zs"/>
+                                                    <constraint firstItem="m2B-5j-YWd" firstAttribute="top" secondItem="VM5-SN-oWu" secondAttribute="top" constant="-1" id="Yux-YT-Dcn"/>
+                                                    <constraint firstAttribute="trailing" secondItem="m2B-5j-YWd" secondAttribute="trailing" constant="29" id="Zge-o8-hih"/>
+                                                    <constraint firstItem="m2B-5j-YWd" firstAttribute="centerY" secondItem="VM5-SN-oWu" secondAttribute="centerY" id="iey-Hn-8rX"/>
+                                                    <constraint firstItem="m2B-5j-YWd" firstAttribute="leading" secondItem="VM5-SN-oWu" secondAttribute="leading" constant="29" id="yXI-jg-Z27"/>
                                                 </constraints>
                                             </scrollView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="BQw-oy-MfS">
@@ -986,12 +988,13 @@
                                                             <constraint firstAttribute="height" constant="50" id="IoC-2q-wr0"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                                        <state key="normal" title="Register">
+                                                        <state key="normal" title="Submit">
                                                             <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="registerPressed:" destination="vH4-K9-BBO" eventType="touchUpInside" id="8zm-Bw-nFl"/>
                                                             <action selector="submitButtonPressed:" destination="FFD-Bo-5es" eventType="touchUpInside" id="Pmk-Ig-frM"/>
+                                                            <action selector="submitPressed:" destination="nYy-bX-dm2" eventType="touchUpInside" id="V1h-i9-zAI"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1047,6 +1050,14 @@
                             <constraint firstItem="NiO-Jm-Zw1" firstAttribute="trailing" secondItem="2vb-gV-M4e" secondAttribute="trailingMargin" id="VIO-z4-UbH"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="attendeeField" destination="m2B-5j-YWd" id="DO2-k6-ZEL"/>
+                        <outlet property="descriptionField" destination="5As-7F-orL" id="JJT-bS-B8L"/>
+                        <outlet property="locationLabel" destination="815-6k-l8b" id="kPB-Ku-E64"/>
+                        <outlet property="timeLabel" destination="k7J-Mb-AJj" id="mdC-hd-3Pi"/>
+                        <outlet property="titleField" destination="Xku-gT-trh" id="uZt-Zb-UkM"/>
+                        <outlet property="typeLabel" destination="Bz0-p9-XQu" id="dcR-lL-bsG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="few-vp-AQt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
