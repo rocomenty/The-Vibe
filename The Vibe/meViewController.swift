@@ -29,8 +29,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         theTableView.delegate = self
         ref = FIRDatabase.database().reference()
         fetchActivities()
-        data = signedUpActivities
-        self.theTableView.reloadData()
+       
     }
     
     @IBAction func changedSegmentControl(_ sender: UISegmentedControl) {
@@ -93,8 +92,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let activity = singleActivity as! NSDictionary
                 
                 if (activity["organizer"] as? String == FIRAuth.auth()?.currentUser?.email) {
-                    
-                    let test1 = activity["title"] as! String
+                                        let test1 = activity["title"] as! String
                     
                     let test2 = activity["type"] as! String
                     
@@ -105,8 +103,10 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
                 
                 if let participants = activity["attendee"] as? [String] {
+                    
                     for participant in participants {
                         if participant == FIRAuth.auth()?.currentUser?.email {
+                          
                             let test1 = activity["title"] as! String
                             
                             let test2 = activity["type"] as! String
@@ -116,10 +116,14 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
                            // self.signedUpActivities.append([activity["title"], activity["type"]] as! [String])
                         }
+                        self.data = self.signedUpActivities
+                        self.theTableView.reloadData()
                     }
                 }
             }
         })
+        
+     
     }
     
 }
