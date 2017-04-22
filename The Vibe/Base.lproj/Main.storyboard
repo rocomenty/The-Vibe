@@ -70,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dRV-Vi-cpd">
-                                <rect key="frame" x="27" y="39" width="320" height="499"/>
+                                <rect key="frame" x="27" y="84" width="320" height="499"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="4gv-ur-bNL">
@@ -222,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z59-0t-4Qx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2977" y="397"/>
+            <point key="canvasLocation" x="3916" y="396.25187406296857"/>
         </scene>
         <!--Community-->
         <scene sceneID="6bR-ch-k0e">
@@ -401,7 +401,7 @@
                     <connections>
                         <segue destination="d0c-pU-Cop" kind="relationship" relationship="viewControllers" id="eFr-12-XRW"/>
                         <segue destination="bLd-ef-2X9" kind="relationship" relationship="viewControllers" id="Mhj-5Q-XSk"/>
-                        <segue destination="GhN-pp-BSo" kind="relationship" relationship="viewControllers" id="H3P-yN-Fyn"/>
+                        <segue destination="hrY-Ws-oxq" kind="relationship" relationship="viewControllers" id="H3P-yN-Fyn"/>
                         <segue destination="tbs-y0-rwD" kind="relationship" relationship="viewControllers" id="a7i-m9-ubs"/>
                     </connections>
                 </tabBarController>
@@ -723,7 +723,7 @@
             </objects>
             <point key="canvasLocation" x="5468" y="-411"/>
         </scene>
-        <!--Me-->
+        <!--The Vibe - Me-->
         <scene sceneID="BUu-bG-YXN">
             <objects>
                 <viewController id="GhN-pp-BSo" customClass="meViewController" customModule="The_Vibe" customModuleProvider="target" sceneMemberID="viewController">
@@ -734,13 +734,45 @@
                     <view key="view" contentMode="scaleToFill" id="Qnh-Rc-9CU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iSp-NT-t3R">
+                                <rect key="frame" x="0.0" y="64" width="375" height="29"/>
+                                <segments>
+                                    <segment title="My Sign Ups"/>
+                                    <segment title="My Events"/>
+                                </segments>
+                                <color key="tintColor" red="0.96782547240000005" green="0.70864909890000005" blue="0.3640820682" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="changedSegmentControl:" destination="GhN-pp-BSo" eventType="valueChanged" id="1BO-3V-dU0"/>
+                                </connections>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0oQ-ah-iR0">
+                                <rect key="frame" x="0.0" y="93" width="375" height="525"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0oQ-ah-iR0" secondAttribute="trailing" id="2Fp-Bj-Ht9"/>
+                            <constraint firstItem="0oQ-ah-iR0" firstAttribute="trailing" secondItem="iSp-NT-t3R" secondAttribute="trailing" id="3te-xz-L8w"/>
+                            <constraint firstItem="0oQ-ah-iR0" firstAttribute="top" secondItem="iSp-NT-t3R" secondAttribute="bottom" constant="1" id="4ze-eE-gdm"/>
+                            <constraint firstItem="0oQ-ah-iR0" firstAttribute="leading" secondItem="Qnh-Rc-9CU" secondAttribute="leading" id="CTb-Cl-YvU"/>
+                            <constraint firstItem="wSe-5l-zfz" firstAttribute="top" secondItem="0oQ-ah-iR0" secondAttribute="bottom" id="KxZ-Ka-9Fl"/>
+                            <constraint firstItem="iSp-NT-t3R" firstAttribute="top" secondItem="J0h-np-Ykf" secondAttribute="bottom" id="rHN-2g-K6q"/>
+                            <constraint firstItem="0oQ-ah-iR0" firstAttribute="leading" secondItem="iSp-NT-t3R" secondAttribute="leading" id="ztz-dj-bh0"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Me" image="me.png" id="Sbb-2q-7Rr"/>
+                    <navigationItem key="navigationItem" title="The Vibe - Me" id="n4u-bY-QlF">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="2hC-Le-2vl"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="theSegmentControl" destination="iSp-NT-t3R" id="Dzh-iH-vW3"/>
+                        <outlet property="theTableView" destination="0oQ-ah-iR0" id="eaL-i1-CeW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQm-uK-QBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2097" y="975"/>
+            <point key="canvasLocation" x="3036" y="974.6626686656673"/>
         </scene>
         <!--More-->
         <scene sceneID="wLX-Lh-Gjs">
@@ -803,6 +835,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zwf-wg-VCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2096.8000000000002" y="-410.64467766116945"/>
+        </scene>
+        <!--Me-->
+        <scene sceneID="3vH-bs-HkX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hrY-Ws-oxq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Me" image="me.png" id="Sbb-2q-7Rr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yRX-PU-kPo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GhN-pp-BSo" kind="relationship" relationship="rootViewController" id="IJW-h7-f5H"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YQS-HA-6Yt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2096.8000000000002" y="974.6626686656673"/>
         </scene>
     </scenes>
     <resources>

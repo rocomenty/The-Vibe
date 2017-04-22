@@ -9,38 +9,42 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 
 class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var theTableView: UITableView!
-    var activities: [String] = []
-    var activityArr: [Activities] = []
+    @IBOutlet weak var theTableView: UITableView!
+    @IBOutlet weak var theSegmentControl: UISegmentedControl!
+    
+    var data: [[String]] = []
+    var ownActivities: [[String]] = [] //0 position is title, 1 is type
+    var signedUpActivities: [[String]] = [] //0 position is title, 1 is type
     
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        setupTableView()
         theTableView.dataSource = self
         theTableView.delegate = self
         ref = FIRDatabase.database().reference()
         fetchActivities()
+        data = signedUpActivities
         self.theTableView.reloadData()
-        
-        
     }
     
-    private func setupTableView() {
-        
-        theTableView = UITableView(frame: view.frame.offsetBy(dx: 0, dy: 20))
-        theTableView.dataSource = self
-        theTableView.delegate = self
-        theTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        view.addSubview(theTableView)
-        
+    @IBAction func changedSegmentControl(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            data = signedUpActivities
+        case 1:
+            data = ownActivities
+        default:
+            break
+        }
+        self.theTableView.reloadData()
     }
+    
     
     
     override func viewDidLoad() {
@@ -61,55 +65,42 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         
-        cell.textLabel?.text = activityArr[indexPath.row].title
-        
+        cell.textLabel?.text = data[indexPath.row][0]
+        cell.detailTextLabel?.text = data[indexPath.row][1]
+      
         
         return cell
     }
     
     func fetchActivities() {
-        activityArr = []
-        
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
+            print("fetching ")
             let dic = snapshot.value! as! NSDictionary
-            let array = dic.allValues as NSArray
             
+            let dicValue  = dic.allValues as NSArray
             
-            
-            
-            
-            for singleAct in array {
-                var dicAct = singleAct as! NSDictionary
+            for singleActivity in dicValue{
+                let activity = singleActivity as! NSDictionary
                 
-                let activityFetched = Activities()
-                activityFetched.description = dicAct["description"]! as! String
-                activityFetched.title = dicAct["title"]! as! String
-                activityFetched.organizer = dicAct["organizer"]! as! String
-                activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
+                if (activity["organizer"] as? String == FIRAuth.auth()?.currentUser?.email) {
+                    self.ownActivities.append([activity["title"], activity["type"]] as! [String])
+                }
                 
-                
-                self.activityArr.append(activityFetched)
-                
-                
-                
-                
+                if let participants = activity["attendee"] as? [String] {
+                    for participant in participants {
+                        if participant == FIRAuth.auth()?.currentUser?.email {
+                            self.signedUpActivities.append([activity["title"], activity["type"]] as! [String])
+                        }
+                    }
+                }
             }
-            
-            
-            
-            self.theTableView.reloadData()
-            
-            
-            
-            
         })
     }
-    
     
 }
