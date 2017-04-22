@@ -29,7 +29,7 @@ class detailedViewController: UIViewController {
      var theEvent : Activities = Activities()
     var theRandomId : String = ""
     var theAttendee : [String] = []
-    var ifRegistered : Bool = false
+    var isRegistered : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,22 +61,29 @@ class detailedViewController: UIViewController {
     
        // print("eid is \(theRandomId) and the event title is \(theEvent.title)")
         
-        
-        let attendee = theEvent.attendee
-     
-            
-            theEvent.attendee.append(   (FIRAuth.auth()?.currentUser?.email)!)
+        if (isRegistered){
+         let index =   theEvent.attendee.index(of:  (FIRAuth.auth()?.currentUser?.email)!)
+            theEvent.attendee.remove(at: index!)
             self.ref?.child("Activities").child(theRandomId).setValue(formatActivityData(theActivity: theEvent)) { (error, ref) in
-                print("success adding event !!!!!!!!!!!") //FIXME
+                print("success unregistering event !!!!!!!!!!!") //FIXME
+                self.registerButton.setTitle("Register", for: .normal)
+                self.isRegistered = false
                 //alert success or failure
             }
             
             
             
-        
-    
-  
-
+        }
+        else{
+   
+     
+            
+            theEvent.attendee.append(   (FIRAuth.auth()?.currentUser?.email)!)
+            self.ref?.child("Activities").child(theRandomId).setValue(formatActivityData(theActivity: theEvent)) { (error, ref) in
+                print("success registering event !!!!!!!!!!!") //FIXME
+                //alert success or failure
+            }
+        }
         
     }
     
@@ -96,8 +103,15 @@ class detailedViewController: UIViewController {
                 activityFetched.title = dicAct["title"]! as! String
                 activityFetched.organizer = dicAct["organizer"]! as! String
                 activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
-                activityFetched.attendee = dicAct["attendee"]! as! [String]
                 
+                
+                if let attendeeOnline = dicAct["attendee"]{
+                    
+                    print(attendeeOnline)
+                   activityFetched.attendee = attendeeOnline as! [String]
+                    
+                }
+           
                 self.activityDic[eventID] = activityFetched
                 
                 
@@ -119,12 +133,13 @@ class detailedViewController: UIViewController {
                 if ( event.organizer == self.eOrganizer && event.title == self.eTitle){
                     self.theEvent = event
                     let attendee = self.theEvent.attendee
-                    print("the attendeeeeee is \(attendee)")
+                    
                     if (attendee.contains((FIRAuth.auth()?.currentUser?.email)!)){
                         self.registerButton.setTitle("Unregister", for: .normal)
-
+                        self.isRegistered = true
                         
                     }
+                    
                 }
                 
             }
@@ -133,9 +148,7 @@ class detailedViewController: UIViewController {
             
             self.eventDescription.text = self.theEvent.description
             self.eventTime.text = dateToString(date: self.theEvent.startTime)
-            
-            
-            
+        
             
         })
     }
