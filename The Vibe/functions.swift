@@ -50,6 +50,23 @@ func stringToActivityType(str: String) -> Activities.ActivityType {
     }
 }
 
+func activityTypeToString (at: Activities.ActivityType) ->String{
+    
+    
+    
+    if at == Activities.ActivityType.Academic {
+        return "Academic"
+    }
+    else if at == Activities.ActivityType.StudentOrganization{
+        return "Student Organization"
+    }
+    else{
+        return "Personal"
+    }
+    
+    
+}
+
 func cllocationToString(location: CLLocationCoordinate2D) -> String {
     return String(location.longitude) + ", " + String(location.latitude);
 }

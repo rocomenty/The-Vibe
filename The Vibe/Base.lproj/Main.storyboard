@@ -769,6 +769,7 @@
                     <connections>
                         <outlet property="theSegmentControl" destination="iSp-NT-t3R" id="Dzh-iH-vW3"/>
                         <outlet property="theTableView" destination="0oQ-ah-iR0" id="eaL-i1-CeW"/>
+                        <segue destination="vH4-K9-BBO" kind="show" identifier="meToDetail" id="wTr-sX-rWA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQm-uK-QBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -867,7 +868,8 @@
         <image name="paper_plane.png" width="46" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vrf-5d-Aq0"/>
+        <segue reference="Jm8-pQ-lTF"/>
         <segue reference="n7d-Gt-H4d"/>
+        <segue reference="wTr-sX-rWA"/>
     </inferredMetricsTieBreakers>
 </document>

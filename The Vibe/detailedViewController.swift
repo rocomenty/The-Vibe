@@ -87,12 +87,14 @@ class detailedViewController: UIViewController {
         
     }
     
+
+    
     func fetchActivities() {
         
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
             
             let dic = snapshot.value! as! NSDictionary
-            
+            print("currently fetching activities in detailed view")
             
             for (eid, eDetail) in dic {
                 
@@ -151,6 +153,7 @@ class detailedViewController: UIViewController {
         
             
         })
+        
     }
     
     
