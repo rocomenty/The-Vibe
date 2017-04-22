@@ -32,6 +32,7 @@
 		CD2EED201EA919B800DF96E3 /* meViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2EED1F1EA919B800DF96E3 /* meViewController.swift */; };
 		CD2EED221EA9442400DF96E3 /* detailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2EED211EA9442400DF96E3 /* detailedViewController.swift */; };
 		CD6342731E98845E00C83D84 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6342721E98845E00C83D84 /* Activities.swift */; };
+		CDAE6A9F1EAC1D79000083DB /* editViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAE6A9E1EAC1D79000083DB /* editViewController.swift */; };
 		CDEE6F851E8EE57400341FC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */; };
 		CDEE6F871E8EE57400341FC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE6F861E8EE57400341FC9 /* ViewController.swift */; };
 		CDEE6F8A1E8EE57400341FC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDEE6F881E8EE57400341FC9 /* Main.storyboard */; };
@@ -89,6 +90,7 @@
 		CD2EED1F1EA919B800DF96E3 /* meViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = meViewController.swift; sourceTree = "<group>"; };
 		CD2EED211EA9442400DF96E3 /* detailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedViewController.swift; sourceTree = "<group>"; };
 		CD6342721E98845E00C83D84 /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activities.swift; path = ../Activities.swift; sourceTree = "<group>"; };
+		CDAE6A9E1EAC1D79000083DB /* editViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editViewController.swift; sourceTree = "<group>"; };
 		CDEE6F811E8EE57400341FC9 /* The Vibe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Vibe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDEE6F861E8EE57400341FC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				CD6342721E98845E00C83D84 /* Activities.swift */,
 				CDEE6F861E8EE57400341FC9 /* ViewController.swift */,
 				CDEE6F881E8EE57400341FC9 /* Main.storyboard */,
+				CDAE6A9E1EAC1D79000083DB /* editViewController.swift */,
 				089C8AE31E9DA93E009E4D00 /* CommunityController.swift */,
 				CD2EED211EA9442400DF96E3 /* detailedViewController.swift */,
 				CD2EED1F1EA919B800DF96E3 /* meViewController.swift */,
@@ -541,6 +544,7 @@
 				089628B61EA42340002A9440 /* CustomSegue.swift in Sources */,
 				08DB7C3D1EA58BF40069AE55 /* PickLocationController.swift in Sources */,
 				CDEE6F8D1E8EE57400341FC9 /* The_Vibe.xcdatamodeld in Sources */,
+				CDAE6A9F1EAC1D79000083DB /* editViewController.swift in Sources */,
 				089C8ADC1E9D9B9D009E4D00 /* functions.swift in Sources */,
 				089C8AE61E9DB829009E4D00 /* AddEventController.swift in Sources */,
 				089C8AE81E9DD9B8009E4D00 /* MoreController.swift in Sources */,

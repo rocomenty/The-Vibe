@@ -98,6 +98,9 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.performSegue(withIdentifier: "meToDetail", sender: nil)
 
         }
+        else{
+                self.performSegue(withIdentifier: "meToEdit", sender: nil)
+        }
         
         
     }
