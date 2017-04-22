@@ -81,16 +81,9 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             var dicValue  = dic.allValues as NSArray
             
             for singleActivity in dicValue{
-<<<<<<< HEAD
-                let test3 = singleActivity as! NSDictionary
                 _ = Activities()
-=======
                 var test3 = singleActivity as! NSDictionary
                 
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
                 
                 self.activities.append(test3["title"] as! String)
               

@@ -14,7 +14,7 @@ import FirebaseDatabase
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
     @IBOutlet weak var addEventButton: UIButton!
-
+    
     var detailedData :NSDictionary = [:]
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
@@ -26,21 +26,21 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewWillAppear(true)
         theTableView.dataSource = self
         theTableView.delegate = self
-                 ref = FIRDatabase.database().reference()
+        ref = FIRDatabase.database().reference()
         fetchActivities()
-       
+        
         self.theTableView.reloadData()
-       
+        
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   
-     
-
+        
+        
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -57,7 +57,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-       
+        
         cell.textLabel?.text = activityArr[indexPath.row].title
         
         cell.detailTextLabel?.text = activityArr[indexPath.row].organizer
@@ -66,51 +66,18 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-    func fetchDetailed(eventTitle:String,eventOrganizer:String){
-        
-        
-        
-        
-        self.detailedData = [:]
-        
-        ref = FIRDatabase.database().reference()
-        
-        refHandle = ref?.child("Activities").child(eventTitle).observe(.value, with: { (snapshot) in
-            print("fetching detailed")
-            
-            
-            let dic = snapshot.value! as! NSDictionary
-            
-            self.detailedData = dic
-     
-            
-            
-            
-        })
-
-        
-        
-        
-        
-    }
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
     
- 
+    
     
     var indexSelected = 0
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
- 
-  
-     indexSelected = indexPath.row
-
-    self.performSegue(withIdentifier: "communityToDetail", sender: nil)
+        
+        
+        indexSelected = indexPath.row
+        
+        self.performSegue(withIdentifier: "communityToDetail", sender: nil)
         
         
         
@@ -120,30 +87,14 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
- 
+        
         if segue.identifier == "communityToDetail"{
             
             print("prepare for segue com to detail called")
             print("index is \(indexSelected)")
             
-<<<<<<< HEAD
-<<<<<<< HEAD
-            if segue.destination is detailedViewController{
-        //        detailedVC.eventTitle.text = detailedData["title"] as! String
+            if let detailedVC = segue.destination as? detailedViewController{
                 
-                print( "detailed data is \(self.detailedData )")
-                /*
-                detailedVC.eTitle = detailedData["title"] as! String
-                detailedVC.eDescription = detailedData["description"] as! String
-                detailedVC.eOrganizer =  detailedData["organizer"] as! String
-                detailedVC.eTime = detailedData["time"] as! String
-=======
-            if let detailedVC = segue.destination as? detailedViewController{
->>>>>>> origin/master
-=======
-            if let detailedVC = segue.destination as? detailedViewController{
->>>>>>> origin/master
-
                 
                 detailedVC.eTitle = self.activityArr[indexSelected].title
                 detailedVC.eOrganizer = self.activityArr[indexSelected].organizer
@@ -151,45 +102,24 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 
             }
-
+            
             
         }
     }
     
-
+    
     
     func fetchActivities() {
         activityArr = []
         
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
-<<<<<<< HEAD
-<<<<<<< HEAD
-            print("fetching ")
             let dic = snapshot.value! as! NSDictionary
-
-            let dicValue  = dic.allValues as NSArray
-           
-            for singleActivity in dicValue{
-                let test3 = singleActivity as! NSDictionary
-                _ = Activities()
-=======
-                     let dic = snapshot.value! as! NSDictionary
-            let array = dic.allValues as NSArray
->>>>>>> origin/master
-            
-            
-            
-            
-            
-=======
-                     let dic = snapshot.value! as! NSDictionary
             let array = dic.allValues as NSArray
             
             
             
             
             
->>>>>>> origin/master
             for singleAct in array {
                 var dicAct = singleAct as! Dictionary<String, String>
                 
@@ -207,9 +137,9 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
                 
             }
             
-      
             
-               self.theTableView.reloadData()
+            
+            self.theTableView.reloadData()
             
             
             
@@ -217,5 +147,5 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         })
     }
     
-
+    
 }
