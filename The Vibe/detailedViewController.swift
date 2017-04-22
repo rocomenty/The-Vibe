@@ -11,6 +11,7 @@ import Firebase
 import FirebaseDatabase
 class detailedViewController: UIViewController {
     
+    @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventOrganizer: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
@@ -28,6 +29,7 @@ class detailedViewController: UIViewController {
      var theEvent : Activities = Activities()
     var theRandomId : String = ""
     var theAttendee : [String] = []
+    var ifRegistered : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,14 +59,23 @@ class detailedViewController: UIViewController {
     
     @IBAction func registerPressed(_ sender: Any) {
     
-        print("eid is \(theRandomId) and the event title is \(theEvent.title)")
+       // print("eid is \(theRandomId) and the event title is \(theEvent.title)")
         
-        theEvent.attendee.append(   (FIRAuth.auth()?.currentUser?.email)!)
-        self.ref?.child("Activities").child(theRandomId).setValue(formatActivityData(theActivity: theEvent)) { (error, ref) in
-            print("success adding event !!!!!!!!!!!") //FIXME
-            //alert success or failure
-        }
         
+        let attendee = theEvent.attendee
+     
+            
+            theEvent.attendee.append(   (FIRAuth.auth()?.currentUser?.email)!)
+            self.ref?.child("Activities").child(theRandomId).setValue(formatActivityData(theActivity: theEvent)) { (error, ref) in
+                print("success adding event !!!!!!!!!!!") //FIXME
+                //alert success or failure
+            }
+            
+            
+            
+        
+    
+  
 
         
     }
@@ -74,7 +85,6 @@ class detailedViewController: UIViewController {
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
             
             let dic = snapshot.value! as! NSDictionary
-            _ = dic.allValues as NSArray
             
             
             for (eid, eDetail) in dic {
@@ -86,15 +96,15 @@ class detailedViewController: UIViewController {
                 activityFetched.title = dicAct["title"]! as! String
                 activityFetched.organizer = dicAct["organizer"]! as! String
                 activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
-                
+                activityFetched.attendee = dicAct["attendee"]! as! [String]
                 
                 self.activityDic[eventID] = activityFetched
                 
                 
-                if (     activityFetched.organizer==self.eOrganizer && activityFetched.title==self.eTitle ){
+                if (activityFetched.organizer==self.eOrganizer && activityFetched.title==self.eTitle ){
                     
                     
-                    //bingo 
+                
                     self.theRandomId = eventID
                     
                 }
@@ -108,7 +118,13 @@ class detailedViewController: UIViewController {
             for event in self.activityDic.values {
                 if ( event.organizer == self.eOrganizer && event.title == self.eTitle){
                     self.theEvent = event
-                    
+                    let attendee = self.theEvent.attendee
+                    print("the attendeeeeee is \(attendee)")
+                    if (attendee.contains((FIRAuth.auth()?.currentUser?.email)!)){
+                        self.registerButton.setTitle("Unregister", for: .normal)
+
+                        
+                    }
                 }
                 
             }

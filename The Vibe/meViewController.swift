@@ -92,14 +92,14 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let activity = singleActivity as! NSDictionary
                 
                 if (activity["organizer"] as? String == FIRAuth.auth()?.currentUser?.email) {
-                                        let test1 = activity["title"] as! String
+                    let test1 = activity["title"] as! String
                     
                     let test2 = activity["type"] as! String
                     
                     let test3 = [test1, test2]
                     
                     self.ownActivities.append(test3)
-                    //self.ownActivities.append([activity["title"], activity["type"]] as! [String])
+                  
                 }
                 
                 if let participants = activity["attendee"] as? [String] {
@@ -114,7 +114,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                             let test3 = [test1, test2]
                             self.signedUpActivities.append(test3)
 
-                           // self.signedUpActivities.append([activity["title"], activity["type"]] as! [String])
+                       
                         }
                         self.data = self.signedUpActivities
                         self.theTableView.reloadData()

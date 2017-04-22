@@ -218,6 +218,7 @@
                         <outlet property="eventOrganizer" destination="YRH-ie-RF8" id="6tv-SW-1Qq"/>
                         <outlet property="eventTime" destination="osk-De-LPx" id="aAL-Dl-qxR"/>
                         <outlet property="eventTitle" destination="GCo-5N-EH2" id="NMR-RJ-Vfa"/>
+                        <outlet property="registerButton" destination="1uu-Jh-PcW" id="7sb-IX-9AH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z59-0t-4Qx" userLabel="First Responder" sceneMemberID="firstResponder"/>
