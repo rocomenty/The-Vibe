@@ -82,6 +82,8 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
             print("fetching ")
             let dic = snapshot.value! as! NSDictionary
+            let array = dic.allValues as NSArray
+            
             
             let dicValue  = dic.allValues as NSArray
             
@@ -102,5 +104,6 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
         })
     }
+    
     
 }

@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-import MapKit
+
 
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
@@ -18,25 +18,29 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     var detailedData :NSDictionary = [:]
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
+    var activityArr : [Activities] = []
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         theTableView.dataSource = self
         theTableView.delegate = self
-                 ref = FIRDatabase.database().reference()
+        ref = FIRDatabase.database().reference()
         fetchActivities()
+        
         self.theTableView.reloadData()
-       
+        
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   
-     
-//        setUpNavigationBar()
+        
+        
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -48,100 +52,85 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count
+        return activityArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-       
-        cell.textLabel?.text = activities[indexPath.row]
-        cell.detailTextLabel?.text = organizer[indexPath.row]
+        
+        cell.textLabel?.text = activityArr[indexPath.row].title
+        
+        cell.detailTextLabel?.text = activityArr[indexPath.row].organizer
         
         return cell
     }
     
     
-    func fetchDetailed(eventTitle:String,eventOrganizer:String){
-        
-        
-        
-        
-        self.detailedData = [:]
-        
-        ref = FIRDatabase.database().reference()
-        
-        refHandle = ref?.child("Activities").child(eventTitle).observe(.value, with: { (snapshot) in
-            print("fetching detailed")
-            
-            
-            let dic = snapshot.value! as! NSDictionary
-            
-            self.detailedData = dic
-     
-            
-            
-            
-        })
-
-        
-        
-        
-        
-    }
-    
- 
     
     
+    
+    var indexSelected = 0
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
- 
-            // this is not working properly 
-        //I don't get why prepare for segue is called before the fetchdetailed function 
         
-                       fetchDetailed(eventTitle: activities[indexPath.row], eventOrganizer: organizer[indexPath.row])
-      
         
-    
-                    
-                   self.performSegue(withIdentifier: "communityToDetail", sender: nil)
-                    
-                    
-                    
-                
-                
-                
-       
-            
-            
-            
-            
-            
+        indexSelected = indexPath.row
+        
+        self.performSegue(withIdentifier: "communityToDetail", sender: nil)
+        
+        
         
         
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
- 
+        
+        
         if segue.identifier == "communityToDetail"{
             
+            print("prepare for segue com to detail called")
+            print("index is \(indexSelected)")
+            
+            if let detailedVC = segue.destination as? detailedViewController{
+                
+                
+                detailedVC.eTitle = self.activityArr[indexSelected].title
+                detailedVC.eOrganizer = self.activityArr[indexSelected].organizer
+                
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    
+    func fetchActivities() {
+        activityArr = []
+        
+        refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
+            let dic = snapshot.value! as! NSDictionary
+            let array = dic.allValues as NSArray
             
             
             
-            if segue.destination is detailedViewController{
-        //        detailedVC.eventTitle.text = detailedData["title"] as! String
+            
+            
+            for singleAct in array {
+                var dicAct = singleAct as! NSDictionary
                 
-                print( "detailed data is \(self.detailedData )")
-                /*
-                detailedVC.eTitle = detailedData["title"] as! String
-                detailedVC.eDescription = detailedData["description"] as! String
-                detailedVC.eOrganizer =  detailedData["organizer"] as! String
-                detailedVC.eTime = detailedData["time"] as! String
-
+                let activityFetched = Activities()
+                activityFetched.description = dicAct["description"]! as! String
+                activityFetched.title = dicAct["title"]! as! String
+                activityFetched.organizer = dicAct["organizer"]! as! String
+                activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
                 
                 
-                
-                */
+                self.activityArr.append(activityFetched)
                 
                 
                 
@@ -150,6 +139,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             
             
             
+            self.theTableView.reloadData()
             
             
             
@@ -175,8 +165,8 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.organizer.append(activity["organizer"] as! String)
             }
             
-            self.theTableView.reloadData()
         })
     }
-
+    
+    
 }
