@@ -13,7 +13,6 @@ import MapKit
 
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
-    @IBOutlet weak var addEventButton: UIButton!
     var activities: [String] = []
     var organizer: [String] = []
     var detailedData :NSDictionary = [:]
@@ -169,15 +168,11 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             let dicValue  = dic.allValues as NSArray
            
             for singleActivity in dicValue{
-                let test3 = singleActivity as! NSDictionary
+                let activity = singleActivity as! NSDictionary
                 _ = Activities()
             
-          self.activities.append(test3["title"] as! String)
-              self.organizer.append(test3["organizer"] as! String)
-                
-      
-                
-    
+                self.activities.append(activity["title"] as! String)
+                self.organizer.append(activity["organizer"] as! String)
             }
             
             self.theTableView.reloadData()
