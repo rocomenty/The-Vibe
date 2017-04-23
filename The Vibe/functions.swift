@@ -11,13 +11,6 @@ import UIKit
 import MapKit
 import FirebaseAuth
 
-func showAlert(errorCode: Int, Title: String, Message: String) -> UIAlertController {
-    let alertController = UIAlertController(title: Title, message: Message, preferredStyle: .alert)
-    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-    alertController.addAction(alertAction)
-    return alertController
-}
-
 func isValidActivity(theActivity: Activities) -> Bool {
     return !theActivity.title.isEmpty && !theActivity.organizer.isEmpty
     
@@ -27,16 +20,6 @@ func formatActivityData(theActivity: Activities) -> [String:Any] {
     
     return ["title":theActivity.title, "type":theActivity.activityToString(), "organizer": theActivity.organizer, "longitude": String(theActivity.location.longitude), "latitude": String(theActivity.location.latitude), "time": dateToString(date: theActivity.startTime),"attendee":theActivity.attendee , "description" : theActivity.description, "date": [".sv": "timestamp"]]
 }
-
-//func dicToActivity(theDic : Dictionary<String, Any>)->Activities{
-//    let newAc = Activities()
-//    newAc.description = theDic["description"] as! String
-//    newAc.organizer = theDic["organizer"] as! String
-//    newAc.startTime = stringToDate(dateString: theDic["time"])
-//    
-//    
-//    
-//}
 
 func stringToActivityType(str: String) -> Activities.ActivityType {
     if str == "Academic" {
@@ -112,3 +95,4 @@ func parseAddress(selectedItem:MKPlacemark) -> String {
     )
     return addressLine
 }
+

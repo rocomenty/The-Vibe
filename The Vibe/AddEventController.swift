@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import MapKit
 
-class AddEventController: UIViewController, DataBackDelegate {
+class AddEventController: UIViewController, DataBackDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     func saveData(chosedLocation: CLLocationCoordinate2D?) {
         print("Saved location data")
@@ -26,6 +26,7 @@ class AddEventController: UIViewController, DataBackDelegate {
     var cancelButton: UIButton!
     var pickerSubmitButton: UIButton!
     var clLocation: CLLocationCoordinate2D?
+    var alertController: UIAlertController?
     
     @IBOutlet weak var titleInput: UITextField!
     @IBOutlet weak var locationButton: UIButton!
@@ -43,13 +44,25 @@ class AddEventController: UIViewController, DataBackDelegate {
         theActivity = Activities() //default init
         setUpDatePicker()
         ref = FIRDatabase.database().reference()
-        
+        titleInput.delegate = self
+        descriptionInput.delegate = self
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismisskeyboard)))
         setUpLabels()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    func dismisskeyboard() {
+        self.titleInput.resignFirstResponder()
+        self.descriptionInput.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismisskeyboard()
+        return true
     }
     
     func setUpLabels() {
@@ -73,13 +86,18 @@ class AddEventController: UIViewController, DataBackDelegate {
     @IBAction func typeButtonPressed(_ sender: UIButton) {
         //adapted from http://stackoverflow.com/questions/38042028/how-to-add-actions-to-uialertcontroller-and-get-result-of-actions-swift
         let alert = UIAlertController(title: "Please pick an event type", message: "", preferredStyle: .actionSheet)
-        for i in ["Academic", "Student Organization", "Personal"] {
+        for i in ["Academic", "Student Organization", "Personal", "Cancel"] {
             alert.addAction(UIAlertAction(title: i, style: .default, handler: getEventType))
         }
+        alertController = alert
         self.present(alert, animated: true, completion: nil)
     }
     
     func getEventType(action: UIAlertAction) {
+        if (action.title == "Cancel") {
+            alertController?.dismiss(animated: true, completion: nil)
+            return
+        }
         theActivity?.type = stringToActivityType(str: action.title!)
         typeLabel.text = action.title
     }
@@ -127,32 +145,38 @@ class AddEventController: UIViewController, DataBackDelegate {
                 if let description = descriptionInput.text {
                     theActivity?.description = description
                 }
+                else {
+                    self.showAlert(title: "Note!", msg: "Description (optional) is empty")
+                }
                 
                 if let location = clLocation {
                     theActivity?.location = location
+                }
+                else {
+                    self.showAlert(title: "Oops", msg: "Location is Empty")
+                    return
                 }
                 
                 if (isValidActivity(theActivity: activity)) {
                     print("Adding to database")
                     self.ref?.child("Activities").childByAutoId().setValue(formatActivityData(theActivity: activity)) { (error, ref) in
-                        print("success adding event !!!!!!!!!!!") //FIXME
-                        //alert success or failure
-                     self.performSegue(withIdentifier: "addEventToMain", sender: self)
+                        print("success adding event !!!!!!!!!!!")
+                        if error == nil {
+                            let alertController = UIAlertController(title: "Success!", message: "You have successfully added an event!", preferredStyle: .alert)
+                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                
+                                self.performSegue(withIdentifier: "addEventToMain", sender: self)
+                            }))
+                            self.present(alertController, animated: true, completion: nil)
+                        } else {
+                            self.showAlert(title: "Oops", msg: "Error when saving to database")
+                        }
                     }
                 }
             }
             else {
-                //alert title
+                self.showAlert(title: "Oops", msg: "The title is empty")
             }
-        }
-    }
-    
-    func handleError(error: Error?) {
-        if (error == nil) {
-            //promt success, clear fields and segue
-        }
-        else {
-            //promt failure
         }
     }
     
@@ -187,6 +211,12 @@ class AddEventController: UIViewController, DataBackDelegate {
                 toVC.delegate = self
             }
         }
+    }
+    
+    func showAlert(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }

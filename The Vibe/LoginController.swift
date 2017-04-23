@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var pwdField: UITextField!
@@ -19,10 +19,22 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         if (FIRAuth.auth()?.currentUser) != nil {
             self.performSegue(withIdentifier: "toMain", sender: self)
         }
+        emailField.delegate = self
+        pwdField.delegate = self
+    }
+    
+    func dismissKeyboard() {
+        emailField.resignFirstResponder()
+        pwdField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismissKeyboard()
+        return true
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +44,7 @@ class LoginController: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         if (emailField.text == "" || pwdField.text == "") {
-            self.present(showAlert(errorCode: 0, Title: "Oops", Message: "Please enter both email and password!"), animated: true, completion: nil)
+            showLoginAlert(title: "Oops", msg: "Please enter both email and password!")
         }
         else {
             FIRAuth.auth()?.signIn(withEmail: self.emailField.text!, password: self.pwdField.text!, completion: { (user, error) in
@@ -46,7 +58,7 @@ class LoginController: UIViewController {
     @IBAction func registerButtonPressed(_ sender: UIButton) {
         
         if (emailField.text == "" || pwdField.text == "") {
-            self.present(showAlert(errorCode: 0, Title: "Oops", Message: "Please enter both email and password!"), animated: true, completion: nil)
+            showLoginAlert(title: "Oops", msg: "Please enter both email and password!")
         }
         else {
             FIRAuth.auth()?.createUser(withEmail: emailField.text!, password: pwdField.text!, completion: {(user, error) in
@@ -66,12 +78,16 @@ class LoginController: UIViewController {
             self.performSegue(withIdentifier: "toMain", sender: self)
         }
         else {
-            
-            self.present(showAlert(errorCode: 1, Title: "Oops", Message: error!.localizedDescription), animated: true, completion: nil)
-            
-            
+            showLoginAlert(title: "Oops", msg: error!.localizedDescription)
         }
         
     }
+    
+    func showLoginAlert(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 
 }

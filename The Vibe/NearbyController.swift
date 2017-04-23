@@ -19,9 +19,13 @@ class NearbyController: UIViewController, MKMapViewDelegate {
     var currentLocation: CLLocation?
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
+    var firstLoad: Bool = true
     
     var data: [[String]] = [] //index 0 is title, index 1 is organizer
     var locationData: [CLLocation] = []
+    
+    var eTitle: String?
+    var eOrganizer: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,7 @@ class NearbyController: UIViewController, MKMapViewDelegate {
         if (currentLocation != nil) {
             fetchActivities()
         }
+        firstLoad = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,6 +48,10 @@ class NearbyController: UIViewController, MKMapViewDelegate {
         if let loc = userLocation.location {
             currentLocation = loc
             changeMapSize(location: loc)
+            if firstLoad {
+                fetchActivities()
+                firstLoad = false
+            }
         }
     }
     
@@ -83,13 +92,15 @@ class NearbyController: UIViewController, MKMapViewDelegate {
             for singleActivity in dicValue {
                 let activity = singleActivity as! NSDictionary
                 if let long = activity["longitude"] as? String {
+                    print("in here 1")
                     if let lat = activity["latitude"] as? String {
                         let longitude = CLLocationDegrees(exactly: (long as NSString).floatValue)
                         let latitude = CLLocationDegrees(exactly: (lat as NSString).floatValue)
                         let eventLocation = CLLocation(latitude: latitude!, longitude: longitude!)
                         if (eventLocation.distance(from: self.currentLocation!) < 10000) {
+                            print("in here 2")
                             
-                         //   self.data.append([activity["title"], activity["organizer"]] as! [String])
+                            self.data.append([activity["title"], activity["organizer"]] as! [String])
                             self.locationData.append(eventLocation)
                         }
                     }
@@ -103,26 +114,40 @@ class NearbyController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            //return nil so map view draws "blue dot" for standard user location
-            return nil
-        }
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-        pinView?.pinTintColor = UIColor.orange
+        if annotation is MKUserLocation {
+            return nil
+        } else {
+            pinView?.pinTintColor = UIColor.orange
+        }
+        
         pinView?.canShowCallout = true
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
         button.setBackgroundImage(UIImage(named: "checkmark.png"), for: .normal)
-        button.addTarget(self, action: #selector(setLocation), for: .touchUpInside)
         pinView?.rightCalloutAccessoryView = button
+        eTitle = annotation.title!
+        eOrganizer = annotation.subtitle!
         return pinView
     }
-
     
-    func setLocation() {
-        //segue to detail view
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        eTitle = (view.annotation?.title)!
+        eOrganizer = (view.annotation?.subtitle)!
+        self.performSegue(withIdentifier: "mapToDetail", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mapToDetail" {
+            print("prepare for segue to detail called")
+            
+            if let detailedVC = segue.destination as? detailedViewController {
+                detailedVC.eTitle = self.eTitle!
+                detailedVC.eOrganizer = self.eOrganizer!
+            }
+        }
     }
 
     /*
