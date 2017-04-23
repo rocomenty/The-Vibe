@@ -99,8 +99,10 @@ class NearbyController: UIViewController, MKMapViewDelegate {
                         let eventLocation = CLLocation(latitude: latitude!, longitude: longitude!)
                         if (eventLocation.distance(from: self.currentLocation!) < 10000) {
                             print("in here 2")
-                            
-                            self.data.append([activity["title"], activity["organizer"]] as! [String])
+                            let theTitle = activity["title"] as! String
+                            let theOrganizer = activity["organizer"] as! String
+                            let dataBit = [theTitle,theOrganizer]
+                            self.data.append(dataBit)
                             self.locationData.append(eventLocation)
                         }
                     }
