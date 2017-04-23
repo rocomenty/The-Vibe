@@ -96,3 +96,15 @@ func parseAddress(selectedItem:MKPlacemark) -> String {
     return addressLine
 }
 
+func formatAttendeeText(attendees: [String]) -> String {
+    var str = ""
+    for index in 0..<attendees.count {
+        if (index != attendees.count-1) {
+            str += attendees[index] + ", "
+        }
+        else {
+            str += attendees[index]
+        }
+    }
+    return str
+}
