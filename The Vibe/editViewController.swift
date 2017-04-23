@@ -232,7 +232,11 @@ class editViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
         self.descriptionField.text = self.theEvent.description
         self.timeLabel.text = dateToString(date: self.theEvent.startTime)
-        
+        if (theEvent.attendee.count == 0) {
+            self.attendeeField.text = "There is currently no people registered"
+        } else {
+            self.attendeeField.text = formatAttendeeText(attendees: theEvent.attendee)
+        }
         locationLabel.text = "You have picked a location"
     }
     
