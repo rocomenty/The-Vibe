@@ -25,8 +25,18 @@ func isValidActivity(theActivity: Activities) -> Bool {
 
 func formatActivityData(theActivity: Activities) -> [String:Any] {
     
-    return ["title":theActivity.title, "type":theActivity.activityToString(), "organizer": theActivity.organizer, "longitude": String(theActivity.location.longitude), "latitude": String(theActivity.location.latitude), "time": dateToString(date: theActivity.startTime), "description" : theActivity.description, "date": [".sv": "timestamp"]]
+    return ["title":theActivity.title, "type":theActivity.activityToString(), "organizer": theActivity.organizer, "longitude": String(theActivity.location.longitude), "latitude": String(theActivity.location.latitude), "time": dateToString(date: theActivity.startTime),"attendee":theActivity.attendee , "description" : theActivity.description, "date": [".sv": "timestamp"]]
 }
+
+//func dicToActivity(theDic : Dictionary<String, Any>)->Activities{
+//    let newAc = Activities()
+//    newAc.description = theDic["description"] as! String
+//    newAc.organizer = theDic["organizer"] as! String
+//    newAc.startTime = stringToDate(dateString: theDic["time"])
+//    
+//    
+//    
+//}
 
 func stringToActivityType(str: String) -> Activities.ActivityType {
     if str == "Academic" {
@@ -38,6 +48,23 @@ func stringToActivityType(str: String) -> Activities.ActivityType {
     else {
         return Activities.ActivityType.Personal
     }
+}
+
+func activityTypeToString (at: Activities.ActivityType) ->String{
+    
+    
+    
+    if at == Activities.ActivityType.Academic {
+        return "Academic"
+    }
+    else if at == Activities.ActivityType.StudentOrganization{
+        return "Student Organization"
+    }
+    else{
+        return "Personal"
+    }
+    
+    
 }
 
 func cllocationToString(location: CLLocationCoordinate2D) -> String {
