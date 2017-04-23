@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var pwdField: UITextField!
@@ -19,10 +19,22 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         if (FIRAuth.auth()?.currentUser) != nil {
             self.performSegue(withIdentifier: "toMain", sender: self)
         }
+        emailField.delegate = self
+        pwdField.delegate = self
+    }
+    
+    func dismissKeyboard() {
+        emailField.resignFirstResponder()
+        pwdField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismissKeyboard()
+        return true
     }
 
     override func didReceiveMemoryWarning() {

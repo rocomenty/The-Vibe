@@ -30,6 +30,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         theTableView.dataSource = self
         theTableView.delegate = self
         ref = FIRDatabase.database().reference()
+        theSegmentControl.selectedSegmentIndex = 0
         fetchActivities()
        
     }
@@ -118,8 +119,6 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
                 detailedVC.eTitle = self.signedActivityList[indexSelected].title
                 detailedVC.eOrganizer = self.signedActivityList[indexSelected].organizer
-                
-                
                 
             }
             
