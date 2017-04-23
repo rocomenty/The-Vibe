@@ -840,7 +840,7 @@
                                                             <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="typeButtonPressed:" destination="FFD-Bo-5es" eventType="touchUpInside" id="i6t-pG-VOT"/>
+                                                            <action selector="pickTypeButtonPressed:" destination="nYy-bX-dm2" eventType="touchUpInside" id="tFL-W1-Yr7"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -877,6 +877,9 @@
                                                         <state key="normal" title="Pick Location">
                                                             <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <segue destination="ZgW-dO-Dy9" kind="show" id="G9Q-LU-CUb"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -913,7 +916,7 @@
                                                             <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="pickStartTimePressed:" destination="FFD-Bo-5es" eventType="touchUpInside" id="cNe-WV-Lom"/>
+                                                            <action selector="pickTimeButtonPressed:" destination="nYy-bX-dm2" eventType="touchUpInside" id="qY1-DZ-nyD"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -993,8 +996,6 @@
                                                             <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="registerPressed:" destination="vH4-K9-BBO" eventType="touchUpInside" id="8zm-Bw-nFl"/>
-                                                            <action selector="submitButtonPressed:" destination="FFD-Bo-5es" eventType="touchUpInside" id="Pmk-Ig-frM"/>
                                                             <action selector="submitPressed:" destination="nYy-bX-dm2" eventType="touchUpInside" id="V1h-i9-zAI"/>
                                                         </connections>
                                                     </button>
@@ -1055,8 +1056,12 @@
                         <outlet property="attendeeField" destination="m2B-5j-YWd" id="DO2-k6-ZEL"/>
                         <outlet property="descriptionField" destination="5As-7F-orL" id="JJT-bS-B8L"/>
                         <outlet property="locationLabel" destination="815-6k-l8b" id="kPB-Ku-E64"/>
+                        <outlet property="pickLocationButton" destination="9F8-zH-aaf" id="AkH-JG-Zsk"/>
+                        <outlet property="pickTimeButton" destination="kAj-MD-q66" id="DGw-fw-3dW"/>
+                        <outlet property="submitButton" destination="FwA-Ij-aHg" id="a3M-Lw-Xzk"/>
                         <outlet property="timeLabel" destination="k7J-Mb-AJj" id="mdC-hd-3Pi"/>
                         <outlet property="titleField" destination="Xku-gT-trh" id="uZt-Zb-UkM"/>
+                        <outlet property="typeButton" destination="Bms-pO-VzK" id="R8V-l3-8lc"/>
                         <outlet property="typeLabel" destination="Bz0-p9-XQu" id="dcR-lL-bsG"/>
                     </connections>
                 </viewController>
@@ -1129,6 +1134,7 @@
         <!--Me-->
         <scene sceneID="3vH-bs-HkX">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YQS-HA-6Yt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hrY-Ws-oxq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Me" image="me.png" id="Sbb-2q-7Rr"/>
                     <toolbarItems/>
@@ -1141,7 +1147,6 @@
                         <segue destination="GhN-pp-BSo" kind="relationship" relationship="rootViewController" id="IJW-h7-f5H"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YQS-HA-6Yt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2096.8000000000002" y="974.6626686656673"/>
         </scene>
@@ -1158,6 +1163,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="n7d-Gt-H4d"/>
         <segue reference="Jm8-pQ-lTF"/>
-        <segue reference="2Ed-lB-38z"/>
+        <segue reference="wTr-sX-rWA"/>
+        <segue reference="G9Q-LU-CUb"/>
     </inferredMetricsTieBreakers>
 </document>
