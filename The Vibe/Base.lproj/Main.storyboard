@@ -348,7 +348,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="registerButtonPressed:" destination="BDd-FM-Yy8" eventType="touchUpInside" id="6YO-iG-3NI"/>
-                                                    <segue destination="QLa-iO-Zeh" kind="show" id="PR4-ad-Oxa"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -377,24 +376,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IMt-js-N5A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="111" y="931"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="N9X-9Z-Z7n">
-            <objects>
-                <viewController id="QLa-iO-Zeh" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oVv-Ir-xao"/>
-                        <viewControllerLayoutGuide type="bottom" id="oaj-BU-Sva"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dtm-72-QzQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zj8-rJ-2LJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-691" y="1662"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="NyO-oT-GjD">
