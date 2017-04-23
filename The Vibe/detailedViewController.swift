@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 import Firebase
 import FirebaseDatabase
 class detailedViewController: UIViewController {
@@ -105,35 +106,31 @@ class detailedViewController: UIViewController {
                 activityFetched.title = dicAct["title"]! as! String
                 activityFetched.organizer = dicAct["organizer"]! as! String
                 activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
-                
+                if let long = dicAct["longitude"] as? String {
+                    if let lat = dicAct["latitude"] as? String {
+                        let longitude = CLLocationDegrees(exactly: (long as NSString).floatValue)
+                        let latitude = CLLocationDegrees(exactly: (lat as NSString).floatValue)
+                        activityFetched.location = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+                    }
+                }
+                activityFetched.type = stringToActivityType(str: dicAct["type"] as! String)
                 
                 if let attendeeOnline = dicAct["attendee"]{
                     
                     print(attendeeOnline)
-                   activityFetched.attendee = attendeeOnline as! [String]
+                    activityFetched.attendee = attendeeOnline as! [String]
                     
                 }
-           
                 self.activityDic[eventID] = activityFetched
-                
-                
+
                 if (activityFetched.organizer==self.eOrganizer && activityFetched.title==self.eTitle ){
-                    
-                    
-                
                     self.theRandomId = eventID
-                    
                 }
-             
             }
-            
-    
-            
-           
-            
             for event in self.activityDic.values {
                 if ( event.organizer == self.eOrganizer && event.title == self.eTitle){
                     self.theEvent = event
+                    print(event.location)
                     let attendee = self.theEvent.attendee
                     
                     if (attendee.contains((FIRAuth.auth()?.currentUser?.email)!)){
@@ -141,19 +138,17 @@ class detailedViewController: UIViewController {
                         self.isRegistered = true
                         
                     }
-                    
                 }
-                
             }
-            
-            
-            
-            self.eventDescription.text = self.theEvent.description
-            self.eventTime.text = dateToString(date: self.theEvent.startTime)
-        
-            
         })
-        
+            setUpLabels()
+    }
+    
+    func setUpLabels() {
+        self.eventDescription.text = self.theEvent.description
+        self.eventTime.text = dateToString(date: self.theEvent.startTime)
+        print(theEvent.location)
+        self.eventLocation.text = "Tap Back to see the location"
     }
     
     

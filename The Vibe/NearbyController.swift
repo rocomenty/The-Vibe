@@ -24,6 +24,9 @@ class NearbyController: UIViewController, MKMapViewDelegate {
     var data: [[String]] = [] //index 0 is title, index 1 is organizer
     var locationData: [CLLocation] = []
     
+    var eTitle: String?
+    var eOrganizer: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -124,13 +127,15 @@ class NearbyController: UIViewController, MKMapViewDelegate {
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
         button.setBackgroundImage(UIImage(named: "checkmark.png"), for: .normal)
-        button.addTarget(self, action: #selector(setLocation), for: .touchUpInside)
         pinView?.rightCalloutAccessoryView = button
+        eTitle = annotation.title!
+        eOrganizer = annotation.subtitle!
         return pinView
     }
-
     
-    func setLocation() {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        eTitle = (view.annotation?.title)!
+        eOrganizer = (view.annotation?.subtitle)!
         self.performSegue(withIdentifier: "mapToDetail", sender: nil)
     }
     
@@ -139,8 +144,8 @@ class NearbyController: UIViewController, MKMapViewDelegate {
             print("prepare for segue to detail called")
             
             if let detailedVC = segue.destination as? detailedViewController {
-                
-                
+                detailedVC.eTitle = self.eTitle!
+                detailedVC.eOrganizer = self.eOrganizer!
             }
         }
     }

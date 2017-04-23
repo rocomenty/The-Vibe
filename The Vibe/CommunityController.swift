@@ -98,12 +98,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 detailedVC.eTitle = self.activityArr[indexSelected].title
                 detailedVC.eOrganizer = self.activityArr[indexSelected].organizer
-                
-                
-                
             }
-            
-            
         }
     }
     
@@ -116,10 +111,6 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             let dic = snapshot.value! as! NSDictionary
             let array = dic.allValues as NSArray
             
-            
-            
-            
-            
             for singleAct in array {
                 let dicAct = singleAct as! NSDictionary
                 
@@ -128,22 +119,9 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
                 activityFetched.title = dicAct["title"]! as! String
                 activityFetched.organizer = dicAct["organizer"]! as! String
                 activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
-                
-                
                 self.activityArr.append(activityFetched)
-                
-                
-                
-                
             }
-            
-            
-            
             self.theTableView.reloadData()
-            
-            
-            
-            
         })
     }
     

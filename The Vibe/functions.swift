@@ -11,13 +11,6 @@ import UIKit
 import MapKit
 import FirebaseAuth
 
-func showAlert(errorCode: Int, Title: String, Message: String) -> UIAlertController {
-    let alertController = UIAlertController(title: Title, message: Message, preferredStyle: .alert)
-    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-    alertController.addAction(alertAction)
-    return alertController
-}
-
 func isValidActivity(theActivity: Activities) -> Bool {
     return !theActivity.title.isEmpty && !theActivity.organizer.isEmpty
     
@@ -112,3 +105,4 @@ func parseAddress(selectedItem:MKPlacemark) -> String {
     )
     return addressLine
 }
+
