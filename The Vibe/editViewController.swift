@@ -148,10 +148,23 @@ class editViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
                 if (isValidActivity(theActivity: theEvent)) {
                     print("Adding to database")
                     self.ref?.child("Activities").child(theRandomID).setValue(formatActivityData(theActivity: theEvent)) { (error, ref) in
-                        print("success adding event !!!!!!!!!!!") //FIXME
-                        //alert success or failure
-                        _ = self.navigationController?.popViewController(animated: true)
+                        print("success adding event !!!!!!!!!!!")
+                        if error == nil {
+                            let alertController = UIAlertController(title: "Success", message: "You have successfully edited this event!", preferredStyle: .alert)
+                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                
+                                _ = self.navigationController?.popViewController(animated: true)
+                            }))
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                        else {
+                            self.showAlert(title: "Oops", msg: "Failed to update changed to databse")
+                        }
+                        
                     }
+                }
+                else {
+                    self.showAlert(title: "Oops", msg: "At least one of the input fields is NOT valid")
                 }
             }
     }
@@ -248,5 +261,10 @@ class editViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         pickerSubmitButton.addTarget(self, action: #selector(self.submitDatePicker), for: .touchUpInside)
     }
     
+    func showAlert(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
     
 }

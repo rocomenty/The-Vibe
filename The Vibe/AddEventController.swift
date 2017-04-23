@@ -145,32 +145,38 @@ class AddEventController: UIViewController, DataBackDelegate, UITextFieldDelegat
                 if let description = descriptionInput.text {
                     theActivity?.description = description
                 }
+                else {
+                    self.showAlert(title: "Note!", msg: "Description (optional) is empty")
+                }
                 
                 if let location = clLocation {
                     theActivity?.location = location
+                }
+                else {
+                    self.showAlert(title: "Oops", msg: "Location is Empty")
+                    return
                 }
                 
                 if (isValidActivity(theActivity: activity)) {
                     print("Adding to database")
                     self.ref?.child("Activities").childByAutoId().setValue(formatActivityData(theActivity: activity)) { (error, ref) in
-                        print("success adding event !!!!!!!!!!!") //FIXME
-                        //alert success or failure
-                     self.performSegue(withIdentifier: "addEventToMain", sender: self)
+                        print("success adding event !!!!!!!!!!!")
+                        if error == nil {
+                            let alertController = UIAlertController(title: "Success!", message: "You have successfully added an event!", preferredStyle: .alert)
+                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                
+                                self.performSegue(withIdentifier: "addEventToMain", sender: self)
+                            }))
+                            self.present(alertController, animated: true, completion: nil)
+                        } else {
+                            self.showAlert(title: "Oops", msg: "Error when saving to database")
+                        }
                     }
                 }
             }
             else {
-                //alert title
+                self.showAlert(title: "Oops", msg: "The title is empty")
             }
-        }
-    }
-    
-    func handleError(error: Error?) {
-        if (error == nil) {
-            //promt success, clear fields and segue
-        }
-        else {
-            //promt failure
         }
     }
     
@@ -205,6 +211,12 @@ class AddEventController: UIViewController, DataBackDelegate, UITextFieldDelegat
                 toVC.delegate = self
             }
         }
+    }
+    
+    func showAlert(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }

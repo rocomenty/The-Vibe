@@ -66,23 +66,24 @@ class detailedViewController: UIViewController {
          let index =   theEvent.attendee.index(of:  (FIRAuth.auth()?.currentUser?.email)!)
             theEvent.attendee.remove(at: index!)
             self.ref?.child("Activities").child(theRandomId).setValue(formatActivityData(theActivity: theEvent)) { (error, ref) in
-                print("success unregistering event !!!!!!!!!!!") //FIXME
-                self.registerButton.setTitle("Register", for: .normal)
-                self.isRegistered = false
-                //alert success or failure
+                print("success unregistering event !!!!!!!!!!!")
+                if error == nil {
+                    self.showAlert(title: "Success!", msg: "You have successfully unregistered this event")
+                    self.registerButton.setTitle("Register", for: .normal)
+                    self.isRegistered = false
+                }
+                else {
+                    self.showAlert(title: "Oops", msg: error!.localizedDescription)
+                }
             }
-            
-            
-            
         }
         else{
-   
-     
-            
             theEvent.attendee.append(   (FIRAuth.auth()?.currentUser?.email)!)
-            self.ref?.child("Activities").child(theRandomId).setValue(formatActivityData(theActivity: theEvent)) { (error, ref) in
-                print("success registering event !!!!!!!!!!!") //FIXME
-                //alert success or failure
+                self.ref?.child("Activities").child(theRandomId).setValue(formatActivityData(theActivity: theEvent)) { (error, ref) in
+                print("success registering event !!!!!!!!!!!")
+                    if error == nil {
+                        self.showAlert(title: "Success!", msg: "You have successfully registered this event")
+                    }
             }
         }
         
@@ -151,7 +152,11 @@ class detailedViewController: UIViewController {
         self.eventLocation.text = "Tap Back to see the location"
     }
     
-    
+    func showAlert(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
 
     
 }
