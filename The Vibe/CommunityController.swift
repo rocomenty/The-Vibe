@@ -14,33 +14,57 @@ import FirebaseDatabase
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
     @IBOutlet weak var addEventButton: UIButton!
-    
+     let searchIndicator =   UIActivityIndicatorView()
     var detailedData :NSDictionary = [:]
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
     var activityArr : [Activities] = []
-    
+    var filteredAct : [Activities] = []
     var peekview = peekViewController()
     
-    
+    @IBOutlet weak var theSearchBar: UISearchBar!
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewWillAppear(_ animated: Bool) {
+          self.searchController.hidesNavigationBarDuringPresentation = false
+    
         super.viewWillAppear(true)
         theTableView.dataSource = self
         theTableView.delegate = self
+        theTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         ref = FIRDatabase.database().reference()
-        fetchActivities()
-        
+        setUpIndicator()
+         DispatchQueue.global(qos: .userInitiated).async {
+            self.searchIndicator.startAnimating()
+        self.fetchActivities()
+            DispatchQueue.main.async {
+
         self.theTableView.reloadData()
+                 self.searchIndicator.stopAnimating()
+            }
+        }
         
           registerForPreviewing(with: self, sourceView: theTableView)
+        //searchController.searchResultsUpdater
+       // theSearchBa
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        theTableView.tableHeaderView = searchController.searchBar
+        
+        
+        
         
     }
+        
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        definesPresentationContext = true
+        searchController.dimsBackgroundDuringPresentation = false
         
     }
     
@@ -54,18 +78,56 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        
+        print("trying to feeelltingggg    !!!")
+        filteredAct = activityArr.filter { activity in
+            return activity.title.lowercased().contains(searchText.lowercased())
+        }
+        
+        theTableView.reloadData()
+    }
+    
+    func setUpIndicator(){
+        
+       
+        searchIndicator.color = .black
+        searchIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        searchIndicator.center = self.view.center
+        searchIndicator.hidesWhenStopped = true
+        self.view.addSubview(searchIndicator)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return filteredAct.count
+        }
         return activityArr.count
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         
-        cell.textLabel?.text = activityArr[indexPath.row].title
-        
-        cell.detailTextLabel?.text = activityArr[indexPath.row].organizer
-        
+        let cell = theTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+      //  let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
+        let activity : Activities
+        if searchController.isActive && searchController.searchBar.text != "" {
+            activity = filteredAct[indexPath.row]
+        } else {
+            activity = activityArr[indexPath.row]
+        }
+        cell.textLabel?.text = activity.title
+        cell.detailTextLabel?.text = activity.organizer
         return cell
+        
+        
+       // cell.textLabel?.text = activityArr[indexPath.row].title
+        
+       // cell.detailTextLabel?.text = activityArr[indexPath.row].organizer
+        
+        //return cell
     }
     
     
@@ -131,6 +193,24 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     
 }
 
+
+
+extension CommunityController: UISearchBarDelegate {
+    // MARK: - UISearchBar Delegate
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchText: searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
+}
+extension CommunityController : UISearchResultsUpdating{
+    
+   
+    func updateSearchResults(for: UISearchController){
+        
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+
+    }
+ 
+}
 
 extension CommunityController : UIViewControllerPreviewingDelegate{
      func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {

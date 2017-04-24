@@ -54,6 +54,30 @@ class LoginController: UIViewController, UITextFieldDelegate {
             })
         }
     }
+    @IBAction func resetPressed(_ sender: Any) {
+        
+        
+        
+        
+        let email = self.emailField.text!
+        
+        FIRAuth.auth()?.sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                
+                let alertController = UIAlertController(title: "Error", message:
+                    "reset password, enter a existing email or a valid email format  ", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "go back to reset", style: UIAlertActionStyle.default,handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+                print(error)
+                // An error happened.
+            } else {
+                print("password reset sent")
+                // Password reset email sent.
+            }
+        }
+
+    }
 
     @IBAction func registerButtonPressed(_ sender: UIButton) {
         
