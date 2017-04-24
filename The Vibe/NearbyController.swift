@@ -41,6 +41,8 @@ class NearbyController: UIViewController, MKMapViewDelegate {
         }
         firstLoad = true
         setUpNavigationBar()
+        self.showNearbyAlert(title: "Yay", msg: "Events within 10km are updated. Press the paper plane button on the bottom right corner to update again. ")
+
     }
     
     func setUpNavigationBar() {
@@ -118,7 +120,6 @@ class NearbyController: UIViewController, MKMapViewDelegate {
 
                 }
             }
-            self.showNearbyAlert(title: "Yay", msg: "\(self.locationData.count) events within 10km are updated. Press the paper plane button on the bottom right corner to update again. ")
             self.addPins()
             
         })
