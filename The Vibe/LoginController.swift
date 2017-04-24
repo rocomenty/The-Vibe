@@ -73,6 +73,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 // An error happened.
             } else {
                 print("password reset sent")
+                self.showLoginAlert(title: "Success", msg: "A password reset request is sent to your email")
                 // Password reset email sent.
             }
         }

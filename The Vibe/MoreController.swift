@@ -20,7 +20,8 @@ class MoreController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .default
+        UIApplication.shared.statusBarView?.backgroundColor = UIColor.black
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,14 +38,11 @@ class MoreController: UIViewController {
         try!FIRAuth.auth()?.signOut()
         self.performSegue(withIdentifier: "logOut", sender: self)
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+}
+
+extension UIApplication {
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
     }
-    */
-
 }

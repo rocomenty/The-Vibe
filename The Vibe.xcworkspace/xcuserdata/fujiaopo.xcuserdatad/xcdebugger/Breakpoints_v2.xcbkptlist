@@ -25,84 +25,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "The Vibe/PickLocationController.swift"
-            timestampString = "514489409.50922"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "PickLocationController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "The_Vibe.PickLocationController.mapView.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.MKMapView&gt;"
-                  moduleName = "The Vibe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fujiaopo/git/The-Vibe/The%20Vibe/PickLocationController.swift"
-                  timestampString = "514172520.630603"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "27">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "The_Vibe.PickLocationController.mapView.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.MKMapView&gt;"
-                  moduleName = "The Vibe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fujiaopo/git/The-Vibe/The%20Vibe/PickLocationController.swift"
-                  timestampString = "514172520.63612"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "42">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "The_Vibe.PickLocationController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; The_Vibe.PickLocationController"
-                  moduleName = "The Vibe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fujiaopo/git/The-Vibe/The%20Vibe/PickLocationController.swift"
-                  timestampString = "514172520.638093"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "70">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "The_Vibe.PickLocationController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;The_Vibe.PickLocationController&gt;"
-                  moduleName = "The Vibe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fujiaopo/git/The-Vibe/The%20Vibe/PickLocationController.swift"
-                  timestampString = "514172520.639953"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Activities.swift"
             timestampString = "514176455.291558"
             startingColumnNumber = "9223372036854775807"
@@ -119,28 +41,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "The Vibe/PickLocationController.swift"
-            timestampString = "514703712.652595"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "The Vibe/meViewController.swift"
-            timestampString = "514699559.395379"
+            timestampString = "514712057.588957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -152,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The Vibe/AddEventController.swift"
-            timestampString = "514699559.395379"
+            timestampString = "514712705.74266"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "getEventType(action:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The Vibe/NearbyController.swift"
-            timestampString = "514699559.395379"
+            timestampString = "514711169.274656"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "143"
@@ -184,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The Vibe/detailedViewController.swift"
-            timestampString = "514681087.165736"
+            timestampString = "514709328.114432"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "registerPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -200,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "The Vibe/meViewController.swift"
-            timestampString = "514699559.395379"
+            timestampString = "514712163.142857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "scheduleLocal(event:)"
             landmarkType = "7">
          </BreakpointContent>

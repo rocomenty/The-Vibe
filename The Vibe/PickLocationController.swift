@@ -1,6 +1,6 @@
 //
 //  PickLocationController.swift
-//  
+//
 //
 //  Created by Rocomenty on 4/17/17.
 //
@@ -21,7 +21,7 @@ public protocol DataBackDelegate: class {
 }
 
 class PickLocationController: UIViewController, CLLocationManagerDelegate {
-
+    
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     var selectedPin:MKPlacemark? = nil
@@ -33,20 +33,18 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
     
     var resultSearchController: UISearchController? = nil
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        setUpSearchController()
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-        
-        
+        showAlert(title: "Note", msg: "To pick a location, long press on the map to move the orange pin to desired location. Then press the pin and click the orange check button to choose the pinned location")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        setUpSearchController()
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -60,23 +58,24 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
-    func setUpSearchController() {
-        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
-        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-        resultSearchController?.searchResultsUpdater = locationSearchTable
-        
-        let searchBar = resultSearchController!.searchBar
-        searchBar.sizeToFit()
-        searchBar.placeholder = "Search for locations"
-        self.navigationItem.titleView = resultSearchController!.searchBar
-        
-        resultSearchController?.hidesNavigationBarDuringPresentation = false
-        resultSearchController?.dimsBackgroundDuringPresentation = true
-        definesPresentationContext = true
-        
-        locationSearchTable.mapView = mapView
-        locationSearchTable.handleMapSearchDelegate = self
-    }
+//    func setUpSearchController() {
+//        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+//        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+//        resultSearchController?.searchResultsUpdater = locationSearchTable
+//        
+//        let searchBar = resultSearchController!.searchBar
+//        searchBar.sizeToFit()
+//        searchBar.placeholder = "Search for locations"
+//        self.navigationItem.titleView = resultSearchController!.searchBar
+//        
+//        resultSearchController?.hidesNavigationBarDuringPresentation = false
+//        resultSearchController?.dimsBackgroundDuringPresentation = true
+//        definesPresentationContext = true
+//        
+//        locationSearchTable.mapView = mapView
+//        locationSearchTable.handleMapSearchDelegate = self
+//        
+//    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let last = locations.last {
@@ -116,6 +115,12 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    func showAlert(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     
 }
 
@@ -134,8 +139,8 @@ extension PickLocationController: HandleMapSearch {
             annotation.subtitle = "\(city) \(state)"
         }
         mapView.addAnnotation(annotation)
-//        let span = MKCoordinateSpanMake(0.05, 0.05)
-//        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        //        let span = MKCoordinateSpanMake(0.05, 0.05)
+        //        let region = MKCoordinateRegionMake(placemark.coordinate, span)
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 1000, 1000)
         mapView.setRegion(coordinateRegion, animated: true)
     }

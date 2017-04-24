@@ -199,7 +199,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="registerPressed:" destination="vH4-K9-BBO" eventType="touchUpInside" id="cvg-tS-0t4"/>
-                                                    <action selector="submitButtonPressed:" destination="FFD-Bo-5es" eventType="touchUpInside" id="gcc-34-dKI"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -245,12 +244,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YAt-96-bRS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YAt-96-bRS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="375" id="ctg-Jd-s7h"/>
                                 </constraints>
+                                <sections/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -291,61 +291,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="syI-jg-yPW">
-                                <rect key="frame" x="68" y="150" width="238" height="77"/>
+                                <rect key="frame" x="68" y="106" width="238" height="77"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="THl-j3-dBe">
-                                <rect key="frame" x="68" y="264" width="238" height="130"/>
+                                <rect key="frame" x="36" y="220" width="303" height="180"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="terrylu@wustl.edu" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ai4-Em-z5t">
-                                        <rect key="frame" x="0.0" y="0.0" width="238" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="303" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="LSLterry961129" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QZU-1P-qdg">
-                                        <rect key="frame" x="0.0" y="50" width="238" height="30"/>
+                                        <rect key="frame" x="0.0" y="50" width="303" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="4d4-4s-mQO">
-                                        <rect key="frame" x="0.0" y="100" width="238" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lye-IV-zVM">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="30"/>
-                                                <color key="backgroundColor" red="1" green="0.71425676230000001" blue="0.36723572710000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="110" id="3ac-OM-Os9"/>
-                                                </constraints>
-                                                <state key="normal" title="Login">
-                                                    <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="loginButtonPressed:" destination="BDd-FM-Yy8" eventType="touchUpInside" id="u8x-wH-ccK"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPD-yq-qz0">
-                                                <rect key="frame" x="128" y="0.0" width="110" height="30"/>
-                                                <color key="backgroundColor" red="1" green="0.71425676230000001" blue="0.36723572710000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="110" id="Dpi-nP-brd"/>
-                                                </constraints>
-                                                <state key="normal" title="Register">
-                                                    <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="registerButtonPressed:" destination="BDd-FM-Yy8" eventType="touchUpInside" id="6YO-iG-3NI"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lye-IV-zVM">
+                                        <rect key="frame" x="0.0" y="100" width="303" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.71425676230000001" blue="0.36723572710000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginButtonPressed:" destination="BDd-FM-Yy8" eventType="touchUpInside" id="u8x-wH-ccK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPD-yq-qz0">
+                                        <rect key="frame" x="0.0" y="150" width="303" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.71425676230000001" blue="0.36723572710000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Register">
+                                            <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="registerButtonPressed:" destination="BDd-FM-Yy8" eventType="touchUpInside" id="6YO-iG-3NI"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4B-1c-cZc">
-                                <rect key="frame" x="132" y="414" width="110" height="30"/>
+                                <rect key="frame" x="112.5" y="420" width="150" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.71425676230000001" blue="0.36723572710000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="110" id="3h2-WE-qsl"/>
+                                    <constraint firstAttribute="width" constant="150" id="3h2-WE-qsl"/>
                                 </constraints>
                                 <state key="normal" title="Reset password">
                                     <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -357,13 +346,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="THl-j3-dBe" secondAttribute="trailing" constant="20" id="8lr-OT-erf"/>
                             <constraint firstItem="syI-jg-yPW" firstAttribute="leading" secondItem="1Uv-SD-QFj" secondAttribute="leadingMargin" constant="52" id="NIs-vY-od8"/>
                             <constraint firstItem="syI-jg-yPW" firstAttribute="top" secondItem="lqs-V8-U0L" secondAttribute="bottom" constant="86" id="OVm-28-H9I"/>
-                            <constraint firstItem="THl-j3-dBe" firstAttribute="leading" secondItem="syI-jg-yPW" secondAttribute="leading" id="XkK-43-nr1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="syI-jg-yPW" secondAttribute="trailing" constant="53" id="aWA-ue-bZ6"/>
                             <constraint firstItem="THl-j3-dBe" firstAttribute="top" secondItem="syI-jg-yPW" secondAttribute="bottom" constant="37" id="eNh-cb-gsh"/>
                             <constraint firstItem="j4B-1c-cZc" firstAttribute="top" secondItem="THl-j3-dBe" secondAttribute="bottom" constant="20" id="g17-6S-2G5"/>
                             <constraint firstItem="j4B-1c-cZc" firstAttribute="centerX" secondItem="THl-j3-dBe" secondAttribute="centerX" id="mzL-qX-AxA"/>
+                            <constraint firstItem="THl-j3-dBe" firstAttribute="leading" secondItem="1Uv-SD-QFj" secondAttribute="leadingMargin" constant="20" id="zMw-yV-yEJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AEO-3l-RlT"/>
@@ -880,9 +870,6 @@
                                                 <state key="normal" title="Pick Location">
                                                     <color key="titleColor" red="0.98625785880000005" green="1" blue="0.97978586229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
-                                                <connections>
-                                                    <segue destination="ZgW-dO-Dy9" kind="show" id="G9Q-LU-CUb"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -1072,7 +1059,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="oYn-Xz-NaB" firstAttribute="centerX" secondItem="00n-44-mYv" secondAttribute="centerX" id="1Ti-tI-wNw"/>
                             <constraint firstItem="HZs-t8-Qrv" firstAttribute="top" secondItem="oYn-Xz-NaB" secondAttribute="bottom" constant="246" id="nDp-Wb-uAj"/>
@@ -1159,6 +1146,5 @@
         <segue reference="Vrf-5d-Aq0"/>
         <segue reference="Ff9-2E-KzM"/>
         <segue reference="gaT-tN-qC1"/>
-        <segue reference="G9Q-LU-CUb"/>
     </inferredMetricsTieBreakers>
 </document>

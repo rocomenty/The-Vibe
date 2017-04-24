@@ -89,6 +89,7 @@ class AddEventController: UIViewController, DataBackDelegate, UITextFieldDelegat
     
     @IBAction func typeButtonPressed(_ sender: UIButton) {
         //adapted from http://stackoverflow.com/questions/38042028/how-to-add-actions-to-uialertcontroller-and-get-result-of-actions-swift
+        titleInput.resignFirstResponder()
         let alert = UIAlertController(title: "Please pick an event type", message: "", preferredStyle: .actionSheet)
         for i in ["Academic", "Student Organization", "Personal", "Cancel"] {
             alert.addAction(UIAlertAction(title: i, style: .default, handler: getEventType))

@@ -28,8 +28,6 @@ class editViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
     
-    // here are some variables to store stuff passed from meviewcontroller 
-    
     var alertController: UIAlertController?
     var datePicker: UIDatePicker!
     var cancelButton: UIButton!
@@ -218,12 +216,6 @@ class editViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
                 if (event.organizer == self.eOrganizer && event.title == self.eTitle){
                     self.theEvent = event
                     let attendee = self.theEvent.attendee
-                    
-                    if (attendee.contains((FIRAuth.auth()?.currentUser?.email)!)){
-                       // self.registerButton.setTitle("Unregister", for: .normal)
-                      //  self.isRegistered = true
-                        
-                    }
                     
                 }
                 

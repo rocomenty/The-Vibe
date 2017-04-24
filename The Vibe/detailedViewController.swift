@@ -38,20 +38,16 @@ class detailedViewController: UIViewController {
         eventOrganizer.text = eOrganizer
         eventTime.text = eTime
         eventDescription.text = eDescription
-        
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(_ animated: Bool) {
         ref = FIRDatabase.database().reference()
         print("event title is \(eTitle)")
         
         fetchActivities()
-        //   fetchDetailed(eventTitle: eTitle, eventOrganizer: eOrganizer)
         
         UIApplication.shared.statusBarStyle = .lightContent
         
@@ -59,8 +55,6 @@ class detailedViewController: UIViewController {
     
     
     @IBAction func registerPressed(_ sender: Any) {
-    
-       // print("eid is \(theRandomId) and the event title is \(theEvent.title)")
         
         if (isRegistered){
          let index =   theEvent.attendee.index(of:  (FIRAuth.auth()?.currentUser?.email)!)
@@ -149,7 +143,6 @@ class detailedViewController: UIViewController {
     
     func setUpLabels() {
         self.eventDescription.text = self.theEvent.description
-       // print("the description of the event is ")
         print(self.theEvent.description)
         self.eventTime.text = dateToString(date: self.theEvent.startTime)
         print(theEvent.location)

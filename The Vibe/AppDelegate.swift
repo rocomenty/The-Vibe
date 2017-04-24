@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = getOrange()
         navigationBarAppearace.barTintColor = UIColor.black
-        navigationBarAppearace.alpha = 1
         
         
         let tabBarAppearance = UITabBar.appearance()

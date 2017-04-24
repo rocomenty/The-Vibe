@@ -13,7 +13,6 @@ import FirebaseDatabase
 
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
-    @IBOutlet weak var addEventButton: UIButton!
      let searchIndicator =   UIActivityIndicatorView()
     var detailedData :NSDictionary = [:]
     var ref: FIRDatabaseReference?
@@ -22,7 +21,6 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     var filteredAct : [Activities] = []
     var peekview = peekViewController()
     
-    @IBOutlet weak var theSearchBar: UISearchBar!
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,21 +34,19 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         setUpIndicator()
          DispatchQueue.global(qos: .userInitiated).async {
             self.searchIndicator.startAnimating()
-        self.fetchActivities()
+            self.fetchActivities()
             DispatchQueue.main.async {
-
-        self.theTableView.reloadData()
-                 self.searchIndicator.stopAnimating()
+                self.theTableView.reloadData()
+                self.searchIndicator.stopAnimating()
             }
         }
         
         registerForPreviewing(with: self, sourceView: theTableView)
-        //searchController.searchResultsUpdater
-       // theSearchBa
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         theTableView.tableHeaderView = searchController.searchBar
-        
+        searchController.searchBar.barTintColor = UIColor.black
+        searchController.searchBar.tintColor = getOrange()
         UIApplication.shared.statusBarStyle = .lightContent
     }
         
@@ -109,7 +105,6 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = theTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-      //  let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         let activity : Activities
         if searchController.isActive && searchController.searchBar.text != "" {
             activity = filteredAct[indexPath.row]
@@ -119,13 +114,6 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.textLabel?.text = activity.title
         cell.detailTextLabel?.text = activity.organizer
         return cell
-        
-        
-       // cell.textLabel?.text = activityArr[indexPath.row].title
-        
-       // cell.detailTextLabel?.text = activityArr[indexPath.row].organizer
-        
-        //return cell
     }
     
     

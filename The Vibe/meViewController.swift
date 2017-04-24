@@ -26,6 +26,8 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
     
+    
+    
     //notification time picker
     var datePicker: UIDatePicker!
     var cancelButton: UIButton!
@@ -69,11 +71,6 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    func setUpNavigationBar() {
-//        self.navigationController?.navigationBar.barTintColor = getOrange()
-//        
-//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentActivity.count
@@ -122,6 +119,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let notificationAction = UITableViewRowAction(style: .normal, title: "Set Notification", handler: { (action: UITableViewRowAction, indexPath: IndexPath) in
             
             let event = self.currentActivity[indexPath.row]
+            self.theEvent = event
             self.presentNotificationPicker(event: event)
         })
         notificationAction.backgroundColor = getOrange()
@@ -187,9 +185,6 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
                 
                 // this is the total activity dic
-                
-             //   self.activityDic[eventID] = activityFetched
-               /// print("act feched is \(activityFetched.attendee) and the email current is \((FIRAuth.auth()?.currentUser?.email)!)")
                 if (activityFetched.organizer == (FIRAuth.auth()?.currentUser?.email)! )
                 {
                     // ok now I am the organizer of the event 
@@ -286,10 +281,17 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     //adapted from https://www.hackingwithswift.com/read/21/2/scheduling-notifications-unusernotificationcenter-and-unnotificationrequest
     func scheduleLocal(event: Activities) {
         print("setting notifications")
+        
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
         content.title = "An Event is happening soon!"
-        content.body = event.title + " by " + event.organizer
+        if (event.organizer == FIRAuth.auth()?.currentUser?.email) {
+            content.body = event.title + " started by you"
+        }
+        else {
+            content.body = event.title + " started by " + event.organizer
+        }
+        
         content.categoryIdentifier = "alarm"
         content.sound = UNNotificationSound.default()
         content.badge = 1
@@ -308,7 +310,10 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func showAlert(title: String, msg: String) {
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            self.theTableView.setEditing(false, animated: true)
+            
+        }))
         self.present(alertController, animated: true, completion: nil)
     }
     
