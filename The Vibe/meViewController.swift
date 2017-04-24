@@ -100,6 +100,16 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+    }
+    
+    
+    //adapted from https://www.youtube.com/watch?v=T0xzTbXhOvE
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        var shareAction = UITableViewRowAction(style: .normal, title: "Add Notification", handler: nil)
+//    }
+//    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
