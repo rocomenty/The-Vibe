@@ -178,49 +178,51 @@ class editViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
             
-            let dic = snapshot.value! as! NSDictionary
-            print("currently fetching activities in detailed view")
-            
-            for (eid, eDetail) in dic {
+            if let dic = snapshot.value! as? NSDictionary {
+                print("currently fetching activities in detailed view")
                 
-                let eventID = eid as! String
-                let dicAct = eDetail as! NSDictionary
-                let activityFetched = Activities()
-                activityFetched.description = dicAct["description"]! as! String
-                activityFetched.title = dicAct["title"]! as! String
-                activityFetched.organizer = dicAct["organizer"]! as! String
-                activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
-                if let long = dicAct["longitude"] as? String {
-                    if let lat = dicAct["latitude"] as? String {
-                        let longitude = CLLocationDegrees(exactly: (long as NSString).floatValue)
-                        let latitude = CLLocationDegrees(exactly: (lat as NSString).floatValue)
-                        activityFetched.location = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+                for (eid, eDetail) in dic {
+                    
+                    let eventID = eid as! String
+                    let dicAct = eDetail as! NSDictionary
+                    let activityFetched = Activities()
+                    activityFetched.description = dicAct["description"]! as! String
+                    activityFetched.title = dicAct["title"]! as! String
+                    activityFetched.organizer = dicAct["organizer"]! as! String
+                    activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
+                    if let long = dicAct["longitude"] as? String {
+                        if let lat = dicAct["latitude"] as? String {
+                            let longitude = CLLocationDegrees(exactly: (long as NSString).floatValue)
+                            let latitude = CLLocationDegrees(exactly: (lat as NSString).floatValue)
+                            activityFetched.location = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+                        }
+                    }
+                    activityFetched.type = stringToActivityType(str: dicAct["type"] as! String)
+                    
+                    if let attendeeOnline = dicAct["attendee"] {
+                        
+                        print(attendeeOnline)
+                        activityFetched.attendee = attendeeOnline as! [String]
+                        
+                    }
+                    self.activityDic[eventID] = activityFetched
+                    
+                    if (activityFetched.organizer==self.eOrganizer && activityFetched.title==self.eTitle ){
+                        self.theRandomID = eventID
                     }
                 }
-                activityFetched.type = stringToActivityType(str: dicAct["type"] as! String)
                 
-                if let attendeeOnline = dicAct["attendee"] {
-                    
-                    print(attendeeOnline)
-                    activityFetched.attendee = attendeeOnline as! [String]
+                for event in self.activityDic.values {
+                    if (event.organizer == self.eOrganizer && event.title == self.eTitle){
+                        self.theEvent = event
+                        _ = self.theEvent.attendee
+                        
+                    }
                     
                 }
-                self.activityDic[eventID] = activityFetched
-                
-                if (activityFetched.organizer==self.eOrganizer && activityFetched.title==self.eTitle ){
-                    self.theRandomID = eventID
-                }
+
             }
-            
-            for event in self.activityDic.values {
-                if (event.organizer == self.eOrganizer && event.title == self.eTitle){
-                    self.theEvent = event
-                    let attendee = self.theEvent.attendee
-                    
-                }
-                
-            }
-            self.setUpLabels()
+                self.setUpLabels()
         })
         
     }

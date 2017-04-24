@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
-     let searchIndicator =   UIActivityIndicatorView()
+    let searchIndicator =   UIActivityIndicatorView()
     var detailedData :NSDictionary = [:]
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
@@ -28,7 +28,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewWillAppear(true)
         theTableView.dataSource = self
         theTableView.delegate = self
-        theTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+//        theTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         ref = FIRDatabase.database().reference()
         setUpIndicator()
          DispatchQueue.global(qos: .userInitiated).async {
@@ -101,7 +101,8 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = theTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//        let cell = theTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell =  UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         let activity : Activities
         if searchController.isActive && searchController.searchBar.text != "" {
             activity = filteredAct[indexPath.row]
@@ -167,6 +168,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
                     activityFetched.title = dicAct["title"]! as! String
                     activityFetched.organizer = dicAct["organizer"]! as! String
                     activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
+                    activityFetched.type = stringToActivityType(str: dicAct["type"] as! String)
                     self.activityArr.append(activityFetched)
                 }
 

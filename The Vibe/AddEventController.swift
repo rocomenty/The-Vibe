@@ -151,14 +151,14 @@ class AddEventController: UIViewController, DataBackDelegate, UITextFieldDelegat
                     theActivity?.description = description
                 }
                 else {
-                    self.showAlert(title: "Note!", msg: "Description (optional) is empty")
+                    self.showAddAlert(title: "Note!", msg: "Description (optional) is empty")
                 }
                 
                 if let location = clLocation {
                     theActivity?.location = location
                 }
                 else {
-                    self.showAlert(title: "Oops", msg: "Location is Empty")
+                    self.showAddAlert(title: "Oops", msg: "Location is Empty")
                     return
                 }
                 
@@ -174,13 +174,13 @@ class AddEventController: UIViewController, DataBackDelegate, UITextFieldDelegat
                             }))
                             self.present(alertController, animated: true, completion: nil)
                         } else {
-                            self.showAlert(title: "Oops", msg: "Error when saving to database")
+                            self.showAddAlert(title: "Oops", msg: "Error when saving to database")
                         }
                     }
                 }
             }
             else {
-                self.showAlert(title: "Oops", msg: "The title is empty")
+                self.showAddAlert(title: "Oops", msg: "The title is empty")
             }
         }
     }
@@ -218,7 +218,7 @@ class AddEventController: UIViewController, DataBackDelegate, UITextFieldDelegat
         }
     }
     
-    func showAlert(title: String, msg: String) {
+    func showAddAlert(title: String, msg: String) {
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)

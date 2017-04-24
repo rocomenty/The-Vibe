@@ -42,7 +42,7 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-        showAlert(title: "Note", msg: "To pick a location, long press on the map to move the orange pin to desired location. Then press the pin and click the orange check button to choose the pinned location")
+        showPickAlert(title: "Note", msg: "To pick a location, long press on the map to move the orange pin to desired location. Then press the pin and click the orange check button to choose the pinned location")
     }
     
     override func didReceiveMemoryWarning() {
@@ -115,7 +115,7 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func showAlert(title: String, msg: String) {
+    func showPickAlert(title: String, msg: String) {
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)

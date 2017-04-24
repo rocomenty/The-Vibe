@@ -62,12 +62,12 @@ class detailedViewController: UIViewController {
             self.ref?.child("Activities").child(theRandomId).setValue(formatActivityData(theActivity: theEvent)) { (error, ref) in
                 print("success unregistering event !!!!!!!!!!!")
                 if error == nil {
-                    self.showAlert(title: "Success!", msg: "You have successfully unregistered this event")
+                    self.showDetailAlert(title: "Success!", msg: "You have successfully unregistered this event")
                     self.registerButton.setTitle("Register", for: .normal)
                     self.isRegistered = false
                 }
                 else {
-                    self.showAlert(title: "Oops", msg: error!.localizedDescription)
+                    self.showDetailAlert(title: "Oops", msg: error!.localizedDescription)
                 }
             }
         }
@@ -76,7 +76,7 @@ class detailedViewController: UIViewController {
                 self.ref?.child("Activities").child(theRandomId).setValue(formatActivityData(theActivity: theEvent)) { (error, ref) in
                 print("success registering event !!!!!!!!!!!")
                     if error == nil {
-                        self.showAlert(title: "Success!", msg: "You have successfully registered this event")
+                        self.showDetailAlert(title: "Success!", msg: "You have successfully registered this event")
                     }
             }
         }
@@ -139,7 +139,7 @@ class detailedViewController: UIViewController {
             self.setUpLabels()
 
         })
-                }
+    }
     
     func setUpLabels() {
         self.eventDescription.text = self.theEvent.description
@@ -149,7 +149,7 @@ class detailedViewController: UIViewController {
         self.eventLocation.text = cllocationToStringWithTrim(location: theEvent.location)
     }
     
-    func showAlert(title: String, msg: String) {
+    func showDetailAlert(title: String, msg: String) {
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)

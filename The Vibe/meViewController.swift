@@ -163,54 +163,56 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.ownActivityList = []
         self.signedActivityList = []
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
-            
-            let dic = snapshot.value! as! NSDictionary
-            print("currently fetching activities in detailed view")
-            
-            for (eid, eDetail) in dic {
+            if let dic = snapshot.value! as? NSDictionary {
+                print("currently fetching activities in detailed view")
                 
-                _ = eid as! String
-                let dicAct = eDetail as! NSDictionary
-                let activityFetched = Activities()
-                activityFetched.description = dicAct["description"]! as! String
-                activityFetched.title = dicAct["title"]! as! String
-                activityFetched.organizer = dicAct["organizer"]! as! String
-                activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
-                
-                
-                if let attendeeOnline = dicAct["attendee"]{
+                for (eid, eDetail) in dic {
                     
-               activityFetched.attendee = attendeeOnline as! [String]
+                    _ = eid as! String
+                    let dicAct = eDetail as! NSDictionary
+                    let activityFetched = Activities()
+                    activityFetched.description = dicAct["description"]! as! String
+                    activityFetched.title = dicAct["title"]! as! String
+                    activityFetched.organizer = dicAct["organizer"]! as! String
+                    activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
                     
-                }
-                
-                // this is the total activity dic
-                if (activityFetched.organizer == (FIRAuth.auth()?.currentUser?.email)! )
-                {
-                    // ok now I am the organizer of the event 
-                    print ("haha i own this act")
-                    self.ownActivityList.append(activityFetched)
-                }
-                 if (activityFetched.attendee.contains((FIRAuth.auth()?.currentUser?.email)!))
-                {
-                   // now I am an attendee of the event
-                    self.signedActivityList.append(activityFetched)
-                }
-                
-                else{
-                    // now the event is neither owned by me, nor contains me as a participant
-                }
-                self.currentActivity = self.signedActivityList
-                print(self.currentActivity)
-                
-                switch self.theSegmentControl.selectedSegmentIndex {
-                case 0:
+                    activityFetched.type = stringToActivityType(str: dicAct["type"] as! String)
+                    
+                    if let attendeeOnline = dicAct["attendee"]{
+                        
+                        activityFetched.attendee = attendeeOnline as! [String]
+                        
+                    }
+                    
+                    // this is the total activity dic
+                    if (activityFetched.organizer == (FIRAuth.auth()?.currentUser?.email)! )
+                    {
+                        // ok now I am the organizer of the event
+                        print ("haha i own this act")
+                        self.ownActivityList.append(activityFetched)
+                    }
+                    if (activityFetched.attendee.contains((FIRAuth.auth()?.currentUser?.email)!))
+                    {
+                        // now I am an attendee of the event
+                        self.signedActivityList.append(activityFetched)
+                    }
+                        
+                    else{
+                        // now the event is neither owned by me, nor contains me as a participant
+                    }
                     self.currentActivity = self.signedActivityList
-                case 1:
-                    self.currentActivity = self.ownActivityList
-                default:
-                    break
-                }
+                    print(self.currentActivity)
+                    
+                    switch self.theSegmentControl.selectedSegmentIndex {
+                    case 0:
+                        self.currentActivity = self.signedActivityList
+                    case 1:
+                        self.currentActivity = self.ownActivityList
+                    default:
+                        break
+                    }
+
+            }
                 self.theTableView.reloadData()
                
             }
@@ -268,7 +270,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func submitDatePicker() {
         scheduleLocal(event: theEvent)
         cancelDatePicker()
-        showAlert(title: "Success!", msg: "You have successfully added a notification at " + dateToString(date: datePicker.date))
+        showMeAlert(title: "Success!", msg: "You have successfully added a notification at " + dateToString(date: datePicker.date))
         datePicker.date = Date()
     }
     
@@ -308,7 +310,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         center.add(request)
     }
     
-    func showAlert(title: String, msg: String) {
+    func showMeAlert(title: String, msg: String) {
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
             self.theTableView.setEditing(false, animated: true)

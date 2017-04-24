@@ -118,7 +118,7 @@ class NearbyController: UIViewController, MKMapViewDelegate {
 
                 }
             }
-            self.showAlert(title: "Yay", msg: "\(self.locationData.count) events within 10km are updated")
+            self.showNearbyAlert(title: "Yay", msg: "\(self.locationData.count) events within 10km are updated. Press the paper plane button on the bottom right corner to update again. ")
             self.addPins()
             
         })
@@ -161,7 +161,7 @@ class NearbyController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func showAlert(title: String, msg: String) {
+    func showNearbyAlert(title: String, msg: String) {
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
