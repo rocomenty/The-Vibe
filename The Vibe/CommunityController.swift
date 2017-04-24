@@ -14,7 +14,7 @@ import FirebaseDatabase
 class CommunityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var theTableView: UITableView!
     @IBOutlet weak var addEventButton: UIButton!
-    
+     let searchIndicator =   UIActivityIndicatorView()
     var detailedData :NSDictionary = [:]
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
@@ -29,13 +29,22 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         theTableView.dataSource = self
         theTableView.delegate = self
         ref = FIRDatabase.database().reference()
-        fetchActivities()
-        
+        setUpIndicator()
+         DispatchQueue.global(qos: .userInitiated).async {
+            self.searchIndicator.startAnimating()
+        self.fetchActivities()
+            DispatchQueue.main.async {
+
         self.theTableView.reloadData()
+                 self.searchIndicator.stopAnimating()
+            }
+        }
         
           registerForPreviewing(with: self, sourceView: theTableView)
         
     }
+        
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +61,16 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     func setUpNavigationBar() {
         self.navigationController?.navigationBar.barTintColor = getOrange()
         
+    }
+    
+    func setUpIndicator(){
+        
+       
+        searchIndicator.color = .black
+        searchIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        searchIndicator.center = self.view.center
+        searchIndicator.hidesWhenStopped = true
+        self.view.addSubview(searchIndicator)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
