@@ -245,29 +245,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="6vt-TW-3T5">
-                                <rect key="frame" x="0.0" y="113" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Suy-JD-pdN"/>
-                                    <constraint firstAttribute="width" constant="375" id="eQ4-oo-jaE"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YAt-96-bRS">
-                                <rect key="frame" x="0.0" y="157" width="375" height="510"/>
+                                <rect key="frame" x="0.0" y="8" width="375" height="610"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="375" id="ctg-Jd-s7h"/>
-                                    <constraint firstAttribute="height" constant="510" id="xTQ-Q3-agJ"/>
+                                    <constraint firstAttribute="height" constant="610" id="isA-8T-Uxf"/>
                                 </constraints>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YAt-96-bRS" firstAttribute="leading" secondItem="mfh-hQ-pMN" secondAttribute="leading" id="3D6-b4-5Ci"/>
-                            <constraint firstItem="YAt-96-bRS" firstAttribute="leading" secondItem="6vt-TW-3T5" secondAttribute="leading" id="OB7-IH-yfF"/>
                             <constraint firstItem="cfd-6n-jEx" firstAttribute="top" secondItem="YAt-96-bRS" secondAttribute="bottom" id="TN0-YD-LpI"/>
-                            <constraint firstItem="YAt-96-bRS" firstAttribute="top" secondItem="6vt-TW-3T5" secondAttribute="bottom" id="tdM-Sz-uwA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="The Vibe" id="Bae-k8-pkP">
@@ -284,14 +274,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="theSearchBar" destination="6vt-TW-3T5" id="01J-ld-Ogc"/>
                         <outlet property="theTableView" destination="YAt-96-bRS" id="63C-JF-fiB"/>
                         <segue destination="vH4-K9-BBO" kind="show" identifier="communityToDetail" id="Ff9-2E-KzM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPx-41-4VV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2996" y="-411"/>
+            <point key="canvasLocation" x="2996" y="-411.544227886057"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="wPK-ZC-WW9">
