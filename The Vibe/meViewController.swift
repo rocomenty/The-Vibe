@@ -266,7 +266,10 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func submitDatePicker() {
-        
+        scheduleLocal(event: theEvent)
+        cancelDatePicker()
+        showAlert(title: "Success!", msg: "You have successfully added a notification at " + dateToString(date: datePicker.date))
+        datePicker.date = Date()
     }
     
     func presentDatePicker() {
@@ -279,7 +282,6 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func scheduleLocal(event: Activities) {
         print("setting notifications")
         let center = UNUserNotificationCenter.current()
-        
         let content = UNMutableNotificationContent()
         content.title = "An Event is happening soon!"
         content.body = event.title + " by " + event.organizer
@@ -288,14 +290,21 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         content.badge = 1
         var dateComponents = DateComponents()
         let calendar = Calendar.current
+        dateComponents.minute = calendar.component(.minute, from: datePicker.date)
+        dateComponents.hour = calendar.component(.hour, from: datePicker.date)
+        dateComponents.day = calendar.component(.day, from: datePicker.date)
+        dateComponents.month = calendar.component(.month, from: datePicker.date)
+        dateComponents.year = calendar.component(.year, from: datePicker.date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         
-        dateComponents.hour = calendar.component(.hour, from: event.startTime)
-        dateComponents.minute = calendar.component(.minute, from: event.startTime)
-        
-//        let trigger2 = UNCalendarNotificationTrigger(dateMatching: <#T##DateComponents#>, repeats: <#T##Bool#>)
-        
-//        let request = UNNotificationRequest(identifier: "alarm", content: content, trigger: trigger)
-//        center.add(request)
+        let request = UNNotificationRequest(identifier: "alarm", content: content, trigger: trigger)
+        center.add(request)
+    }
+    
+    func showAlert(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
 }

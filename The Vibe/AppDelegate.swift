@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import CoreLocation
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         locationManager?.requestWhenInUseAuthorization()
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().backgroundColor = getOrange()
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if granted {
+                print("Yay!")
+            } else {
+                print("D'oh")
+            }
+        }
+
         return true
     }
 
