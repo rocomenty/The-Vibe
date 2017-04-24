@@ -25,7 +25,6 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         self.searchController.hidesNavigationBarDuringPresentation = false
-    
         super.viewWillAppear(true)
         theTableView.dataSource = self
         theTableView.delegate = self
@@ -83,8 +82,6 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func setUpIndicator(){
-        
-       
         searchIndicator.color = .black
         searchIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         searchIndicator.center = self.view.center
@@ -109,6 +106,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         if searchController.isActive && searchController.searchBar.text != "" {
             activity = filteredAct[indexPath.row]
         } else {
+            print(activityArr)
             activity = activityArr[indexPath.row]
         }
         cell.textLabel?.text = activity.title
@@ -156,21 +154,22 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     func fetchActivities() {
-        activityArr = []
-        
         refHandle = ref?.child("Activities").observe(.value, with: { (snapshot) in
-            let dic = snapshot.value! as! NSDictionary
-            let array = dic.allValues as NSArray
-            
-            for singleAct in array {
-                let dicAct = singleAct as! NSDictionary
+            self.activityArr = []
+            if let dic = snapshot.value! as? NSDictionary {
+                let array = dic.allValues as NSArray
                 
-                let activityFetched = Activities()
-                activityFetched.description = dicAct["description"]! as! String
-                activityFetched.title = dicAct["title"]! as! String
-                activityFetched.organizer = dicAct["organizer"]! as! String
-                activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
-                self.activityArr.append(activityFetched)
+                for singleAct in array {
+                    let dicAct = singleAct as! NSDictionary
+                    
+                    let activityFetched = Activities()
+                    activityFetched.description = dicAct["description"]! as! String
+                    activityFetched.title = dicAct["title"]! as! String
+                    activityFetched.organizer = dicAct["organizer"]! as! String
+                    activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
+                    self.activityArr.append(activityFetched)
+                }
+
             }
             self.theTableView.reloadData()
         })
@@ -204,7 +203,7 @@ extension CommunityController : UIViewControllerPreviewingDelegate{
         
         print("3dpressed !!!!!!!!!111")
         guard let cell = theTableView.cellForRow(at: indexPath) else {return nil}
-       previewingContext.sourceRect = cell.frame
+        previewingContext.sourceRect = cell.frame
         let description = activityArr[indexPath.row].description
         self.peekview.peekText?.text = description
         
