@@ -403,7 +403,7 @@
                         <segue destination="d0c-pU-Cop" kind="relationship" relationship="viewControllers" id="eFr-12-XRW"/>
                         <segue destination="Yei-54-dm9" kind="relationship" relationship="viewControllers" id="Mhj-5Q-XSk"/>
                         <segue destination="hrY-Ws-oxq" kind="relationship" relationship="viewControllers" id="H3P-yN-Fyn"/>
-                        <segue destination="u9f-ni-izH" kind="relationship" relationship="viewControllers" id="a7i-m9-ubs"/>
+                        <segue destination="tbs-y0-rwD" kind="relationship" relationship="viewControllers" id="sL5-SW-vFS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xN8-vK-7qX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -697,14 +697,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L6h-YG-1hs">
-                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RMH-D9-B1A">
-                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -1070,6 +1070,17 @@
                                     <action selector="loginButtonPressed:" destination="BDd-FM-Yy8" eventType="touchUpInside" id="18N-46-N0S"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aA9-Dp-zd0">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.96782547240000005" green="0.70864909890000005" blue="0.3640820682" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="More" id="DxT-1h-w1f"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1077,15 +1088,16 @@
                             <constraint firstItem="HZs-t8-Qrv" firstAttribute="top" secondItem="oYn-Xz-NaB" secondAttribute="bottom" constant="246" id="nDp-Wb-uAj"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="More" image="more" id="3om-aA-yn2"/>
                     <navigationItem key="navigationItem" title="More" id="lZ1-r4-k7d"/>
                     <connections>
                         <outlet property="logOutButton" destination="oYn-Xz-NaB" id="4O3-1V-g4C"/>
-                        <segue destination="BDd-FM-Yy8" kind="show" identifier="logOut" id="cwb-Ig-Y9A"/>
+                        <segue destination="BDd-FM-Yy8" kind="showDetail" identifier="logOut" action="showViewController:sender:" id="cwb-Ig-Y9A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BLh-wv-QKE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3036" y="1661.9190404797603"/>
+            <point key="canvasLocation" x="2180" y="1766"/>
         </scene>
         <!--Community-->
         <scene sceneID="zsR-Jo-KvM">
@@ -1144,25 +1156,6 @@
             </objects>
             <point key="canvasLocation" x="2096.8000000000002" y="243.32833583208398"/>
         </scene>
-        <!--More-->
-        <scene sceneID="y3z-nj-j57">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u9f-ni-izH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="More" image="more" id="6PM-Z2-O9F"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="V0m-2t-B2d">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="tbs-y0-rwD" kind="relationship" relationship="rootViewController" id="1yH-ia-fRd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KhY-If-OWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2096.8000000000002" y="1661.9190404797603"/>
-        </scene>
     </scenes>
     <resources>
         <image name="community" width="30" height="30"/>
@@ -1174,8 +1167,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Vrf-5d-Aq0"/>
-        <segue reference="G9Q-LU-CUb"/>
         <segue reference="Ff9-2E-KzM"/>
         <segue reference="gaT-tN-qC1"/>
+        <segue reference="G9Q-LU-CUb"/>
     </inferredMetricsTieBreakers>
 </document>
