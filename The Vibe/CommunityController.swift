@@ -26,6 +26,8 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewWillAppear(_ animated: Bool) {
+          self.searchController.hidesNavigationBarDuringPresentation = false
+    
         super.viewWillAppear(true)
         theTableView.dataSource = self
         theTableView.delegate = self

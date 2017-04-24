@@ -236,7 +236,7 @@
         <!--Community-->
         <scene sceneID="6bR-ch-k0e">
             <objects>
-                <viewController storyboardIdentifier="Community" title="Community" id="0Wg-bM-AR2" customClass="CommunityController" customModule="The_Vibe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Community" title="Community" extendedLayoutIncludesOpaqueBars="YES" id="0Wg-bM-AR2" customClass="CommunityController" customModule="The_Vibe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EoP-GP-eaU"/>
                         <viewControllerLayoutGuide type="bottom" id="cfd-6n-jEx"/>
@@ -1084,7 +1084,7 @@
         <!--Community-->
         <scene sceneID="zsR-Jo-KvM">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d0c-pU-Cop" sceneMemberID="viewController">
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="d0c-pU-Cop" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Community" image="community.png" id="Wj0-dn-KDk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rLa-yM-ww0">
