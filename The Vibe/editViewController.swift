@@ -57,6 +57,8 @@ class editViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         ref = FIRDatabase.database().reference()
         fetchActivities()
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -67,6 +69,11 @@ class editViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         self.titleField.resignFirstResponder()
         self.attendeeField.resignFirstResponder()
         self.descriptionField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismissKeyboard()
+        return true
     }
     
     func saveData(chosedLocation: CLLocationCoordinate2D?) {

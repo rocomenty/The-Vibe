@@ -53,7 +53,7 @@ class detailedViewController: UIViewController {
         fetchActivities()
         //   fetchDetailed(eventTitle: eTitle, eventOrganizer: eOrganizer)
         
-        
+        UIApplication.shared.statusBarStyle = .lightContent
         
     }
     

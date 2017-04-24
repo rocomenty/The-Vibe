@@ -49,6 +49,10 @@ class AddEventController: UIViewController, DataBackDelegate, UITextFieldDelegat
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismisskeyboard)))
         setUpLabels()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

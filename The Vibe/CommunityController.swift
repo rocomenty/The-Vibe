@@ -26,7 +26,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewWillAppear(_ animated: Bool) {
-          self.searchController.hidesNavigationBarDuringPresentation = false
+        self.searchController.hidesNavigationBarDuringPresentation = false
     
         super.viewWillAppear(true)
         theTableView.dataSource = self
@@ -44,16 +44,14 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-          registerForPreviewing(with: self, sourceView: theTableView)
+        registerForPreviewing(with: self, sourceView: theTableView)
         //searchController.searchResultsUpdater
        // theSearchBa
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         theTableView.tableHeaderView = searchController.searchBar
         
-        
-        
-        
+        UIApplication.shared.statusBarStyle = .lightContent
     }
         
     
@@ -66,16 +64,16 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
         
+        setUpNavigationBar()
+    }
+    
+    func setUpNavigationBar() {
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : getOrange()]
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func setUpNavigationBar() {
-        self.navigationController?.navigationBar.barTintColor = getOrange()
-        
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {

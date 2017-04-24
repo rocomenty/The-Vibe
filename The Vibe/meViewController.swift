@@ -39,6 +39,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         fetchActivities()
         setUpDatePicker()
        
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     @IBAction func changedSegmentControl(_ sender: UISegmentedControl) {
@@ -57,7 +58,11 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUpNavigationBar()
+    }
+    
+    func setUpNavigationBar() {
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : getOrange()]
     }
     
     override func didReceiveMemoryWarning() {
@@ -251,7 +256,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.addTarget(self, action: #selector(self.cancelDatePicker), for: .touchUpInside)
         
-        pickerSubmitButton.frame = CGRect(x: 0, y: 350, width: 100, height: 30)
+        pickerSubmitButton.frame = CGRect(x: 0, y: 350, width: 200, height: 30)
         pickerSubmitButton.backgroundColor = getOrange()
         pickerSubmitButton.setTitleColor(UIColor.white, for: .normal)
         pickerSubmitButton.setTitle("Set Notification", for: .normal)

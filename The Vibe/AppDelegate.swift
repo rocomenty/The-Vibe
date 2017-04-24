@@ -23,8 +23,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
-        UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().backgroundColor = getOrange()
+        
+        let navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.tintColor = getOrange()
+        navigationBarAppearace.barTintColor = UIColor.black
+        navigationBarAppearace.alpha = 1
+        
+        
+        let tabBarAppearance = UITabBar.appearance()
+        tabBarAppearance.tintColor = getOrange()
+        tabBarAppearance.barTintColor = UIColor.black
+        tabBarAppearance.alpha = 1
         
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
@@ -54,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        application.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

@@ -44,6 +44,7 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         setUpSearchController()
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 
     override func didReceiveMemoryWarning() {

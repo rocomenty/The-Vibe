@@ -27,6 +27,10 @@ class NearbyController: UIViewController, MKMapViewDelegate {
     var eTitle: String?
     var eOrganizer: String?
     
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -36,6 +40,11 @@ class NearbyController: UIViewController, MKMapViewDelegate {
             fetchActivities()
         }
         firstLoad = true
+        setUpNavigationBar()
+    }
+    
+    func setUpNavigationBar() {
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : getOrange()]
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,9 +56,9 @@ class NearbyController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         if let loc = userLocation.location {
             currentLocation = loc
-            changeMapSize(location: loc)
             if firstLoad {
                 fetchActivities()
+                changeMapSize(location: loc)
                 firstLoad = false
             }
         }
