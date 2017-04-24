@@ -244,7 +244,7 @@ class editViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         } else {
             self.attendeeField.text = formatAttendeeText(attendees: theEvent.attendee)
         }
-        locationLabel.text = "You have picked a location"
+        locationLabel.text = cllocationToStringWithTrim(location: theEvent.location)
     }
     
     func setUpDatePicker() {

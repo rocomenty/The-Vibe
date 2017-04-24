@@ -79,7 +79,6 @@ class PickLocationController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //FIXME
         if let last = locations.last {
             if (!hasSetCurrentLocation) {
                 setUpAnnotation(currentLocation: last.coordinate)

@@ -75,7 +75,7 @@ class AddEventController: UIViewController, DataBackDelegate, UITextFieldDelegat
         
         //locations
         if clLocation != nil {
-            locationLabel.text = "You have picked a location"
+            locationLabel.text = cllocationToStringWithTrim(location: clLocation!)
         }
         else {
             locationLabel.text = "Please Pick a location"

@@ -54,6 +54,10 @@ func cllocationToString(location: CLLocationCoordinate2D) -> String {
     return String(location.longitude) + ", " + String(location.latitude);
 }
 
+func cllocationToStringWithTrim(location: CLLocationCoordinate2D) -> String {
+    return "Longitude: " + String(Double(round(1000*location.longitude)/1000)) + ", Latitude: " + String(Double(round(1000*location.latitude)/1000))
+}
+
 func dateToString(date: Date) -> String {
     let dateFormatter: DateFormatter = DateFormatter()
     

@@ -153,8 +153,7 @@ class detailedViewController: UIViewController {
         print(self.theEvent.description)
         self.eventTime.text = dateToString(date: self.theEvent.startTime)
         print(theEvent.location)
-        self.eventLocation.text = "Tap Back to see the location"
-       // self.eventDescription.text = self.theEvent
+        self.eventLocation.text = cllocationToStringWithTrim(location: theEvent.location)
     }
     
     func showAlert(title: String, msg: String) {
