@@ -33,6 +33,8 @@
 		CD2EED221EA9442400DF96E3 /* detailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2EED211EA9442400DF96E3 /* detailedViewController.swift */; };
 		CD6342731E98845E00C83D84 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6342721E98845E00C83D84 /* Activities.swift */; };
 		CDAE6A9F1EAC1D79000083DB /* editViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAE6A9E1EAC1D79000083DB /* editViewController.swift */; };
+		CDB08DDD1EAD7B0200943501 /* peekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB08DDB1EAD7B0200943501 /* peekViewController.swift */; };
+		CDB08DDE1EAD7B0200943501 /* peekViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB08DDC1EAD7B0200943501 /* peekViewController.xib */; };
 		CDEE6F851E8EE57400341FC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */; };
 		CDEE6F871E8EE57400341FC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE6F861E8EE57400341FC9 /* ViewController.swift */; };
 		CDEE6F8A1E8EE57400341FC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDEE6F881E8EE57400341FC9 /* Main.storyboard */; };
@@ -91,6 +93,8 @@
 		CD2EED211EA9442400DF96E3 /* detailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedViewController.swift; sourceTree = "<group>"; };
 		CD6342721E98845E00C83D84 /* Activities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activities.swift; path = ../Activities.swift; sourceTree = "<group>"; };
 		CDAE6A9E1EAC1D79000083DB /* editViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editViewController.swift; sourceTree = "<group>"; };
+		CDB08DDB1EAD7B0200943501 /* peekViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = peekViewController.swift; sourceTree = "<group>"; };
+		CDB08DDC1EAD7B0200943501 /* peekViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = peekViewController.xib; sourceTree = "<group>"; };
 		CDEE6F811E8EE57400341FC9 /* The Vibe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Vibe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDEE6F841E8EE57400341FC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDEE6F861E8EE57400341FC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 				CD6342721E98845E00C83D84 /* Activities.swift */,
 				CDEE6F861E8EE57400341FC9 /* ViewController.swift */,
 				CDEE6F881E8EE57400341FC9 /* Main.storyboard */,
+				CDB08DDB1EAD7B0200943501 /* peekViewController.swift */,
+				CDB08DDC1EAD7B0200943501 /* peekViewController.xib */,
 				CDAE6A9E1EAC1D79000083DB /* editViewController.swift */,
 				089C8AE31E9DA93E009E4D00 /* CommunityController.swift */,
 				CD2EED211EA9442400DF96E3 /* detailedViewController.swift */,
@@ -366,6 +372,7 @@
 				CDEE6F921E8EE57400341FC9 /* LaunchScreen.storyboard in Resources */,
 				08E622031E9D8C3600DE2D9E /* GoogleService-Info.plist in Resources */,
 				CDEE6F8F1E8EE57400341FC9 /* Assets.xcassets in Resources */,
+				CDB08DDE1EAD7B0200943501 /* peekViewController.xib in Resources */,
 				CDEE6F8A1E8EE57400341FC9 /* Main.storyboard in Resources */,
 				08DB7C411EA5AA6B0069AE55 /* checkmark.png in Resources */,
 				08E622051E9D90CB00DE2D9E /* logo.png in Resources */,
@@ -546,6 +553,7 @@
 				CDEE6F8D1E8EE57400341FC9 /* The_Vibe.xcdatamodeld in Sources */,
 				CDAE6A9F1EAC1D79000083DB /* editViewController.swift in Sources */,
 				089C8ADC1E9D9B9D009E4D00 /* functions.swift in Sources */,
+				CDB08DDD1EAD7B0200943501 /* peekViewController.swift in Sources */,
 				089C8AE61E9DB829009E4D00 /* AddEventController.swift in Sources */,
 				089C8AE81E9DD9B8009E4D00 /* MoreController.swift in Sources */,
 				CDEE6F871E8EE57400341FC9 /* ViewController.swift in Sources */,
