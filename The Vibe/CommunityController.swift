@@ -20,6 +20,8 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
     var refHandle: UInt!
     var activityArr : [Activities] = []
     
+    var peekview = peekViewController()
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +33,7 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.theTableView.reloadData()
         
+          registerForPreviewing(with: self, sourceView: theTableView)
         
     }
     
@@ -123,6 +126,37 @@ class CommunityController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             self.theTableView.reloadData()
         })
+    }
+    
+    
+}
+
+
+extension CommunityController : UIViewControllerPreviewingDelegate{
+     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = theTableView.indexPathForRow(at: location) else {return nil}
+        
+        print("3dpressed !!!!!!!!!111")
+        guard let cell = theTableView.cellForRow(at: indexPath) else {return nil}
+       previewingContext.sourceRect = cell.frame
+        let description = activityArr[indexPath.row].description
+        self.peekview.peekText?.text = description
+        
+        
+        let preferedWidth = self.view.frame.width - 50.0
+        self.peekview.preferredContentSize = CGSize(width: preferedWidth, height: preferedWidth)
+        
+        return self.peekview
+
+        
+        
+        
+        
+    
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(self.peekview, sender: self)
     }
     
     

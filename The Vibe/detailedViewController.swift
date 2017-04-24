@@ -104,6 +104,7 @@ class detailedViewController: UIViewController {
                 let dicAct = eDetail as! NSDictionary
                 let activityFetched = Activities()
                 activityFetched.description = dicAct["description"]! as! String
+                print("the desciption of each event is \(activityFetched.description)")
                 activityFetched.title = dicAct["title"]! as! String
                 activityFetched.organizer = dicAct["organizer"]! as! String
                 activityFetched.startTime = stringToDate(dateString: dicAct["time"]! as! String)
@@ -141,15 +142,19 @@ class detailedViewController: UIViewController {
                     }
                 }
             }
+            self.setUpLabels()
+
         })
-            setUpLabels()
-    }
+                }
     
     func setUpLabels() {
         self.eventDescription.text = self.theEvent.description
+       // print("the description of the event is ")
+        print(self.theEvent.description)
         self.eventTime.text = dateToString(date: self.theEvent.startTime)
         print(theEvent.location)
         self.eventLocation.text = "Tap Back to see the location"
+       // self.eventDescription.text = self.theEvent
     }
     
     func showAlert(title: String, msg: String) {
