@@ -278,7 +278,7 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     //adapted from https://www.hackingwithswift.com/read/21/2/scheduling-notifications-unusernotificationcenter-and-unnotificationrequest
     func scheduleLocal(event: Activities) {
         print("setting notifications")
-        let center = UNUserNotificationCenter.current()
+      //  let center = UNUserNotificationCenter.current()
         
         let content = UNMutableNotificationContent()
         content.title = "An Event is happening soon!"
