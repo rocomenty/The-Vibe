@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import UserNotifications
 
 
 class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -25,12 +26,18 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var ref: FIRDatabaseReference?
     var refHandle: UInt!
     
+    //notification time picker
+    var datePicker: UIDatePicker!
+    var cancelButton: UIButton!
+    var pickerSubmitButton: UIButton!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         theTableView.dataSource = self
         theTableView.delegate = self
         ref = FIRDatabase.database().reference()
         fetchActivities()
+        setUpDatePicker()
        
     }
     
@@ -106,10 +113,21 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     //adapted from https://www.youtube.com/watch?v=T0xzTbXhOvE
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        var shareAction = UITableViewRowAction(style: .normal, title: "Add Notification", handler: nil)
-//    }
-//    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let notificationAction = UITableViewRowAction(style: .normal, title: "Set Notification", handler: { (action: UITableViewRowAction, indexPath: IndexPath) in
+            
+            let event = self.currentActivity[indexPath.row]
+            self.presentNotificationPicker(event: event)
+        })
+        notificationAction.backgroundColor = getOrange()
+        return [notificationAction]
+    }
+    
+    func presentNotificationPicker(event: Activities) {
+        datePicker.date = event.startTime
+        presentDatePicker()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
@@ -202,9 +220,82 @@ class meViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
             
     }
-
-
+    
+    func dateDidChanged(_ sender: UIDatePicker) {
+        let dateFormatter: DateFormatter = DateFormatter()
         
+        // Set date format
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
+        
+        // Apply date format
+        let selectedDate: String = dateFormatter.string(from: sender.date)
+        
+        print("Selected value \(selectedDate)")
+    }
+    
+    func setUpDatePicker() {
+        datePicker = UIDatePicker()
+        cancelButton = UIButton()
+        pickerSubmitButton = UIButton()
+        datePicker.frame = CGRect(x: 0, y: 400, width: self.view.frame.width, height: 200)
+        datePicker.timeZone = NSTimeZone.local
+        datePicker.backgroundColor = getOrange()
+        datePicker.setValue(UIColor.white, forKey: "textColor")
+        datePicker.tintColor = UIColor.white
+        datePicker.datePickerMode = .dateAndTime
+        datePicker.addTarget(self, action: #selector(self.dateDidChanged), for: .valueChanged)
+        
+        cancelButton.frame = CGRect(x: self.view.frame.maxX-100, y: 350, width: 100, height: 30)
+        cancelButton.backgroundColor = getOrange()
+        cancelButton.setTitleColor(UIColor.white, for: .normal)
+        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.addTarget(self, action: #selector(self.cancelDatePicker), for: .touchUpInside)
+        
+        pickerSubmitButton.frame = CGRect(x: 0, y: 350, width: 100, height: 30)
+        pickerSubmitButton.backgroundColor = getOrange()
+        pickerSubmitButton.setTitleColor(UIColor.white, for: .normal)
+        pickerSubmitButton.setTitle("Set Notification", for: .normal)
+        pickerSubmitButton.addTarget(self, action: #selector(self.submitDatePicker), for: .touchUpInside)
 
+    }
+    
+    func cancelDatePicker() {
+        datePicker.removeFromSuperview()
+        pickerSubmitButton.removeFromSuperview()
+        cancelButton.removeFromSuperview()
+    }
+    
+    func submitDatePicker() {
+        
+    }
+    
+    func presentDatePicker() {
+        self.view.addSubview(datePicker)
+        self.view.addSubview(pickerSubmitButton)
+        self.view.addSubview(cancelButton)
+    }
+
+    //adapted from https://www.hackingwithswift.com/read/21/2/scheduling-notifications-unusernotificationcenter-and-unnotificationrequest
+    func scheduleLocal(event: Activities) {
+        print("setting notifications")
+        let center = UNUserNotificationCenter.current()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "An Event is happening soon!"
+        content.body = event.title + " by " + event.organizer
+        content.categoryIdentifier = "alarm"
+        content.sound = UNNotificationSound.default()
+        content.badge = 1
+        var dateComponents = DateComponents()
+        let calendar = Calendar.current
+        
+        dateComponents.hour = calendar.component(.hour, from: event.startTime)
+        dateComponents.minute = calendar.component(.minute, from: event.startTime)
+        
+//        let trigger2 = UNCalendarNotificationTrigger(dateMatching: <#T##DateComponents#>, repeats: <#T##Bool#>)
+        
+//        let request = UNNotificationRequest(identifier: "alarm", content: content, trigger: trigger)
+//        center.add(request)
+    }
     
 }
